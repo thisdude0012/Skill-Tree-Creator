@@ -1,0 +1,114 @@
+{
+  "mappings": {
+    "daripher/skilltree/mixin/minecraft/PlayerMixin": {
+      "addAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7380_(Lnet/minecraft/nbt/CompoundTag;)V",
+      "onEnchantmentPerformed": "Lnet/minecraft/world/entity/player/Player;m_7408_(Lnet/minecraft/world/item/ItemStack;I)V",
+      "readAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7378_(Lnet/minecraft/nbt/CompoundTag;)V"
+    },
+    "daripher/skilltree/mixin/RecipeCollectionAccessor": {
+      "craftable": "f_100493_:Ljava/util/Set;"
+    },
+    "daripher/skilltree/mixin/MobEffectInstanceAccessor": {
+      "duration": "f_19503_:I"
+    },
+    "daripher/skilltree/mixin/EditBoxAccessor": {
+      "formatter": "f_94091_:Ljava/util/function/BiFunction;",
+      "highlightPos": "f_94102_:I",
+      "renderHighlight": "m_264315_(Lnet/minecraft/client/gui/GuiGraphics;IIII)V",
+      "suggestion": "f_94088_:Ljava/lang/String;",
+      "maxLength": "f_94094_:I",
+      "displayPos": "f_94100_:I",
+      "frame": "f_94095_:I"
+    },
+    "daripher/skilltree/mixin/minecraft/LivingEntityMixin": {
+      "dropAllDeathLoot": "Lnet/minecraft/world/entity/LivingEntity;m_6668_(Lnet/minecraft/world/damagesource/DamageSource;)V",
+      "getJumpPower": "Lnet/minecraft/world/entity/LivingEntity;m_6118_()F"
+    },
+    "daripher/skilltree/mixin/minecraft/ItemStackMixin": {
+      "hurt": "Lnet/minecraft/world/item/ItemStack;m_220157_(ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z"
+    },
+    "daripher/skilltree/mixin/ShapedRecipeAccessor": {
+      "result": "f_44149_:Lnet/minecraft/world/item/ItemStack;"
+    },
+    "daripher/skilltree/mixin/minecraft/ThrownPotionMixin": {
+      "Lnet/minecraft/world/level/Level;getEntitiesOfClass(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;": "Lnet/minecraft/world/level/Level;m_45976_(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;",
+      "applySplash": "Lnet/minecraft/world/entity/projectile/ThrownPotion;m_37547_(Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V",
+      "Lnet/minecraft/world/entity/LivingEntity;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/world/entity/LivingEntity;m_147207_(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z"
+    },
+    "daripher/skilltree/mixin/AbstractArrowAccessor": {
+      "getPickupItem": "m_7941_()Lnet/minecraft/world/item/ItemStack;"
+    },
+    "daripher/skilltree/mixin/SmithingTransformRecipeAccessor": {
+      "template": "f_265949_:Lnet/minecraft/world/item/crafting/Ingredient;",
+      "result": "f_266098_:Lnet/minecraft/world/item/ItemStack;",
+      "base": "f_265888_:Lnet/minecraft/world/item/crafting/Ingredient;",
+      "addition": "f_265907_:Lnet/minecraft/world/item/crafting/Ingredient;"
+    },
+    "daripher/skilltree/mixin/minecraft/MobEffectMixin": {
+      "applyEffectTick": "Lnet/minecraft/world/effect/MobEffect;m_6742_(Lnet/minecraft/world/entity/LivingEntity;I)V"
+    },
+    "daripher/skilltree/mixin/ShapelessRecipeAccessor": {
+      "result": "f_44243_:Lnet/minecraft/world/item/ItemStack;"
+    },
+    "daripher/skilltree/mixin/SmithingMenuAccessor": {
+      "selectedRecipe": "f_40242_:Lnet/minecraft/world/item/crafting/SmithingRecipe;"
+    }
+  },
+  "data": {
+    "searge": {
+      "daripher/skilltree/mixin/minecraft/PlayerMixin": {
+        "addAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7380_(Lnet/minecraft/nbt/CompoundTag;)V",
+        "onEnchantmentPerformed": "Lnet/minecraft/world/entity/player/Player;m_7408_(Lnet/minecraft/world/item/ItemStack;I)V",
+        "readAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7378_(Lnet/minecraft/nbt/CompoundTag;)V"
+      },
+      "daripher/skilltree/mixin/RecipeCollectionAccessor": {
+        "craftable": "f_100493_:Ljava/util/Set;"
+      },
+      "daripher/skilltree/mixin/MobEffectInstanceAccessor": {
+        "duration": "f_19503_:I"
+      },
+      "daripher/skilltree/mixin/EditBoxAccessor": {
+        "formatter": "f_94091_:Ljava/util/function/BiFunction;",
+        "highlightPos": "f_94102_:I",
+        "renderHighlight": "m_264315_(Lnet/minecraft/client/gui/GuiGraphics;IIII)V",
+        "suggestion": "f_94088_:Ljava/lang/String;",
+        "maxLength": "f_94094_:I",
+        "displayPos": "f_94100_:I",
+        "frame": "f_94095_:I"
+      },
+      "daripher/skilltree/mixin/minecraft/LivingEntityMixin": {
+        "dropAllDeathLoot": "Lnet/minecraft/world/entity/LivingEntity;m_6668_(Lnet/minecraft/world/damagesource/DamageSource;)V",
+        "getJumpPower": "Lnet/minecraft/world/entity/LivingEntity;m_6118_()F"
+      },
+      "daripher/skilltree/mixin/minecraft/ItemStackMixin": {
+        "hurt": "Lnet/minecraft/world/item/ItemStack;m_220157_(ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z"
+      },
+      "daripher/skilltree/mixin/ShapedRecipeAccessor": {
+        "result": "f_44149_:Lnet/minecraft/world/item/ItemStack;"
+      },
+      "daripher/skilltree/mixin/minecraft/ThrownPotionMixin": {
+        "Lnet/minecraft/world/level/Level;getEntitiesOfClass(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;": "Lnet/minecraft/world/level/Level;m_45976_(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;",
+        "applySplash": "Lnet/minecraft/world/entity/projectile/ThrownPotion;m_37547_(Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V",
+        "Lnet/minecraft/world/entity/LivingEntity;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/world/entity/LivingEntity;m_147207_(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z"
+      },
+      "daripher/skilltree/mixin/AbstractArrowAccessor": {
+        "getPickupItem": "m_7941_()Lnet/minecraft/world/item/ItemStack;"
+      },
+      "daripher/skilltree/mixin/SmithingTransformRecipeAccessor": {
+        "template": "f_265949_:Lnet/minecraft/world/item/crafting/Ingredient;",
+        "result": "f_266098_:Lnet/minecraft/world/item/ItemStack;",
+        "base": "f_265888_:Lnet/minecraft/world/item/crafting/Ingredient;",
+        "addition": "f_265907_:Lnet/minecraft/world/item/crafting/Ingredient;"
+      },
+      "daripher/skilltree/mixin/minecraft/MobEffectMixin": {
+        "applyEffectTick": "Lnet/minecraft/world/effect/MobEffect;m_6742_(Lnet/minecraft/world/entity/LivingEntity;I)V"
+      },
+      "daripher/skilltree/mixin/ShapelessRecipeAccessor": {
+        "result": "f_44243_:Lnet/minecraft/world/item/ItemStack;"
+      },
+      "daripher/skilltree/mixin/SmithingMenuAccessor": {
+        "selectedRecipe": "f_40242_:Lnet/minecraft/world/item/crafting/SmithingRecipe;"
+      }
+    }
+  }
+}

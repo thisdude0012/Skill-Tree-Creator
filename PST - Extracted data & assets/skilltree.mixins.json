@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "package": "daripher.skilltree.mixin",
+  "mixins": [
+    "minecraft/PlayerMixin",
+    "minecraft/LivingEntityMixin",
+    "minecraft/ArmorSlotMixin",
+    "minecraft/MobEffectMixin",
+    "minecraft/ThrownPotionMixin",
+    "minecraft/ItemStackMixin",
+    "AbstractArrowAccessor",
+    "ShapedRecipeAccessor",
+    "ShapelessRecipeAccessor",
+    "SmithingMenuAccessor",
+    "MobEffectInstanceAccessor",
+    "SmithingTransformRecipeAccessor"
+  ],
+  "client": [
+    "EditBoxAccessor",
+    "RecipeCollectionAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "skilltree.refmap.json"
+}
