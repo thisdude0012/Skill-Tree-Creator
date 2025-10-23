@@ -698,3 +698,23 @@ a:focus-visible {
     padding: var(--spacing-lg);
   }
 }
+
+/* Custom overrides - solid black backgrounds */
+header,
+.header {
+    background: #000000 !important;
+    background-image: none !important;
+}
+
+section,
+.section,
+.skill-details,
+.bonuses-section,
+.requirements-section,
+.preview-section,
+.connections-section,
+.export-section {
+    background: #000000 !important;
+    background-image: none !important;
+    border: 1px solid #444; /* subtle border so sections are visible */
+}
