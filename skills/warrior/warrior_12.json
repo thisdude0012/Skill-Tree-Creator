@@ -1,0 +1,34 @@
+{
+  "id": "skilltree:warrior_12",
+  "bonuses": [
+    {
+      "type": "skilltree:attribute",
+      "attribute": "minecraft:generic.armor",
+      "id": "49438e8b-aa6f-4bcd-8193-b275aff2d23d",
+      "name": "Skill",
+      "amount": 0.25,
+      "operation": 1,
+      "player_multiplier": {
+        "type": "skilltree:none"
+      },
+      "player_condition": {
+        "type": "skilltree:none"
+      }
+    }
+  ],
+  "requirements": [],
+  "directConnections": [
+    "skilltree:warrior_1"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/void.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "title": "Tier I - Armor",
+  "positionX": 23.336,
+  "positionY": 16.058,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

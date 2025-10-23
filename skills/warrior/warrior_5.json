@@ -1,0 +1,46 @@
+{
+  "id": "skilltree:warrior_5",
+  "bonuses": [
+    {
+      "type": "skilltree:crit_chance",
+      "chance": 0.15,
+      "player_multiplier": {
+        "type": "skilltree:none"
+      },
+      "enemy_multiplier": {
+        "type": "skilltree:none"
+      },
+      "player_condition": {
+        "value_provider": {
+          "percentage": true,
+          "missing": false,
+          "type": "skilltree:health_level"
+        },
+        "required_value": 1.0,
+        "logic": "EQUAL",
+        "type": "skilltree:numeric_value"
+      },
+      "damage_condition": {
+        "type": "skilltree:none"
+      },
+      "target_condition": {
+        "type": "skilltree:none"
+      }
+    }
+  ],
+  "requirements": [],
+  "directConnections": [
+    "skilltree:warrior_4"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/void.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "title": "Tier IV",
+  "positionX": 110.123,
+  "positionY": -5.155,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

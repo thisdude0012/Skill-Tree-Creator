@@ -1,0 +1,26 @@
+{
+  "skillIds": [
+    "skilltree:warrior_1",
+    "skilltree:warrior_2",
+    "skilltree:warrior_3",
+    "skilltree:warrior_4",
+    "skilltree:warrior_5",
+    "skilltree:warrior_6",
+    "skilltree:warrior_7",
+    "skilltree:warrior_8",
+    "skilltree:warrior_9",
+    "skilltree:warrior_10",
+    "skilltree:warrior_11",
+    "skilltree:warrior_12",
+    "skilltree:warrior_14",
+    "skilltree:warrior_15",
+    "skilltree:warrior_16",
+    "skilltree:warrior_17",
+    "skilltree:warrior_18",
+    "skilltree:warrior_19"
+  ],
+  "id": "skilltree:warrior",
+  "skillLimitations": {
+    "New Tag": 1
+  }
+}

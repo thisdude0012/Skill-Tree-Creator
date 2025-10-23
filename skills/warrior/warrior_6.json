@@ -1,0 +1,44 @@
+{
+  "id": "skilltree:warrior_6",
+  "bonuses": [
+    {
+      "type": "skilltree:crit_damage",
+      "amount": 0.05,
+      "player_multiplier": {
+        "value_provider": {
+          "attribute": "minecraft:generic.armor",
+          "type": "skilltree:attribute_value"
+        },
+        "divisor": 5.0,
+        "type": "skilltree:numeric_value"
+      },
+      "enemy_multiplier": {
+        "type": "skilltree:none"
+      },
+      "player_condition": {
+        "type": "skilltree:none"
+      },
+      "damage_condition": {
+        "type": "skilltree:none"
+      },
+      "target_condition": {
+        "type": "skilltree:none"
+      }
+    }
+  ],
+  "requirements": [],
+  "directConnections": [
+    "skilltree:warrior_5"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/void.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "title": "Tier V",
+  "positionX": 136.123,
+  "positionY": -5.155,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

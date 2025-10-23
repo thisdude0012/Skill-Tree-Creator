@@ -1,0 +1,74 @@
+{
+  "id": "skilltree:warrior_9",
+  "bonuses": [
+    {
+      "type": "skilltree:inflict_damage",
+      "chance": 1.0,
+      "damage": 5.0,
+      "event_listener": {
+        "damage_condition": {
+          "type": "skilltree:melee"
+        },
+        "enemy_condition": {
+          "type": "skilltree:none"
+        },
+        "player_condition": {
+          "type": "skilltree:none"
+        },
+        "enemy_multiplier": {
+          "type": "skilltree:none"
+        },
+        "player_multiplier": {
+          "type": "skilltree:none"
+        },
+        "target": "enemy",
+        "type": "skilltree:attack"
+      },
+      "damage_type": {
+        "type": "skilltree:fire"
+      }
+    },
+    {
+      "type": "skilltree:inflict_effect",
+      "chance": 1.0,
+      "max_stacks": 1,
+      "effect": "minecraft:weakness",
+      "duration": 100,
+      "amplifier": 1,
+      "event_listener": {
+        "damage_condition": {
+          "type": "skilltree:melee"
+        },
+        "enemy_condition": {
+          "type": "skilltree:none"
+        },
+        "player_condition": {
+          "type": "skilltree:none"
+        },
+        "enemy_multiplier": {
+          "type": "skilltree:none"
+        },
+        "player_multiplier": {
+          "type": "skilltree:none"
+        },
+        "target": "enemy",
+        "type": "skilltree:attack"
+      }
+    }
+  ],
+  "requirements": [],
+  "directConnections": [
+    "skilltree:warrior_8"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/void.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "title": "Tier VIII",
+  "positionX": 214.123,
+  "positionY": -5.155,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}
