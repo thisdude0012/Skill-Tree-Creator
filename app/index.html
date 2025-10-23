@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a1d12" />
+    <title>Passive Skill Tree Creator</title>
+    <link rel="preload" href="./styles/main.css" as="style" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/heart_green.png"
+    />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header" id="top" data-module="header">
+        <div class="branding">
+          <div class="branding__mark" aria-hidden="true"></div>
+          <div class="branding__copy">
+            <h1 class="branding__title">Skill Creator</h1>
+            <p class="branding__subtitle">Passive Skill Tree mod builder</p>
+          </div>
+        </div>
+        <button
+          class="nav-toggle"
+          type="button"
+          data-nav-toggle
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span class="nav-toggle__icon" aria-hidden="true"></span>
+          Menu
+        </button>
+        <nav class="app-nav" id="primary-nav" data-nav>
+          <ul class="app-nav__list">
+            <li><a href="#skill-details" data-nav-link>Skill Details</a></li>
+            <li><a href="#bonuses" data-nav-link>Bonuses</a></li>
+            <li><a href="#requirements" data-nav-link>Requirements</a></li>
+            <li><a href="#preview" data-nav-link>Preview</a></li>
+            <li><a href="#exports" data-nav-link>Exports</a></li>
+            <li><a href="#reference" data-nav-link>Reference</a></li>
+            <li><a href="#position-helper" data-nav-link>Position Helper</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="app-main" data-module="main">
+        <section id="skill-details" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/background/class.png')"
+                aria-hidden="true"
+              ></span>
+              Skill Details
+            </h2>
+            <p class="panel__lede">Define the identity and flavor of the skill.</p>
+          </header>
+          <div class="panel__content placeholder-grid">
+            <div class="placeholder-field" data-placeholder="name">
+              <span class="placeholder-field__label">Skill Name</span>
+              <span class="placeholder-field__input placeholder-block"></span>
+            </div>
+            <div class="placeholder-field" data-placeholder="type">
+              <span class="placeholder-field__label">Skill Type</span>
+              <span class="placeholder-pill placeholder-pill--wide">Notable</span>
+            </div>
+            <div class="placeholder-field placeholder-field--stacked" data-placeholder="description">
+              <span class="placeholder-field__label">Lore / Description</span>
+              <span class="placeholder-field__textarea placeholder-block"></span>
+            </div>
+            <div class="placeholder-field" data-placeholder="tags">
+              <span class="placeholder-field__label">Tags</span>
+              <div class="placeholder-chip-row">
+                <span class="placeholder-chip">combat</span>
+                <span class="placeholder-chip">ranged</span>
+                <span class="placeholder-chip">utility</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="bonuses" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/heart_green.png')"
+                aria-hidden="true"
+              ></span>
+              Bonuses
+            </h2>
+            <p class="panel__lede">Stack effects and stat boosts granted when the skill is allocated.</p>
+          </header>
+          <div class="panel__content placeholder-list" data-placeholder="bonuses">
+            <article class="placeholder-card">
+              <h3 class="placeholder-card__title">Placeholder Bonus</h3>
+              <p class="placeholder-card__body">
+                Configure values, scaling behaviour, and tooltip messaging for each bonus entry.
+              </p>
+            </article>
+            <article class="placeholder-card">
+              <h3 class="placeholder-card__title">Passive Effects</h3>
+              <p class="placeholder-card__body">
+                Future UI will surface metadata-driven forms for modifiers, multipliers, and conditions.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="requirements" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/cross_red.png')"
+                aria-hidden="true"
+              ></span>
+              Requirements
+            </h2>
+            <p class="panel__lede">Plan out prerequisite skills, conditions, and unlock quests.</p>
+          </header>
+          <div class="panel__content placeholder-list" data-placeholder="requirements">
+            <article class="placeholder-card">
+              <h3 class="placeholder-card__title">Allocation Rules</h3>
+              <ul class="placeholder-card__list">
+                <li>Required allocated nodes</li>
+                <li>Player level or advancement gates</li>
+                <li>Custom predicates powered by metadata</li>
+              </ul>
+            </article>
+            <article class="placeholder-card">
+              <h3 class="placeholder-card__title">Connections</h3>
+              <p class="placeholder-card__body">
+                Visual helpers will appear here to manage directional and socket-based links between nodes.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="preview" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/screen/favorite_skill.png')"
+                aria-hidden="true"
+              ></span>
+              Preview
+            </h2>
+            <p class="panel__lede">Live render of the node with mod-accurate visuals.</p>
+          </header>
+          <div class="panel__content" data-preview>
+            <div class="preview-display">
+              <div class="preview-display__grid">
+                <div class="skill-node skill-node--focus">
+                  <span
+                    class="skill-node__icon"
+                    style="background-image:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/bow_diamond.png')"
+                  ></span>
+                  <span class="skill-node__label">Ranger's Volley</span>
+                </div>
+                <div class="skill-node skill-node--linked">
+                  <span
+                    class="skill-node__icon"
+                    style="background-image:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/background/notable.png')"
+                  ></span>
+                  <span class="skill-node__label">Empowered Draw</span>
+                </div>
+                <div class="skill-node skill-node--linked">
+                  <span
+                    class="skill-node__icon"
+                    style="background-image:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/background/lesser.png')"
+                  ></span>
+                  <span class="skill-node__label">Fleet Step</span>
+                </div>
+              </div>
+              <div class="preview-display__annotation">
+                Future preview logic will mirror in-game shaders, sockets, and drag targets.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="exports" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/arrow_diamond.png')"
+                aria-hidden="true"
+              ></span>
+              Exports
+            </h2>
+            <p class="panel__lede">Generate data packs, JSON configs, and shareable blueprints.</p>
+          </header>
+          <div class="panel__content placeholder-actions" data-placeholder="exports">
+            <button class="cta-button" type="button">Export JSON</button>
+            <button class="cta-button" type="button">Copy Share Link</button>
+            <button class="cta-button" type="button">Download Data Pack</button>
+          </div>
+        </section>
+
+        <section id="reference" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/treasure_chest.png')"
+                aria-hidden="true"
+              ></span>
+              Reference
+            </h2>
+            <p class="panel__lede">
+              Metadata-driven helper tables that bind directly to the extracted registries.
+            </p>
+          </header>
+          <div class="panel__content placeholder-reference" data-placeholder="reference">
+            <div class="reference-card">
+              <h3 class="reference-card__title">Bonuses</h3>
+              <p class="reference-card__body">
+                Browse extracted bonus serializers and their configurable fields sourced from
+                <code>app/data/metadata.json</code>.
+              </p>
+            </div>
+            <div class="reference-card">
+              <h3 class="reference-card__title">Requirements</h3>
+              <p class="reference-card__body">
+                Quickly look up requirement predicates, default values, and supported comparators.
+              </p>
+            </div>
+            <div class="reference-card">
+              <h3 class="reference-card__title">Bonuses &amp; Conditions</h3>
+              <p class="reference-card__body">
+                Inline search and filtering will hydrate this space with metadata-backed forms.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="position-helper" class="panel" data-section>
+          <header class="panel__header">
+            <h2 class="panel__title">
+              <span
+                class="panel__icon"
+                style="--icon:url('../PST%20-%20Extracted%20data%20%26%20assets/assets/skilltree/textures/icons/arrow.png')"
+                aria-hidden="true"
+              ></span>
+              Position Helper
+            </h2>
+            <p class="panel__lede">Coordinate tools for world positioning and node alignment.</p>
+          </header>
+          <div class="panel__content placeholder-grid" data-placeholder="position">
+            <div class="grid-helper">
+              <div class="grid-helper__map" role="presentation"></div>
+              <div class="grid-helper__legend">
+                <span class="legend-swatch"></span>
+                <span class="legend-label">Snap-to-grid preview</span>
+              </div>
+            </div>
+            <div class="placeholder-field placeholder-field--stacked">
+              <span class="placeholder-field__label">Coordinates</span>
+              <span class="placeholder-field__input placeholder-block"></span>
+            </div>
+            <div class="placeholder-field placeholder-field--stacked">
+              <span class="placeholder-field__label">Rotation</span>
+              <span class="placeholder-field__input placeholder-block"></span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <p class="app-footer__copy">
+          Built for the Passive Skill Tree mod. <a href="#top">Back to top</a>
+        </p>
+      </footer>
+    </div>
+
+    <noscript>
+      <p class="noscript-warning">
+        JavaScript is required for interactive features. Enable it to use the Skill Creator.
+      </p>
+    </noscript>
+
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>
