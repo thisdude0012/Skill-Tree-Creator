@@ -1,0 +1,2274 @@
+{
+  "generatedAt": "2025-10-23T21:08:40.778Z",
+  "registries": {
+    "skillBonuses": {
+      "id": "skill_bonuses",
+      "label": "Skill Bonuses",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTSkillBonuses.java",
+      "entries": {
+        "attribute": {
+          "id": "attribute",
+          "label": "Attribute",
+          "className": "daripher.skilltree.skill.bonus.player.AttributeBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/AttributeBonus.java",
+          "fields": [
+            {
+              "name": "attribute",
+              "type": "minecraft:attribute",
+              "optional": false,
+              "classField": "attribute",
+              "jsonProperties": [
+                "attribute"
+              ],
+              "default": "Attributes.f_22284_",
+              "defaultExpression": "Attributes.f_22284_",
+              "helper": "Attribute"
+            },
+            {
+              "name": "modifier",
+              "type": "attribute_modifier",
+              "optional": false,
+              "classField": "modifier",
+              "jsonProperties": [
+                "id",
+                "name",
+                "amount",
+                "operation"
+              ],
+              "default": "AttributeModifier",
+              "defaultExpression": "new AttributeModifier(UUID.randomUUID(), \"Skill\", 1.0, AttributeModifier.Operation.ADDITION)",
+              "helper": "AttributeModifier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "command": {
+          "id": "command",
+          "label": "Command",
+          "className": "daripher.skilltree.skill.bonus.player.CommandBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/CommandBonus.java",
+          "fields": [
+            {
+              "name": "command",
+              "type": "string",
+              "optional": false,
+              "classField": "command",
+              "jsonProperties": [
+                "command"
+              ],
+              "default": "give @p minecraft:apple",
+              "defaultExpression": "\"give @p minecraft:apple\""
+            },
+            {
+              "name": "description",
+              "optional": true,
+              "classField": "description",
+              "jsonProperties": [
+                "description"
+              ],
+              "default": "Grants an apple when learned",
+              "defaultExpression": "\"Grants an apple when learned\""
+            },
+            {
+              "name": "event_listener",
+              "type": "registry:event_listeners",
+              "optional": false,
+              "classField": "eventListener",
+              "jsonProperties": [
+                "event_listener"
+              ],
+              "default": "SkillLearnedEventListener",
+              "defaultExpression": "new SkillLearnedEventListener()",
+              "helper": "EventListener"
+            }
+          ]
+        },
+        "damage": {
+          "id": "damage",
+          "label": "Damage",
+          "className": "daripher.skilltree.skill.bonus.player.DamageBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/DamageBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "default": "melee",
+              "defaultExpression": "new MeleeDamageCondition(",
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "targetMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "operation",
+              "type": "enum:AttributeModifier.Operation",
+              "optional": false,
+              "classField": "operation",
+              "jsonProperties": [
+                "operation"
+              ],
+              "default": "MULTIPLY_BASE",
+              "defaultExpression": "AttributeModifier.Operation.MULTIPLY_BASE",
+              "helper": "Operation"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "targetCondition",
+              "jsonProperties": [
+                "target_condition"
+              ],
+              "helper": "LivingCondition"
+            }
+          ]
+        },
+        "crit_damage": {
+          "id": "crit_damage",
+          "label": "Crit Damage",
+          "className": "daripher.skilltree.skill.bonus.player.CritDamageBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/CritDamageBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "targetMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "targetCondition",
+              "jsonProperties": [
+                "target_condition"
+              ],
+              "helper": "LivingCondition"
+            }
+          ]
+        },
+        "crit_chance": {
+          "id": "crit_chance",
+          "label": "Crit Chance",
+          "className": "daripher.skilltree.skill.bonus.player.CritChanceBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/CritChanceBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "targetMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "targetCondition",
+              "jsonProperties": [
+                "target_condition"
+              ],
+              "helper": "LivingCondition"
+            }
+          ]
+        },
+        "repair_efficiency": {
+          "id": "repair_efficiency",
+          "label": "Repair Efficiency",
+          "className": "daripher.skilltree.skill.bonus.player.RepairEfficiencyBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/RepairEfficiencyBonus.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "none",
+              "defaultExpression": "NoneItemCondition.INSTANCE",
+              "helper": "ItemCondition"
+            },
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            }
+          ]
+        },
+        "block_break_speed": {
+          "id": "block_break_speed",
+          "label": "Block Break Speed",
+          "className": "daripher.skilltree.skill.bonus.player.BlockBreakSpeedBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/BlockBreakSpeedBonus.java",
+          "fields": [
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "free_enchantment": {
+          "id": "free_enchantment",
+          "label": "Free Enchantment",
+          "className": "daripher.skilltree.skill.bonus.player.FreeEnchantmentBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/FreeEnchantmentBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            }
+          ]
+        },
+        "jump_height": {
+          "id": "jump_height",
+          "label": "Jump Height",
+          "className": "daripher.skilltree.skill.bonus.player.JumpHeightBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/JumpHeightBonus.java",
+          "fields": [
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ]
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f",
+              "helper": "LivingCondition"
+            }
+          ]
+        },
+        "incoming_healing": {
+          "id": "incoming_healing",
+          "label": "Incoming Healing",
+          "className": "daripher.skilltree.skill.bonus.player.IncomingHealingBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/IncomingHealingBonus.java",
+          "fields": [
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 0.15,
+              "defaultExpression": "0.15f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "loot_duplication": {
+          "id": "loot_duplication",
+          "label": "Loot Duplication",
+          "className": "daripher.skilltree.skill.bonus.player.LootDuplicationBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/LootDuplicationBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "loot_type",
+              "optional": false,
+              "classField": "lootType",
+              "jsonProperties": [
+                "loot_type"
+              ],
+              "default": "MOBS",
+              "defaultExpression": "LootType.MOBS"
+            },
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 1,
+              "defaultExpression": "1.0f"
+            }
+          ]
+        },
+        "gained_experience": {
+          "id": "gained_experience",
+          "label": "Gained Experience",
+          "className": "daripher.skilltree.skill.bonus.player.GainedExperienceBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/GainedExperienceBonus.java",
+          "fields": [
+            {
+              "name": "experience_source",
+              "optional": false,
+              "classField": "experienceSource",
+              "jsonProperties": [
+                "experience_source"
+              ]
+            },
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 0.25,
+              "defaultExpression": "0.25f"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "source",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "MOBS",
+              "defaultExpression": "ExperienceSource.MOBS"
+            }
+          ]
+        },
+        "inflict_ignite": {
+          "id": "inflict_ignite",
+          "label": "Inflict Ignite",
+          "className": "daripher.skilltree.skill.bonus.player.InflictIgniteBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/InflictIgniteBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "optional": false,
+              "classField": "duration",
+              "jsonProperties": [
+                "duration"
+              ],
+              "default": 5,
+              "defaultExpression": "5"
+            },
+            {
+              "name": "event_listener",
+              "type": "registry:event_listeners",
+              "optional": false,
+              "classField": "eventListener",
+              "jsonProperties": [
+                "event_listener"
+              ],
+              "helper": "EventListener"
+            }
+          ]
+        },
+        "arrow_retrieval": {
+          "id": "arrow_retrieval",
+          "label": "Arrow Retrieval",
+          "className": "daripher.skilltree.skill.bonus.player.ArrowRetrievalBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/ArrowRetrievalBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            }
+          ]
+        },
+        "health_reservation": {
+          "id": "health_reservation",
+          "label": "Health Reservation",
+          "className": "daripher.skilltree.skill.bonus.player.HealthReservationBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/HealthReservationBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "all_attributes": {
+          "id": "all_attributes",
+          "label": "All Attributes",
+          "className": "daripher.skilltree.skill.bonus.player.AllAttributesBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/AllAttributesBonus.java",
+          "fields": [
+            {
+              "name": "modifier",
+              "type": "attribute_modifier",
+              "optional": false,
+              "classField": "modifier",
+              "jsonProperties": [
+                "id",
+                "name",
+                "amount",
+                "operation"
+              ],
+              "default": "AttributeModifier",
+              "defaultExpression": "new AttributeModifier(UUID.randomUUID(), \"Skill\", 0.05, AttributeModifier.Operation.MULTIPLY_BASE)",
+              "helper": "AttributeModifier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "inflict_effect": {
+          "id": "inflict_effect",
+          "label": "Inflict Effect",
+          "className": "daripher.skilltree.skill.bonus.player.InflictEffectBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/InflictEffectBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "effect",
+              "type": "minecraft:mob_effect_instance",
+              "optional": false,
+              "classField": "effectInstance",
+              "jsonProperties": [
+                "effect",
+                "duration",
+                "amplifier"
+              ],
+              "helper": "EffectInstance"
+            },
+            {
+              "name": "effect_instance",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "MobEffectInstance",
+              "defaultExpression": "new MobEffectInstance(MobEffects.f_19614_, 100)"
+            },
+            {
+              "name": "event_listener",
+              "type": "registry:event_listeners",
+              "optional": false,
+              "classField": "eventListener",
+              "jsonProperties": [
+                "event_listener"
+              ],
+              "default": 1,
+              "defaultExpression": "1",
+              "helper": "EventListener"
+            },
+            {
+              "name": "max_stacks",
+              "optional": true,
+              "classField": "maxStacks",
+              "jsonProperties": [
+                "max_stacks"
+              ]
+            }
+          ]
+        },
+        "cant_use_item": {
+          "id": "cant_use_item",
+          "label": "Cant Use Item",
+          "className": "daripher.skilltree.skill.bonus.player.CantUseItemBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/CantUseItemBonus.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "equipment_type",
+              "defaultExpression": "new EquipmentCondition(EquipmentCondition.Type.BOW)",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "healing": {
+          "id": "healing",
+          "label": "Healing",
+          "className": "daripher.skilltree.skill.bonus.player.HealingBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/HealingBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 5,
+              "defaultExpression": "5.0f"
+            },
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "event_listener",
+              "type": "registry:event_listeners",
+              "optional": false,
+              "classField": "eventListener",
+              "jsonProperties": [
+                "event_listener"
+              ],
+              "helper": "EventListener"
+            }
+          ]
+        },
+        "inflict_damage": {
+          "id": "inflict_damage",
+          "label": "Inflict Damage",
+          "className": "daripher.skilltree.skill.bonus.player.InflictDamageBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/InflictDamageBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "damage",
+              "type": "number",
+              "optional": false,
+              "classField": "damage",
+              "jsonProperties": [
+                "damage"
+              ],
+              "default": 5,
+              "defaultExpression": "5.0f"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageType",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "damage_type",
+              "optional": true,
+              "jsonProperties": []
+            },
+            {
+              "name": "event_listener",
+              "type": "registry:event_listeners",
+              "optional": false,
+              "classField": "eventListener",
+              "jsonProperties": [
+                "event_listener"
+              ],
+              "helper": "EventListener"
+            }
+          ]
+        },
+        "can_poison_anyone": {
+          "id": "can_poison_anyone",
+          "label": "Can Poison Anyone",
+          "className": "daripher.skilltree.skill.bonus.player.CanPoisonAnyoneBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/CanPoisonAnyoneBonus.java",
+          "fields": []
+        },
+        "lethal_poison": {
+          "id": "lethal_poison",
+          "label": "Lethal Poison",
+          "className": "daripher.skilltree.skill.bonus.player.LethalPoisonBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/LethalPoisonBonus.java",
+          "fields": []
+        },
+        "curio_slots": {
+          "id": "curio_slots",
+          "label": "Curio Slots",
+          "className": "daripher.skilltree.skill.bonus.player.CurioSlotsBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/CurioSlotsBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 1,
+              "defaultExpression": "1"
+            },
+            {
+              "name": "modifier_id",
+              "type": "string",
+              "optional": false,
+              "classField": "modifierId",
+              "jsonProperties": [
+                "modifier_id"
+              ]
+            },
+            {
+              "name": "slot",
+              "type": "string",
+              "optional": false,
+              "classField": "slotName",
+              "jsonProperties": [
+                "slot"
+              ]
+            },
+            {
+              "name": "slot_name",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "ring",
+              "defaultExpression": "\"ring\""
+            }
+          ]
+        },
+        "damage_taken": {
+          "id": "damage_taken",
+          "label": "Damage Taken",
+          "className": "daripher.skilltree.skill.bonus.player.DamageTakenBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/DamageTakenBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "attacker_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "attackerCondition",
+              "jsonProperties": [
+                "attacker_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "attacker_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "attackerMultiplier",
+              "jsonProperties": [
+                "attacker_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "default": "melee",
+              "defaultExpression": "new MeleeDamageCondition(",
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "operation",
+              "type": "enum:AttributeModifier.Operation",
+              "optional": false,
+              "classField": "operation",
+              "jsonProperties": [
+                "operation"
+              ],
+              "default": "MULTIPLY_BASE",
+              "defaultExpression": "AttributeModifier.Operation.MULTIPLY_BASE",
+              "helper": "Operation"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "damage_avoidance": {
+          "id": "damage_avoidance",
+          "label": "Damage Avoidance",
+          "className": "daripher.skilltree.skill.bonus.player.DamageAvoidanceBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/DamageAvoidanceBonus.java",
+          "fields": [
+            {
+              "name": "attacker_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "attackerCondition",
+              "jsonProperties": [
+                "attacker_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "attacker_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "attackerMultiplier",
+              "jsonProperties": [
+                "attacker_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "default": "melee",
+              "defaultExpression": "new MeleeDamageCondition(",
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "damage_conversion": {
+          "id": "damage_conversion",
+          "label": "Damage Conversion",
+          "className": "daripher.skilltree.skill.bonus.player.DamageConversionBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/DamageConversionBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 0.05,
+              "defaultExpression": "0.05f"
+            },
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "resultDamageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "targetMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "original_damage_condition",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "melee",
+              "defaultExpression": "new MeleeDamageCondition()"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "result_damage_condition",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "magic",
+              "defaultExpression": "new MagicDamageCondition()"
+            },
+            {
+              "name": "target_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "targetCondition",
+              "jsonProperties": [
+                "target_condition"
+              ],
+              "helper": "LivingCondition"
+            }
+          ]
+        },
+        "grant_item": {
+          "id": "grant_item",
+          "label": "Grant Item",
+          "className": "daripher.skilltree.skill.bonus.player.GrantItemBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/GrantItemBonus.java",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number",
+              "optional": false,
+              "classField": "amount",
+              "jsonProperties": [
+                "amount"
+              ],
+              "default": 64,
+              "defaultExpression": "64"
+            },
+            {
+              "name": "item_id",
+              "type": "minecraft:resource_location",
+              "optional": false,
+              "classField": "itemId",
+              "jsonProperties": [
+                "item_id"
+              ],
+              "default": "ITEMS",
+              "defaultExpression": "ForgeRegistries.ITEMS.getKey((Object)Items.f_42415_)"
+            }
+          ]
+        },
+        "effect_duration": {
+          "id": "effect_duration",
+          "label": "Effect Duration",
+          "className": "daripher.skilltree.skill.bonus.player.EffectDurationBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/EffectDurationBonus.java",
+          "fields": [
+            {
+              "name": "duration",
+              "type": "number",
+              "optional": false,
+              "classField": "duration",
+              "jsonProperties": [
+                "duration"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "effect_type",
+              "optional": false,
+              "classField": "effectType",
+              "jsonProperties": [
+                "effect_type"
+              ],
+              "default": "BENEFICIAL",
+              "defaultExpression": "EffectType.BENEFICIAL"
+            },
+            {
+              "name": "enemy_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "enemyCondition",
+              "jsonProperties": [
+                "enemy_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "enemyMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target",
+              "optional": false,
+              "classField": "target",
+              "jsonProperties": [
+                "target"
+              ],
+              "default": "PLAYER",
+              "defaultExpression": "SkillBonus.Target.PLAYER"
+            }
+          ]
+        },
+        "projectile_duplication": {
+          "id": "projectile_duplication",
+          "label": "Projectile Duplication",
+          "className": "daripher.skilltree.skill.bonus.player.ProjectileDuplicationBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/ProjectileDuplicationBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "default": "has_item_equipped",
+              "defaultExpression": "new HasItemEquippedCondition(new EquipmentCondition(EquipmentCondition.Type.RANGED_WEAPON",
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "self_splash_immune": {
+          "id": "self_splash_immune",
+          "label": "Self Splash Immune",
+          "className": "daripher.skilltree.skill.bonus.player.SelfSplashImmuneBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/SelfSplashImmuneBonus.java",
+          "fields": []
+        },
+        "projectile_speed": {
+          "id": "projectile_speed",
+          "label": "Projectile Speed",
+          "className": "daripher.skilltree.skill.bonus.player.ProjectileSpeedBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/ProjectileSpeedBonus.java",
+          "fields": [
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "item_durability_loss_avoidance": {
+          "id": "item_durability_loss_avoidance",
+          "label": "Item Durability Loss Avoidance",
+          "className": "daripher.skilltree.skill.bonus.player.ItemDurabilityLossAvoidanceBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/ItemDurabilityLossAvoidanceBonus.java",
+          "fields": [
+            {
+              "name": "chance",
+              "type": "number",
+              "optional": false,
+              "classField": "chance",
+              "jsonProperties": [
+                "chance"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "helper": "ItemCondition"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "item_usage_speed": {
+          "id": "item_usage_speed",
+          "label": "Item Usage Speed",
+          "className": "daripher.skilltree.skill.bonus.player.ItemUsageSpeedBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/ItemUsageSpeedBonus.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "helper": "ItemCondition"
+            },
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": 0.1,
+              "defaultExpression": "0.1f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "item_use_movement_speed": {
+          "id": "item_use_movement_speed",
+          "label": "Item Use Movement Speed",
+          "className": "daripher.skilltree.skill.bonus.player.ItemUseMovementSpeedBonus",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/player/ItemUseMovementSpeedBonus.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "equipment_type",
+              "defaultExpression": "new EquipmentCondition(EquipmentCondition.Type.SHIELD",
+              "helper": "ItemCondition"
+            },
+            {
+              "name": "multiplier",
+              "type": "number",
+              "optional": false,
+              "classField": "multiplier",
+              "jsonProperties": [
+                "multiplier"
+              ],
+              "default": -0.1,
+              "defaultExpression": "-0.1f"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        }
+      }
+    },
+    "livingConditions": {
+      "id": "living_conditions",
+      "label": "Living Conditions",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTLivingConditions.java",
+      "entries": {
+        "none": {
+          "id": "none",
+          "label": "None",
+          "className": "daripher.skilltree.skill.bonus.condition.living.NoneLivingCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/NoneLivingCondition.java",
+          "fields": []
+        },
+        "has_item_equipped": {
+          "id": "has_item_equipped",
+          "label": "Has Item Equipped",
+          "className": "daripher.skilltree.skill.bonus.condition.living.HasItemEquippedCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/HasItemEquippedCondition.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "none",
+              "defaultExpression": "NoneItemCondition.INSTANCE",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "has_effect": {
+          "id": "has_effect",
+          "label": "Has Effect",
+          "className": "daripher.skilltree.skill.bonus.condition.living.HasEffectCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/HasEffectCondition.java",
+          "fields": [
+            {
+              "name": "amplifier",
+              "optional": true,
+              "classField": "amplifier",
+              "jsonProperties": [
+                "amplifier"
+              ]
+            },
+            {
+              "name": "effect",
+              "type": "minecraft:mob_effect",
+              "optional": false,
+              "classField": "effect",
+              "jsonProperties": [
+                "effect"
+              ],
+              "default": "MobEffects.f_19614_",
+              "defaultExpression": "MobEffects.f_19614_",
+              "helper": "Effect"
+            }
+          ]
+        },
+        "burning": {
+          "id": "burning",
+          "label": "Burning",
+          "className": "daripher.skilltree.skill.bonus.condition.living.BurningCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/BurningCondition.java",
+          "fields": []
+        },
+        "fishing": {
+          "id": "fishing",
+          "label": "Fishing",
+          "className": "daripher.skilltree.skill.bonus.condition.living.FishingCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/FishingCondition.java",
+          "fields": []
+        },
+        "underwater": {
+          "id": "underwater",
+          "label": "Underwater",
+          "className": "daripher.skilltree.skill.bonus.condition.living.UnderwaterCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/UnderwaterCondition.java",
+          "fields": []
+        },
+        "dual_wielding": {
+          "id": "dual_wielding",
+          "label": "Dual Wielding",
+          "className": "daripher.skilltree.skill.bonus.condition.living.DualWieldingCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/DualWieldingCondition.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "weaponCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "helper": "ItemCondition"
+            },
+            {
+              "name": "weapon_condition",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "equipment_type",
+              "defaultExpression": "new EquipmentCondition(EquipmentCondition.Type.WEAPON)"
+            }
+          ]
+        },
+        "has_item_in_hand": {
+          "id": "has_item_in_hand",
+          "label": "Has Item In Hand",
+          "className": "daripher.skilltree.skill.bonus.condition.living.HasItemInHandCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/HasItemInHandCondition.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "none",
+              "defaultExpression": "NoneItemCondition.INSTANCE",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "crouching": {
+          "id": "crouching",
+          "label": "Crouching",
+          "className": "daripher.skilltree.skill.bonus.condition.living.CrouchingCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/CrouchingCondition.java",
+          "fields": []
+        },
+        "unarmed": {
+          "id": "unarmed",
+          "label": "Unarmed",
+          "className": "daripher.skilltree.skill.bonus.condition.living.UnarmedCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/UnarmedCondition.java",
+          "fields": []
+        },
+        "numeric_value": {
+          "id": "numeric_value",
+          "label": "Numeric Value",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.NumericValueCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/NumericValueCondition.java",
+          "fields": [
+            {
+              "name": "logic",
+              "optional": false,
+              "classField": "logic",
+              "jsonProperties": [
+                "logic"
+              ],
+              "default": "EQUAL",
+              "defaultExpression": "Logic.EQUAL"
+            },
+            {
+              "name": "required_value",
+              "type": "number",
+              "optional": false,
+              "classField": "requiredValue",
+              "jsonProperties": [
+                "required_value"
+              ],
+              "default": 1,
+              "defaultExpression": "1.0f"
+            },
+            {
+              "name": "value_provider",
+              "type": "registry:numeric_value_providers",
+              "optional": false,
+              "classField": "valueProvider",
+              "jsonProperties": [
+                "value_provider"
+              ],
+              "default": "health_level",
+              "defaultExpression": "new HealthLevelProvider(true, false)",
+              "helper": "ValueProvider"
+            }
+          ]
+        },
+        "all_armor": {
+          "id": "all_armor",
+          "label": "All Armor",
+          "className": "daripher.skilltree.skill.bonus.condition.living.AllArmorCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/AllArmorCondition.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "none",
+              "defaultExpression": "NoneItemCondition.INSTANCE",
+              "helper": "ItemCondition"
+            }
+          ]
+        }
+      }
+    },
+    "damageConditions": {
+      "id": "damage_conditions",
+      "label": "Damage Conditions",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTDamageConditions.java",
+      "entries": {
+        "none": {
+          "id": "none",
+          "label": "None",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.NoneDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/NoneDamageCondition.java",
+          "fields": []
+        },
+        "projectile": {
+          "id": "projectile",
+          "label": "Projectile",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.ProjectileDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/ProjectileDamageCondition.java",
+          "fields": []
+        },
+        "melee": {
+          "id": "melee",
+          "label": "Melee",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.MeleeDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/MeleeDamageCondition.java",
+          "fields": []
+        },
+        "magic": {
+          "id": "magic",
+          "label": "Magic",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.MagicDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/MagicDamageCondition.java",
+          "fields": []
+        },
+        "fall": {
+          "id": "fall",
+          "label": "Fall",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.FallDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/FallDamageCondition.java",
+          "fields": []
+        },
+        "fire": {
+          "id": "fire",
+          "label": "Fire",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.FireDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/FireDamageCondition.java",
+          "fields": []
+        },
+        "poison": {
+          "id": "poison",
+          "label": "Poison",
+          "className": "daripher.skilltree.skill.bonus.condition.damage.PoisonDamageCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/damage/PoisonDamageCondition.java",
+          "fields": []
+        }
+      }
+    },
+    "itemConditions": {
+      "id": "item_conditions",
+      "label": "Item Conditions",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTItemConditions.java",
+      "entries": {
+        "none": {
+          "id": "none",
+          "label": "None",
+          "className": "daripher.skilltree.skill.bonus.condition.item.NoneItemCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/NoneItemCondition.java",
+          "fields": []
+        },
+        "potion": {
+          "id": "potion",
+          "label": "Potion",
+          "className": "daripher.skilltree.skill.bonus.condition.item.PotionCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/PotionCondition.java",
+          "fields": [
+            {
+              "name": "potion_type",
+              "type": "enum:PotionCondition.Type",
+              "optional": false,
+              "classField": "type",
+              "jsonProperties": [
+                "potion_type"
+              ],
+              "helper": "PotionType"
+            },
+            {
+              "name": "type",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "ANY",
+              "defaultExpression": "Type.ANY"
+            }
+          ]
+        },
+        "food": {
+          "id": "food",
+          "label": "Food",
+          "className": "daripher.skilltree.skill.bonus.condition.item.FoodCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/FoodCondition.java",
+          "fields": []
+        },
+        "item_id": {
+          "id": "item_id",
+          "label": "Item Id",
+          "className": "daripher.skilltree.skill.bonus.condition.item.ItemIdCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/ItemIdCondition.java",
+          "fields": [
+            {
+              "name": "id",
+              "type": "minecraft:resource_location",
+              "optional": false,
+              "classField": "id",
+              "jsonProperties": [
+                "id"
+              ],
+              "default": "ResourceLocation",
+              "defaultExpression": "new ResourceLocation(\"minecraft:shield\")"
+            }
+          ]
+        },
+        "enchanted": {
+          "id": "enchanted",
+          "label": "Enchanted",
+          "className": "daripher.skilltree.skill.bonus.condition.item.EnchantedCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/EnchantedCondition.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "tag",
+              "defaultExpression": "new ItemTagCondition(ItemTags.f_271388_.f_203868_())",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "tag": {
+          "id": "tag",
+          "label": "Tag",
+          "className": "daripher.skilltree.skill.bonus.condition.item.ItemTagCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/ItemTagCondition.java",
+          "fields": [
+            {
+              "name": "tag_id",
+              "type": "minecraft:resource_location",
+              "optional": false,
+              "classField": "tagId",
+              "jsonProperties": [
+                "tag_id"
+              ],
+              "default": "ARMORS",
+              "defaultExpression": "Tags.Items.ARMORS.f_203868_()"
+            }
+          ]
+        },
+        "equipment_type": {
+          "id": "equipment_type",
+          "label": "Equipment Type",
+          "className": "daripher.skilltree.skill.bonus.condition.item.EquipmentCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/EquipmentCondition.java",
+          "fields": [
+            {
+              "name": "equipment_type",
+              "optional": false,
+              "classField": "type",
+              "jsonProperties": [
+                "equipment_type"
+              ]
+            },
+            {
+              "name": "type",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "ANY",
+              "defaultExpression": "Type.ANY"
+            }
+          ]
+        }
+      }
+    },
+    "enchantmentConditions": {
+      "id": "enchantment_conditions",
+      "label": "Enchantment Conditions",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTEnchantmentConditions.java",
+      "entries": {
+        "none": {
+          "id": "none",
+          "label": "None",
+          "className": "daripher.skilltree.skill.bonus.condition.enchantment.NoneEnchantmentCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/enchantment/NoneEnchantmentCondition.java",
+          "fields": []
+        },
+        "armor": {
+          "id": "armor",
+          "label": "Armor",
+          "className": "daripher.skilltree.skill.bonus.condition.enchantment.ArmorEnchantmentCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/enchantment/ArmorEnchantmentCondition.java",
+          "fields": []
+        },
+        "weapon": {
+          "id": "weapon",
+          "label": "Weapon",
+          "className": "daripher.skilltree.skill.bonus.condition.enchantment.WeaponEnchantmentCondition",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/enchantment/WeaponEnchantmentCondition.java",
+          "fields": []
+        }
+      }
+    },
+    "livingMultipliers": {
+      "id": "skill_bonus_multipliers",
+      "label": "Living Multipliers",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTLivingMultipliers.java",
+      "entries": {
+        "none": {
+          "id": "none",
+          "label": "None",
+          "className": "daripher.skilltree.skill.bonus.multiplier.NoneLivingMultiplier",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/multiplier/NoneLivingMultiplier.java",
+          "fields": []
+        },
+        "numeric_value": {
+          "id": "numeric_value",
+          "label": "Numeric Value",
+          "className": "daripher.skilltree.skill.bonus.multiplier.NumericValueMultiplier",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/multiplier/NumericValueMultiplier.java",
+          "fields": [
+            {
+              "name": "divisor",
+              "optional": true,
+              "classField": "divisor",
+              "jsonProperties": [
+                "divisor"
+              ],
+              "default": 5,
+              "defaultExpression": "5.0f"
+            },
+            {
+              "name": "value_provider",
+              "type": "registry:numeric_value_providers",
+              "optional": false,
+              "classField": "valueProvider",
+              "jsonProperties": [
+                "value_provider"
+              ],
+              "default": "attribute_value",
+              "defaultExpression": "new AttributeValueProvider(Attributes.f_22276_)",
+              "helper": "ValueProvider"
+            }
+          ]
+        }
+      }
+    },
+    "numericValueProviders": {
+      "id": "numeric_value_providers",
+      "label": "Numeric Value Providers",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTNumericValueProviders.java",
+      "entries": {
+        "attribute_value": {
+          "id": "attribute_value",
+          "label": "Attribute Value",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.AttributeValueProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/AttributeValueProvider.java",
+          "fields": [
+            {
+              "name": "attribute",
+              "type": "minecraft:attribute",
+              "optional": false,
+              "classField": "attribute",
+              "jsonProperties": [
+                "attribute"
+              ],
+              "default": "Attributes.f_22276_",
+              "defaultExpression": "Attributes.f_22276_",
+              "helper": "Attribute"
+            }
+          ]
+        },
+        "effect_amount": {
+          "id": "effect_amount",
+          "label": "Effect Amount",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.EffectAmountProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/EffectAmountProvider.java",
+          "fields": [
+            {
+              "name": "effect_type",
+              "optional": false,
+              "classField": "effectType",
+              "jsonProperties": [
+                "effect_type"
+              ],
+              "default": "ANY",
+              "defaultExpression": "EffectType.ANY"
+            }
+          ]
+        },
+        "food_level": {
+          "id": "food_level",
+          "label": "Food Level",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.FoodLevelProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/FoodLevelProvider.java",
+          "fields": [
+            {
+              "name": "missing",
+              "type": "boolean",
+              "optional": false,
+              "classField": "missing",
+              "jsonProperties": [
+                "missing"
+              ],
+              "default": "false",
+              "defaultExpression": "false"
+            },
+            {
+              "name": "percentage",
+              "type": "boolean",
+              "optional": false,
+              "classField": "percentage",
+              "jsonProperties": [
+                "percentage"
+              ],
+              "default": "false",
+              "defaultExpression": "false"
+            }
+          ]
+        },
+        "health_level": {
+          "id": "health_level",
+          "label": "Health Level",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.HealthLevelProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/HealthLevelProvider.java",
+          "fields": [
+            {
+              "name": "missing",
+              "type": "boolean",
+              "optional": false,
+              "classField": "missing",
+              "jsonProperties": [
+                "missing"
+              ],
+              "default": "false",
+              "defaultExpression": "false"
+            },
+            {
+              "name": "percentage",
+              "type": "boolean",
+              "optional": false,
+              "classField": "percentage",
+              "jsonProperties": [
+                "percentage"
+              ],
+              "default": "false",
+              "defaultExpression": "false"
+            }
+          ]
+        },
+        "equipment_durability": {
+          "id": "equipment_durability",
+          "label": "Equipment Durability",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.EquipmentDurabilityProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/EquipmentDurabilityProvider.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "equipment_type",
+              "defaultExpression": "new EquipmentCondition(EquipmentCondition.Type.WEAPON)",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "enchantment_amount": {
+          "id": "enchantment_amount",
+          "label": "Enchantment Amount",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.EnchantmentAmountProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/EnchantmentAmountProvider.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "equipment_type",
+              "defaultExpression": "new EquipmentCondition(EquipmentCondition.Type.WEAPON)",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "enchantment_levels": {
+          "id": "enchantment_levels",
+          "label": "Enchantment Levels",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.EnchantmentLevelsProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/EnchantmentLevelsProvider.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "equipment_type",
+              "defaultExpression": "new EquipmentCondition(EquipmentCondition.Type.WEAPON)",
+              "helper": "ItemCondition"
+            }
+          ]
+        },
+        "distance_to_target": {
+          "id": "distance_to_target",
+          "label": "Distance To Target",
+          "className": "daripher.skilltree.skill.bonus.condition.living.numeric.provider.DistanceToTargetProvider",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/living/numeric/provider/DistanceToTargetProvider.java",
+          "fields": []
+        }
+      }
+    },
+    "skillRequirements": {
+      "id": "skill_requirements",
+      "label": "Skill Requirements",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTSkillRequirements.java",
+      "entries": {
+        "stat_value": {
+          "id": "stat_value",
+          "label": "Stat Value",
+          "className": "daripher.skilltree.skill.requirement.StatRequirement",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/requirement/StatRequirement.java",
+          "fields": [
+            {
+              "name": "min_value",
+              "optional": false,
+              "jsonProperties": [],
+              "default": 1,
+              "defaultExpression": "1"
+            },
+            {
+              "name": "minValue",
+              "type": "number",
+              "optional": false,
+              "jsonProperties": [
+                "minValue"
+              ]
+            },
+            {
+              "name": "stat_id",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "Stats.f_12935_",
+              "defaultExpression": "Stats.f_12935_"
+            },
+            {
+              "name": "stat_type_id",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "STAT_TYPES",
+              "defaultExpression": "ForgeRegistries.STAT_TYPES.getKey((Object)Stats.f_12988_)"
+            },
+            {
+              "name": "statId",
+              "type": "minecraft:resource_location",
+              "optional": false,
+              "jsonProperties": [
+                "statId"
+              ]
+            },
+            {
+              "name": "statTypeId",
+              "type": "minecraft:resource_location",
+              "optional": false,
+              "jsonProperties": [
+                "statTypeId"
+              ]
+            }
+          ]
+        },
+        "numeric_value": {
+          "id": "numeric_value",
+          "label": "Numeric Value",
+          "className": "daripher.skilltree.skill.requirement.NumericValueRequirement",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/requirement/NumericValueRequirement.java",
+          "fields": [
+            {
+              "name": "condition",
+              "optional": false,
+              "jsonProperties": [],
+              "default": "numeric_value",
+              "defaultExpression": "new NumericValueCondition(new EffectAmountProvider(EffectType.BENEFICIAL), 5.0f, NumericValueCondition.Logic.MORE)"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "enums": {
+    "attributeModifierOperation": {
+      "type": "AttributeModifier.Operation",
+      "values": [
+        {
+          "id": "ADDITION",
+          "label": "Addition"
+        },
+        {
+          "id": "MULTIPLY_BASE",
+          "label": "Multiply Base"
+        },
+        {
+          "id": "MULTIPLY_TOTAL",
+          "label": "Multiply Total"
+        }
+      ]
+    },
+    "potioncondition_type": {
+      "type": "PotionCondition.Type",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/item/PotionCondition.java",
+      "values": [
+        {
+          "id": "HARMFUL",
+          "label": "Harmful",
+          "value": "harmful"
+        },
+        {
+          "id": "NEUTRAL",
+          "label": "Neutral",
+          "value": "neutral"
+        },
+        {
+          "id": "BENEFICIAL",
+          "label": "Beneficial",
+          "value": "beneficial"
+        },
+        {
+          "id": "ANY",
+          "label": "Any",
+          "value": "any"
+        }
+      ]
+    }
+  }
+}
