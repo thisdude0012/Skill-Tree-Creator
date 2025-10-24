@@ -1,0 +1,615 @@
+import {
+  isNamespacePath,
+  validateSkill,
+  validateSkillField,
+} from "./validation.js";
+
+const DATA_SOURCES = {
+  metadata: "../data/metadata.json",
+  attributes: "../data/minecraft-attributes.json",
+  enchantments: "../data/minecraft-enchantments.json",
+  stats: "../data/minecraft-stats.json",
+  custom: "../data/custom-entries.json",
+};
+
+const watchers = new Set();
+
+const state = {
+  ready: false,
+  loading: false,
+  error: null,
+  metadata: null,
+  references: {
+    attributes: [],
+    enchantments: [],
+    stats: [],
+  },
+  customEntries: {
+    attributes: [],
+    enchantments: [],
+    stats: {},
+  },
+  skills: {},
+  currentSkillId: null,
+  registry: new Set(),
+  validation: {
+    fields: {},
+    valid: false,
+  },
+};
+
+function toLabel(id) {
+  if (typeof id !== "string") return "";
+  return id
+    .split(":").pop()
+    .split(/[\/_-]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+async function loadJSON(relativePath) {
+  const url = new URL(relativePath, import.meta.url);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${relativePath}: ${response.status}`);
+  }
+  return response.json();
+}
+
+function notifyWatchers() {
+  const snapshot = getStateSnapshot();
+  watchers.forEach((listener) => {
+    try {
+      listener(snapshot);
+    } catch (error) {
+      console.error("State watcher threw", error);
+    }
+  });
+}
+
+function getStateSnapshot() {
+  const currentSkill = state.currentSkillId ? state.skills[state.currentSkillId] : null;
+  return {
+    ready: state.ready,
+    loading: state.loading,
+    error: state.error,
+    metadata: state.metadata,
+    references: state.references,
+    customEntries: state.customEntries,
+    skills: state.skills,
+    currentSkillId: state.currentSkillId,
+    currentSkill,
+    registry: Array.from(state.registry),
+    validation: state.validation,
+  };
+}
+
+function subscribe(listener) {
+  if (typeof listener !== "function") {
+    throw new TypeError("Subscription callback must be a function");
+  }
+  watchers.add(listener);
+  return () => {
+    watchers.delete(listener);
+  };
+}
+
+function createDefaultSkill() {
+  return {
+    id: "skilltree:untitled_skill",
+    bonuses: [],
+    requirements: [],
+    directConnections: [],
+    longConnections: [],
+    oneWayConnections: [],
+    tags: [],
+    backgroundTexture: "skilltree:textures/icons/background/lesser.png",
+    iconTexture: "skilltree:textures/icons/void.png",
+    borderTexture: "skilltree:textures/tooltip/lesser.png",
+    title: "Untitled Skill",
+    titleColor: "",
+    positionX: 0,
+    positionY: 0,
+    buttonSize: 16,
+    isStartingPoint: false,
+    description: [],
+  };
+}
+
+function normalizeAttributeEntry(entry, category = "generic") {
+  if (typeof entry === "string") {
+    const trimmed = entry.trim().toLowerCase();
+    if (!isNamespacePath(trimmed)) return null;
+    return {
+      id: trimmed,
+      name: toLabel(trimmed),
+      category,
+    };
+  }
+  if (!entry || typeof entry !== "object") return null;
+  const id = typeof entry.id === "string" ? entry.id.trim().toLowerCase() : null;
+  if (!id || !isNamespacePath(id)) return null;
+  return {
+    id,
+    name: entry.name || toLabel(id),
+    category: entry.category || category,
+    description: entry.description || "",
+  };
+}
+
+function normalizeEnchantmentEntry(entry, category = "general") {
+  if (typeof entry === "string") {
+    const trimmed = entry.trim().toLowerCase();
+    if (!isNamespacePath(trimmed)) return null;
+    return {
+      id: trimmed,
+      name: toLabel(trimmed),
+      category,
+    };
+  }
+  if (!entry || typeof entry !== "object") return null;
+  const id = typeof entry.id === "string" ? entry.id.trim().toLowerCase() : null;
+  if (!id || !isNamespacePath(id)) return null;
+  return {
+    id,
+    name: entry.name || toLabel(id),
+    category: entry.category || category,
+    description: entry.description || "",
+  };
+}
+
+function normalizeStatEntry(entry) {
+  if (typeof entry === "string") {
+    const trimmed = entry.trim().toLowerCase();
+    if (!isNamespacePath(trimmed)) return null;
+    return {
+      id: trimmed,
+      name: toLabel(trimmed),
+    };
+  }
+  if (!entry || typeof entry !== "object") return null;
+  const id = typeof entry.id === "string" ? entry.id.trim().toLowerCase() : null;
+  if (!id || !isNamespacePath(id)) return null;
+  return {
+    id,
+    name: entry.name || toLabel(id),
+    description: entry.description || "",
+  };
+}
+
+function mergeAttributeReferences(vanilla = [], custom = []) {
+  const entries = new Map();
+  vanilla.forEach((entry) => {
+    const normalized = normalizeAttributeEntry(entry, entry.category);
+    if (normalized) entries.set(normalized.id, normalized);
+  });
+  custom.forEach((entry) => {
+    const normalized = normalizeAttributeEntry(entry, "custom");
+    if (normalized) entries.set(normalized.id, normalized);
+  });
+  return Array.from(entries.values()).sort((a, b) => a.id.localeCompare(b.id));
+}
+
+function mergeEnchantmentReferences(vanilla = [], custom = []) {
+  const entries = new Map();
+  vanilla.forEach((entry) => {
+    const normalized = normalizeEnchantmentEntry(entry, entry.category);
+    if (normalized) entries.set(normalized.id, normalized);
+  });
+  custom.forEach((entry) => {
+    const normalized = normalizeEnchantmentEntry(entry, "custom");
+    if (normalized) entries.set(normalized.id, normalized);
+  });
+  return Array.from(entries.values()).sort((a, b) => a.id.localeCompare(b.id));
+}
+
+function mergeStatReferences(vanillaCategories = [], custom = {}) {
+  const byCategory = new Map();
+  vanillaCategories.forEach((category) => {
+    if (!category || typeof category !== "object") return;
+    const id = category.id;
+    if (!id) return;
+    const entries = Array.isArray(category.entries) ? category.entries : [];
+    byCategory.set(id, {
+      id,
+      name: category.name || toLabel(id),
+      description: category.description || "",
+      entries: entries
+        .map((entry) => normalizeStatEntry(entry))
+        .filter(Boolean)
+        .sort((a, b) => a.id.localeCompare(b.id)),
+    });
+  });
+
+  if (custom && typeof custom === "object") {
+    Object.entries(custom).forEach(([categoryId, value]) => {
+      if (!categoryId) return;
+      const existing = byCategory.get(categoryId) || {
+        id: categoryId,
+        name: toLabel(categoryId),
+        description: "",
+        entries: [],
+      };
+      const customEntries = Array.isArray(value) ? value : [];
+      customEntries
+        .map((entry) => normalizeStatEntry(entry))
+        .filter(Boolean)
+        .forEach((entry) => {
+          const hasEntry = existing.entries.some((existingEntry) => existingEntry.id === entry.id);
+          if (!hasEntry) {
+            existing.entries.push(entry);
+          }
+        });
+      existing.entries.sort((a, b) => a.id.localeCompare(b.id));
+      byCategory.set(categoryId, existing);
+    });
+  }
+
+  return Array.from(byCategory.values()).sort((a, b) => a.id.localeCompare(b.id));
+}
+
+function registerSkill(skill) {
+  state.skills[skill.id] = skill;
+  state.currentSkillId = skill.id;
+  state.registry.add(skill.id.toLowerCase());
+}
+
+function refreshValidation() {
+  const currentSkill = state.currentSkillId ? state.skills[state.currentSkillId] : null;
+  if (!currentSkill) {
+    state.validation = {
+      fields: {},
+      valid: false,
+    };
+    return;
+  }
+  const result = validateSkill(currentSkill, {
+    registry: state.registry,
+    currentSkillId: state.currentSkillId,
+  });
+  state.validation = {
+    fields: result.fields,
+    valid: result.valid,
+  };
+}
+
+function normalizeFieldValue(field, value) {
+  if (field === "id" && typeof value === "string") {
+    return value.trim().toLowerCase();
+  }
+  if (field === "title" && typeof value === "string") {
+    return value.trim();
+  }
+  if (
+    (field === "backgroundTexture" ||
+      field === "iconTexture" ||
+      field === "borderTexture") &&
+    typeof value === "string"
+  ) {
+    return value.trim();
+  }
+  if (field === "titleColor" && typeof value === "string") {
+    return value.trim().toUpperCase();
+  }
+  if (field === "isStartingPoint") {
+    if (typeof value === "boolean") return value;
+    if (typeof value === "string") {
+      const lowered = value.trim().toLowerCase();
+      return lowered === "true" || lowered === "1" || lowered === "yes" || lowered === "on";
+    }
+    return Boolean(value);
+  }
+  if (field === "positionX" || field === "positionY" || field === "buttonSize") {
+    if (value === null || value === undefined) return value;
+    if (typeof value === "number") return value;
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      if (trimmed === "") return "";
+      const numeric = Number(trimmed);
+      return Number.isNaN(numeric) ? value : numeric;
+    }
+    return value;
+  }
+  if (field === "tags") {
+    if (Array.isArray(value)) {
+      return value
+        .filter((entry) => typeof entry === "string")
+        .map((entry) => entry.trim())
+        .filter(Boolean);
+    }
+    if (typeof value === "string") {
+      return value
+        .split(",")
+        .map((entry) => entry.trim())
+        .filter(Boolean);
+    }
+    return [];
+  }
+  if (field === "directConnections" || field === "longConnections" || field === "oneWayConnections") {
+    if (Array.isArray(value)) {
+      return value
+        .filter((entry) => typeof entry === "string")
+        .map((entry) => entry.trim().toLowerCase())
+        .filter(Boolean);
+    }
+    if (typeof value === "string") {
+      return value
+        .split(",")
+        .map((entry) => entry.trim().toLowerCase())
+        .filter(Boolean);
+    }
+    return [];
+  }
+  return value;
+}
+
+function setSkillField(skill, field, value) {
+  const normalized = normalizeFieldValue(field, value);
+
+  if (field === "id") {
+    const currentId = state.currentSkillId || skill.id;
+    const nextId = normalized;
+    if (!nextId || typeof nextId !== "string") {
+      skill.id = normalized;
+      return skill;
+    }
+    const lowerCurrent = typeof currentId === "string" ? currentId.toLowerCase() : null;
+    const lowerNext = nextId.toLowerCase();
+    if (lowerCurrent === lowerNext) {
+      skill.id = nextId;
+      return skill;
+    }
+    if (state.registry.has(lowerNext) && lowerNext !== lowerCurrent) {
+      // Preserve the typed value for UI feedback but do not re-key state
+      skill.id = nextId;
+      return skill;
+    }
+    if (currentId && state.skills[currentId]) {
+      delete state.skills[currentId];
+    }
+    if (lowerCurrent) {
+      state.registry.delete(lowerCurrent);
+    }
+    skill.id = nextId;
+    state.skills[nextId] = skill;
+    state.currentSkillId = nextId;
+    state.registry.add(lowerNext);
+    return skill;
+  }
+
+  skill[field] = normalized;
+  return skill;
+}
+
+function updateSkillField(field, value) {
+  const skill = state.currentSkillId ? state.skills[state.currentSkillId] : null;
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+
+  setSkillField(skill, field, value);
+
+  const validation = validateSkillField(field, skill[field], {
+    registry: state.registry,
+    currentSkillId: state.currentSkillId,
+  });
+
+  state.validation.fields[field] = validation;
+  refreshValidation();
+  notifyWatchers();
+
+  return {
+    success: validation.valid,
+    validation,
+  };
+}
+
+function updateSkillPartial(updates = {}) {
+  const skill = state.currentSkillId ? state.skills[state.currentSkillId] : null;
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+
+  Object.entries(updates).forEach(([field, value]) => {
+    setSkillField(skill, field, value);
+  });
+
+  refreshValidation();
+  notifyWatchers();
+
+  return {
+    success: state.validation.valid,
+    validation: state.validation,
+  };
+}
+
+function setCurrentSkill(skillId) {
+  if (!skillId || !state.skills[skillId]) {
+    console.warn("Attempted to switch to unknown skill", skillId);
+    return false;
+  }
+  state.currentSkillId = skillId;
+  refreshValidation();
+  notifyWatchers();
+  return true;
+}
+
+function getReferenceOptions(kind) {
+  if (!kind) return [];
+  switch (kind) {
+    case "attributes":
+      return state.references.attributes;
+    case "enchantments":
+      return state.references.enchantments;
+    case "stats":
+      return state.references.stats;
+    default:
+      return [];
+  }
+}
+
+function addCustomAttribute(entry) {
+  const normalized = normalizeAttributeEntry(entry, "custom");
+  if (!normalized) {
+    return {
+      success: false,
+      error: "Attribute must have an ID using namespace:path format.",
+    };
+  }
+  const exists = state.customEntries.attributes.some((item) => item.id === normalized.id);
+  if (!exists) {
+    state.customEntries.attributes.push(normalized);
+    state.references.attributes = mergeAttributeReferences(
+      state.references.attributes,
+      state.customEntries.attributes,
+    );
+    notifyWatchers();
+  }
+  return {
+    success: true,
+    entry: normalized,
+  };
+}
+
+function addCustomEnchantment(entry) {
+  const normalized = normalizeEnchantmentEntry(entry, "custom");
+  if (!normalized) {
+    return {
+      success: false,
+      error: "Enchantment must have an ID using namespace:path format.",
+    };
+  }
+  const exists = state.customEntries.enchantments.some((item) => item.id === normalized.id);
+  if (!exists) {
+    state.customEntries.enchantments.push(normalized);
+    state.references.enchantments = mergeEnchantmentReferences(
+      state.references.enchantments,
+      state.customEntries.enchantments,
+    );
+    notifyWatchers();
+  }
+  return {
+    success: true,
+    entry: normalized,
+  };
+}
+
+function addCustomStat(categoryId, entry) {
+  const normalizedCategory = typeof categoryId === "string" ? categoryId : "minecraft:custom";
+  const normalizedEntry = normalizeStatEntry(entry);
+  if (!normalizedEntry) {
+    return {
+      success: false,
+      error: "Stat entries must use namespace:path format.",
+    };
+  }
+  if (!state.customEntries.stats[normalizedCategory]) {
+    state.customEntries.stats[normalizedCategory] = [];
+  }
+  const exists = state.customEntries.stats[normalizedCategory].some(
+    (item) => item.id === normalizedEntry.id,
+  );
+  if (!exists) {
+    state.customEntries.stats[normalizedCategory].push(normalizedEntry);
+    state.references.stats = mergeStatReferences(state.references.stats, state.customEntries.stats);
+    notifyWatchers();
+  }
+  return {
+    success: true,
+    entry: normalizedEntry,
+  };
+}
+
+async function initializeState() {
+  if (state.ready || state.loading) {
+    return getStateSnapshot();
+  }
+
+  state.loading = true;
+  state.error = null;
+  notifyWatchers();
+
+  try {
+    const [metadata, attributes, enchantments, stats, custom] = await Promise.all([
+      loadJSON(DATA_SOURCES.metadata),
+      loadJSON(DATA_SOURCES.attributes),
+      loadJSON(DATA_SOURCES.enchantments),
+      loadJSON(DATA_SOURCES.stats),
+      loadJSON(DATA_SOURCES.custom),
+    ]);
+
+    state.metadata = metadata;
+
+    state.customEntries = {
+      attributes: Array.isArray(custom.attributes) ? custom.attributes : [],
+      enchantments: Array.isArray(custom.enchantments) ? custom.enchantments : [],
+      stats: custom.stats && typeof custom.stats === "object" ? custom.stats : {},
+    };
+
+    const vanillaAttributes = Array.isArray(attributes.attributes)
+      ? attributes.attributes
+      : [];
+    const vanillaEnchantments = Array.isArray(enchantments.enchantments)
+      ? enchantments.enchantments
+      : [];
+    const vanillaStats = Array.isArray(stats.categories) ? stats.categories : [];
+
+    state.references.attributes = mergeAttributeReferences(
+      vanillaAttributes,
+      state.customEntries.attributes,
+    );
+    state.references.enchantments = mergeEnchantmentReferences(
+      vanillaEnchantments,
+      state.customEntries.enchantments,
+    );
+    state.references.stats = mergeStatReferences(vanillaStats, state.customEntries.stats);
+
+    const defaultSkill = createDefaultSkill();
+    registerSkill(defaultSkill);
+
+    refreshValidation();
+
+    state.ready = true;
+    state.loading = false;
+    state.error = null;
+    notifyWatchers();
+  } catch (error) {
+    console.error("Failed to initialize state", error);
+    state.error = error instanceof Error ? error.message : String(error);
+    state.loading = false;
+    notifyWatchers();
+  }
+
+  return getStateSnapshot();
+}
+
+function getCurrentSkill() {
+  return state.currentSkillId ? state.skills[state.currentSkillId] : null;
+}
+
+function getSkillRegistry() {
+  return Array.from(state.registry.values());
+}
+
+export {
+  initializeState,
+  subscribe,
+  getStateSnapshot,
+  getCurrentSkill,
+  getReferenceOptions,
+  getSkillRegistry,
+  setCurrentSkill,
+  updateSkillField,
+  updateSkillPartial,
+  addCustomAttribute,
+  addCustomEnchantment,
+  addCustomStat,
+  state as __state,
+};

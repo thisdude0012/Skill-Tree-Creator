@@ -1,0 +1,256 @@
+{
+  "enchantments": [
+    {
+      "id": "minecraft:protection",
+      "name": "Protection",
+      "category": "armor",
+      "description": "Reduces incoming damage from most sources."
+    },
+    {
+      "id": "minecraft:fire_protection",
+      "name": "Fire Protection",
+      "category": "armor",
+      "description": "Reduces fire and lava damage and burn duration."
+    },
+    {
+      "id": "minecraft:feather_falling",
+      "name": "Feather Falling",
+      "category": "boots",
+      "description": "Reduces fall damage."
+    },
+    {
+      "id": "minecraft:blast_protection",
+      "name": "Blast Protection",
+      "category": "armor",
+      "description": "Reduces damage and knockback from explosions."
+    },
+    {
+      "id": "minecraft:projectile_protection",
+      "name": "Projectile Protection",
+      "category": "armor",
+      "description": "Reduces damage from projectiles."
+    },
+    {
+      "id": "minecraft:respiration",
+      "name": "Respiration",
+      "category": "helmet",
+      "description": "Extends underwater breathing time."
+    },
+    {
+      "id": "minecraft:aqua_affinity",
+      "name": "Aqua Affinity",
+      "category": "helmet",
+      "description": "Increases underwater mining speed."
+    },
+    {
+      "id": "minecraft:thorns",
+      "name": "Thorns",
+      "category": "armor",
+      "description": "Reflects damage back to attackers."
+    },
+    {
+      "id": "minecraft:depth_strider",
+      "name": "Depth Strider",
+      "category": "boots",
+      "description": "Increases underwater movement speed."
+    },
+    {
+      "id": "minecraft:frost_walker",
+      "name": "Frost Walker",
+      "category": "boots",
+      "description": "Turns water beneath the player into ice."
+    },
+    {
+      "id": "minecraft:soul_speed",
+      "name": "Soul Speed",
+      "category": "boots",
+      "description": "Increases speed on soul sand and soul soil."
+    },
+    {
+      "id": "minecraft:swift_sneak",
+      "name": "Swift Sneak",
+      "category": "leggings",
+      "description": "Increases movement speed while crouching."
+    },
+    {
+      "id": "minecraft:binding_curse",
+      "name": "Curse of Binding",
+      "category": "armor",
+      "description": "Prevents removal of the item once worn."
+    },
+    {
+      "id": "minecraft:vanishing_curse",
+      "name": "Curse of Vanishing",
+      "category": "general",
+      "description": "Causes the item to vanish upon death."
+    },
+    {
+      "id": "minecraft:sharpness",
+      "name": "Sharpness",
+      "category": "melee",
+      "description": "Increases melee damage against all mobs."
+    },
+    {
+      "id": "minecraft:smite",
+      "name": "Smite",
+      "category": "melee",
+      "description": "Increases melee damage against undead mobs."
+    },
+    {
+      "id": "minecraft:bane_of_arthropods",
+      "name": "Bane of Arthropods",
+      "category": "melee",
+      "description": "Increases melee damage against arthropod mobs."
+    },
+    {
+      "id": "minecraft:knockback",
+      "name": "Knockback",
+      "category": "melee",
+      "description": "Increases knockback dealt by melee attacks."
+    },
+    {
+      "id": "minecraft:fire_aspect",
+      "name": "Fire Aspect",
+      "category": "melee",
+      "description": "Sets targets on fire when hit."
+    },
+    {
+      "id": "minecraft:looting",
+      "name": "Looting",
+      "category": "melee",
+      "description": "Increases loot dropped by mobs."
+    },
+    {
+      "id": "minecraft:sweeping",
+      "name": "Sweeping Edge",
+      "category": "melee",
+      "description": "Increases damage of sweep attacks."
+    },
+    {
+      "id": "minecraft:efficiency",
+      "name": "Efficiency",
+      "category": "tool",
+      "description": "Increases mining speed."
+    },
+    {
+      "id": "minecraft:silk_touch",
+      "name": "Silk Touch",
+      "category": "tool",
+      "description": "Causes blocks to drop themselves."
+    },
+    {
+      "id": "minecraft:unbreaking",
+      "name": "Unbreaking",
+      "category": "general",
+      "description": "Grants a chance to avoid durability reduction."
+    },
+    {
+      "id": "minecraft:fortune",
+      "name": "Fortune",
+      "category": "tool",
+      "description": "Increases block drops."
+    },
+    {
+      "id": "minecraft:power",
+      "name": "Power",
+      "category": "bow",
+      "description": "Increases bow damage."
+    },
+    {
+      "id": "minecraft:punch",
+      "name": "Punch",
+      "category": "bow",
+      "description": "Increases bow knockback."
+    },
+    {
+      "id": "minecraft:flame",
+      "name": "Flame",
+      "category": "bow",
+      "description": "Sets arrows on fire."
+    },
+    {
+      "id": "minecraft:infinity",
+      "name": "Infinity",
+      "category": "bow",
+      "description": "Prevents arrows from being consumed when fired."
+    },
+    {
+      "id": "minecraft:luck_of_the_sea",
+      "name": "Luck of the Sea",
+      "category": "fishing",
+      "description": "Improves treasure fishing loot."
+    },
+    {
+      "id": "minecraft:lure",
+      "name": "Lure",
+      "category": "fishing",
+      "description": "Decreases time to catch fish."
+    },
+    {
+      "id": "minecraft:loyalty",
+      "name": "Loyalty",
+      "category": "trident",
+      "description": "Returns thrown tridents."
+    },
+    {
+      "id": "minecraft:impaling",
+      "name": "Impaling",
+      "category": "trident",
+      "description": "Deals extra damage to aquatic mobs."
+    },
+    {
+      "id": "minecraft:riptide",
+      "name": "Riptide",
+      "category": "trident",
+      "description": "Launches the player when throwing a trident in water or rain."
+    },
+    {
+      "id": "minecraft:channeling",
+      "name": "Channeling",
+      "category": "trident",
+      "description": "Summons lightning when striking a mob during thunderstorms."
+    },
+    {
+      "id": "minecraft:multishot",
+      "name": "Multishot",
+      "category": "crossbow",
+      "description": "Fires three arrows at once."
+    },
+    {
+      "id": "minecraft:quick_charge",
+      "name": "Quick Charge",
+      "category": "crossbow",
+      "description": "Decreases crossbow reload time."
+    },
+    {
+      "id": "minecraft:piercing",
+      "name": "Piercing",
+      "category": "crossbow",
+      "description": "Causes arrows to pass through multiple entities."
+    },
+    {
+      "id": "minecraft:mending",
+      "name": "Mending",
+      "category": "general",
+      "description": "Repairs the item when collecting experience orbs."
+    },
+    {
+      "id": "minecraft:breach",
+      "name": "Breach",
+      "category": "armor",
+      "description": "Reduces target armor, available in newer versions."
+    },
+    {
+      "id": "minecraft:density",
+      "name": "Density",
+      "category": "trident",
+      "description": "Increases trident damage while falling."
+    },
+    {
+      "id": "minecraft:wind_burst",
+      "name": "Wind Burst",
+      "category": "armor",
+      "description": "Pushes enemies away when the wearer takes damage."
+    }
+  ]
+}

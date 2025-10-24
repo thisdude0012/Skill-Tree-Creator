@@ -1,0 +1,132 @@
+{
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "name": "Max Health",
+      "category": "generic",
+      "description": "Base health pool for all living entities."
+    },
+    {
+      "id": "minecraft:generic.follow_range",
+      "name": "Follow Range",
+      "category": "generic",
+      "description": "Distance at which mobs will begin to track a target."
+    },
+    {
+      "id": "minecraft:generic.knockback_resistance",
+      "name": "Knockback Resistance",
+      "category": "generic",
+      "description": "Resistance to knockback from attacks and explosions."
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "name": "Movement Speed",
+      "category": "generic",
+      "description": "Horizontal walking speed for living entities."
+    },
+    {
+      "id": "minecraft:generic.flying_speed",
+      "name": "Flying Speed",
+      "category": "generic",
+      "description": "Flight speed used by flying entities and creative players."
+    },
+    {
+      "id": "minecraft:generic.attack_damage",
+      "name": "Attack Damage",
+      "category": "generic",
+      "description": "Base melee damage dealt by the entity."
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "name": "Attack Speed",
+      "category": "generic",
+      "description": "Time between melee attacks in ticks."
+    },
+    {
+      "id": "minecraft:generic.attack_knockback",
+      "name": "Attack Knockback",
+      "category": "generic",
+      "description": "Additional knockback applied when attacking."
+    },
+    {
+      "id": "minecraft:generic.attack_range",
+      "name": "Attack Range",
+      "category": "generic",
+      "description": "Reach distance for melee interactions."
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "name": "Armor",
+      "category": "generic",
+      "description": "Total armor value reducing incoming damage."
+    },
+    {
+      "id": "minecraft:generic.armor_toughness",
+      "name": "Armor Toughness",
+      "category": "generic",
+      "description": "Helps armor stay effective against large damage hits."
+    },
+    {
+      "id": "minecraft:generic.luck",
+      "name": "Luck",
+      "category": "generic",
+      "description": "Affects loot tables and other chance based mechanics."
+    },
+    {
+      "id": "minecraft:generic.step_height",
+      "name": "Step Height",
+      "category": "generic",
+      "description": "Maximum height of blocks that can be stepped over automatically."
+    },
+    {
+      "id": "minecraft:generic.fall_damage_multiplier",
+      "name": "Fall Damage Multiplier",
+      "category": "generic",
+      "description": "Scales the damage taken from falling."
+    },
+    {
+      "id": "minecraft:generic.safe_fall_distance",
+      "name": "Safe Fall Distance",
+      "category": "generic",
+      "description": "Distance that can be fallen before taking damage."
+    },
+    {
+      "id": "minecraft:generic.scale",
+      "name": "Scale",
+      "category": "generic",
+      "description": "Multiplies the rendered and collision size of the entity."
+    },
+    {
+      "id": "minecraft:generic.gravity",
+      "name": "Gravity",
+      "category": "generic",
+      "description": "Vertical acceleration applied each tick."
+    },
+    {
+      "id": "minecraft:generic.block_interaction_range",
+      "name": "Block Interaction Range",
+      "category": "generic",
+      "description": "Distance a player can interact with blocks."
+    },
+    {
+      "id": "minecraft:generic.reach_distance",
+      "name": "Reach Distance",
+      "category": "generic",
+      "description": "Distance a player can interact with entities."
+    }
+  ],
+  "entity_specific": [
+    {
+      "id": "minecraft:horse.jump_strength",
+      "name": "Horse Jump Strength",
+      "category": "horse",
+      "description": "Determines the vertical power of a horse's jump."
+    },
+    {
+      "id": "minecraft:zombie.spawn_reinforcements",
+      "name": "Zombie Spawn Reinforcements",
+      "category": "zombie",
+      "description": "Chance a zombie calls reinforcements when damaged."
+    }
+  ]
+}

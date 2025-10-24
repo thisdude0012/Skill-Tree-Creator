@@ -59,27 +59,166 @@
             </h2>
             <p class="panel__lede">Define the identity and flavor of the skill.</p>
           </header>
-          <div class="panel__content placeholder-grid">
-            <div class="placeholder-field" data-placeholder="name">
-              <span class="placeholder-field__label">Skill Name</span>
-              <span class="placeholder-field__input placeholder-block"></span>
-            </div>
-            <div class="placeholder-field" data-placeholder="type">
-              <span class="placeholder-field__label">Skill Type</span>
-              <span class="placeholder-pill placeholder-pill--wide">Notable</span>
-            </div>
-            <div class="placeholder-field placeholder-field--stacked" data-placeholder="description">
-              <span class="placeholder-field__label">Lore / Description</span>
-              <span class="placeholder-field__textarea placeholder-block"></span>
-            </div>
-            <div class="placeholder-field" data-placeholder="tags">
-              <span class="placeholder-field__label">Tags</span>
-              <div class="placeholder-chip-row">
-                <span class="placeholder-chip">combat</span>
-                <span class="placeholder-chip">ranged</span>
-                <span class="placeholder-chip">utility</span>
+          <div class="panel__content">
+            <form class="skill-form" data-skill-form novalidate>
+              <div class="form-grid">
+                <div class="form-field" data-field-wrapper="id">
+                  <label class="form-field__label" for="skill-id-input">Skill ID</label>
+                  <input
+                    class="form-input"
+                    id="skill-id-input"
+                    name="skill-id"
+                    data-field="id"
+                    type="text"
+                    placeholder="skilltree:untitled_skill"
+                    spellcheck="false"
+                    autocomplete="off"
+                    required
+                  />
+                  <p class="form-field__description">Use namespace:path format (e.g., skilltree:warrior_1).</p>
+                  <p class="form-field__feedback" data-feedback="id" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="title">
+                  <label class="form-field__label" for="skill-title-input">Title</label>
+                  <input
+                    class="form-input"
+                    id="skill-title-input"
+                    name="skill-title"
+                    data-field="title"
+                    type="text"
+                    placeholder="Untitled Skill"
+                    maxlength="120"
+                  />
+                  <p class="form-field__feedback" data-feedback="title" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="titleColor">
+                  <label class="form-field__label" for="skill-title-color-input">Title Color</label>
+                  <input
+                    class="form-input"
+                    id="skill-title-color-input"
+                    name="skill-title-color"
+                    data-field="titleColor"
+                    type="text"
+                    placeholder="FFFFFF"
+                    maxlength="6"
+                    inputmode="text"
+                    spellcheck="false"
+                  />
+                  <p class="form-field__description">Optional 6-digit hex color without #.</p>
+                  <p class="form-field__feedback" data-feedback="titleColor" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="backgroundTexture">
+                  <label class="form-field__label" for="skill-background-texture-input">Background Texture</label>
+                  <input
+                    class="form-input"
+                    id="skill-background-texture-input"
+                    name="skill-background-texture"
+                    data-field="backgroundTexture"
+                    type="text"
+                    placeholder="skilltree:textures/icons/background/lesser.png"
+                    spellcheck="false"
+                  />
+                  <p class="form-field__feedback" data-feedback="backgroundTexture" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="iconTexture">
+                  <label class="form-field__label" for="skill-icon-texture-input">Icon Texture</label>
+                  <input
+                    class="form-input"
+                    id="skill-icon-texture-input"
+                    name="skill-icon-texture"
+                    data-field="iconTexture"
+                    type="text"
+                    placeholder="skilltree:textures/icons/void.png"
+                    spellcheck="false"
+                  />
+                  <p class="form-field__feedback" data-feedback="iconTexture" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="borderTexture">
+                  <label class="form-field__label" for="skill-border-texture-input">Border Texture</label>
+                  <input
+                    class="form-input"
+                    id="skill-border-texture-input"
+                    name="skill-border-texture"
+                    data-field="borderTexture"
+                    type="text"
+                    placeholder="skilltree:textures/tooltip/lesser.png"
+                    spellcheck="false"
+                  />
+                  <p class="form-field__feedback" data-feedback="borderTexture" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="positionX">
+                  <label class="form-field__label" for="skill-position-x-input">Position X</label>
+                  <input
+                    class="form-input"
+                    id="skill-position-x-input"
+                    name="skill-position-x"
+                    data-field="positionX"
+                    type="number"
+                    inputmode="decimal"
+                    step="0.001"
+                  />
+                  <p class="form-field__feedback" data-feedback="positionX" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="positionY">
+                  <label class="form-field__label" for="skill-position-y-input">Position Y</label>
+                  <input
+                    class="form-input"
+                    id="skill-position-y-input"
+                    name="skill-position-y"
+                    data-field="positionY"
+                    type="number"
+                    inputmode="decimal"
+                    step="0.001"
+                  />
+                  <p class="form-field__feedback" data-feedback="positionY" role="alert"></p>
+                </div>
+                <div class="form-field" data-field-wrapper="buttonSize">
+                  <label class="form-field__label" for="skill-button-size-input">Button Size</label>
+                  <input
+                    class="form-input"
+                    id="skill-button-size-input"
+                    name="skill-button-size"
+                    data-field="buttonSize"
+                    type="number"
+                    min="1"
+                    step="1"
+                  />
+                  <p class="form-field__feedback" data-feedback="buttonSize" role="alert"></p>
+                </div>
+                <div class="form-field form-field--checkbox" data-field-wrapper="isStartingPoint">
+                  <label class="form-field__label form-field__label--checkbox" for="skill-starting-point-input">
+                    <input
+                      class="form-checkbox"
+                      id="skill-starting-point-input"
+                      name="skill-starting-point"
+                      data-field="isStartingPoint"
+                      type="checkbox"
+                    />
+                    <span>Marked as starting point</span>
+                  </label>
+                  <p class="form-field__feedback" data-feedback="isStartingPoint" role="alert"></p>
+                </div>
+                <div class="form-field form-field--full" data-field-wrapper="tags">
+                  <label class="form-field__label" for="skill-tags-input">Tags</label>
+                  <input
+                    class="form-input"
+                    id="skill-tags-input"
+                    name="skill-tags"
+                    data-field="tags"
+                    type="text"
+                    placeholder="combat, utility"
+                    autocomplete="off"
+                  />
+                  <p class="form-field__description">Comma separated list (used for filtering and grouping).</p>
+                  <p class="form-field__feedback" data-feedback="tags" role="alert"></p>
+                </div>
               </div>
-            </div>
+              <div class="form-footer">
+                <p class="form-validation-summary" data-validation-summary data-state="idle">
+                  Preparing form state…
+                </p>
+              </div>
+            </form>
           </div>
         </section>
 
