@@ -234,19 +234,24 @@
             </h2>
             <p class="panel__lede">Stack effects and stat boosts granted when the skill is allocated.</p>
           </header>
-          <div class="panel__content placeholder-list" data-placeholder="bonuses">
-            <article class="placeholder-card">
-              <h3 class="placeholder-card__title">Placeholder Bonus</h3>
-              <p class="placeholder-card__body">
-                Configure values, scaling behaviour, and tooltip messaging for each bonus entry.
-              </p>
-            </article>
-            <article class="placeholder-card">
-              <h3 class="placeholder-card__title">Passive Effects</h3>
-              <p class="placeholder-card__body">
-                Future UI will surface metadata-driven forms for modifiers, multipliers, and conditions.
-              </p>
-            </article>
+          <div class="panel__content bonus-builder" data-bonus-builder>
+            <div class="bonus-builder__toolbar">
+              <label class="bonus-builder__label" for="bonus-type-select">Bonus Type</label>
+              <div class="bonus-builder__controls">
+                <select
+                  class="form-input bonus-builder__select"
+                  id="bonus-type-select"
+                  data-bonus-type
+                >
+                  <option value="">Select bonus type</option>
+                </select>
+                <button class="bonus-builder__add-button" type="button" data-bonus-add disabled>
+                  Add Bonus
+                </button>
+              </div>
+            </div>
+            <p class="bonus-builder__empty" data-bonus-empty hidden></p>
+            <div class="bonus-list" data-bonus-list></div>
           </div>
         </section>
 
