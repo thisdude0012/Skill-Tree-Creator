@@ -57,6 +57,37 @@ async function loadJSON(relativePath) {
   return response.json();
 }
 
+function cloneValue(value) {
+  if (typeof structuredClone === "function") {
+    try {
+      return structuredClone(value);
+    } catch {
+      // Fallback to JSON clone below
+    }
+  }
+  if (value === undefined || value === null) {
+    return value;
+  }
+  return JSON.parse(JSON.stringify(value));
+}
+
+function getActiveSkill() {
+  if (!state.currentSkillId) {
+    return null;
+  }
+  return state.skills[state.currentSkillId] || null;
+}
+
+function ensureBonusesArray(skill) {
+  if (!skill) {
+    return [];
+  }
+  if (!Array.isArray(skill.bonuses)) {
+    skill.bonuses = [];
+  }
+  return skill.bonuses;
+}
+
 function notifyWatchers() {
   const snapshot = getStateSnapshot();
   watchers.forEach((listener) => {
@@ -455,6 +486,247 @@ function getReferenceOptions(kind) {
   }
 }
 
+function setValueAtPath(target, path, value) {
+  if (!Array.isArray(path) || path.length === 0) {
+    return target;
+  }
+  const finalIndex = path.length - 1;
+  let cursor = target;
+  for (let index = 0; index < finalIndex; index += 1) {
+    const key = path[index];
+    const nextKey = path[index + 1];
+    const requiresArray = typeof nextKey === "number";
+    let nextValue = cursor[key];
+    if (nextValue === undefined || nextValue === null || typeof nextValue !== "object") {
+      nextValue = requiresArray ? [] : {};
+      cursor[key] = nextValue;
+    } else if (requiresArray && !Array.isArray(nextValue)) {
+      nextValue = [];
+      cursor[key] = nextValue;
+    } else if (!requiresArray && Array.isArray(nextValue)) {
+      nextValue = {};
+      cursor[key] = nextValue;
+    }
+    cursor = nextValue;
+  }
+  const lastKey = path[finalIndex];
+  if (value === undefined) {
+    if (Array.isArray(cursor) && typeof lastKey === "number") {
+      if (lastKey >= 0 && lastKey < cursor.length) {
+        cursor.splice(lastKey, 1);
+      }
+    } else if (cursor && typeof cursor === "object") {
+      delete cursor[lastKey];
+    }
+    return target;
+  }
+  const clonedValue = cloneValue(value);
+  if (Array.isArray(cursor) && typeof lastKey === "number") {
+    cursor[lastKey] = clonedValue;
+  } else if (cursor && typeof cursor === "object") {
+    cursor[lastKey] = clonedValue;
+  }
+  return target;
+}
+
+function addBonus(bonus) {
+  const skill = getActiveSkill();
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  const bonuses = ensureBonusesArray(skill);
+  const entry = cloneValue(bonus ?? {});
+  bonuses.push(entry);
+  refreshValidation();
+  notifyWatchers();
+  return {
+    success: true,
+    index: bonuses.length - 1,
+    bonus: entry,
+  };
+}
+
+function setBonus(index, bonus) {
+  const skill = getActiveSkill();
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  const bonuses = ensureBonusesArray(skill);
+  if (!Number.isInteger(index) || index < 0 || index >= bonuses.length) {
+    return {
+      success: false,
+      error: "Bonus index is out of range.",
+    };
+  }
+  const entry = cloneValue(bonus ?? {});
+  bonuses.splice(index, 1, entry);
+  refreshValidation();
+  notifyWatchers();
+  return {
+    success: true,
+    bonus: entry,
+  };
+}
+
+function updateBonus(index, updates = {}) {
+  const skill = getActiveSkill();
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  const bonuses = ensureBonusesArray(skill);
+  if (!Number.isInteger(index) || index < 0 || index >= bonuses.length) {
+    return {
+      success: false,
+      error: "Bonus index is out of range.",
+    };
+  }
+  if (!updates || typeof updates !== "object") {
+    return {
+      success: false,
+      error: "Bonus updates must be provided as an object.",
+    };
+  }
+  const current = bonuses[index];
+  if (!current || typeof current !== "object") {
+    return {
+      success: false,
+      error: "Cannot update a non-object bonus entry.",
+    };
+  }
+  const next = cloneValue(current);
+  Object.entries(updates).forEach(([key, value]) => {
+    next[key] = cloneValue(value);
+  });
+  bonuses.splice(index, 1, next);
+  refreshValidation();
+  notifyWatchers();
+  return {
+    success: true,
+    bonus: next,
+  };
+}
+
+function updateBonusByPath(index, path, value) {
+  if (!Array.isArray(path) || path.length === 0) {
+    if (!value || typeof value !== "object") {
+      return {
+        success: false,
+        error: "Bonus updates require a path or object payload.",
+      };
+    }
+    return updateBonus(index, value);
+  }
+  const skill = getActiveSkill();
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  const bonuses = ensureBonusesArray(skill);
+  if (!Number.isInteger(index) || index < 0 || index >= bonuses.length) {
+    return {
+      success: false,
+      error: "Bonus index is out of range.",
+    };
+  }
+  const current = bonuses[index];
+  if (!current || typeof current !== "object") {
+    return {
+      success: false,
+      error: "Cannot update a non-object bonus entry.",
+    };
+  }
+  const next = cloneValue(current);
+  setValueAtPath(next, path, value);
+  bonuses.splice(index, 1, next);
+  refreshValidation();
+  notifyWatchers();
+  return {
+    success: true,
+    bonus: next,
+  };
+}
+
+function removeBonus(index) {
+  const skill = getActiveSkill();
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  const bonuses = ensureBonusesArray(skill);
+  if (!Number.isInteger(index) || index < 0 || index >= bonuses.length) {
+    return {
+      success: false,
+      error: "Bonus index is out of range.",
+    };
+  }
+  const [removed] = bonuses.splice(index, 1);
+  refreshValidation();
+  notifyWatchers();
+  return {
+    success: true,
+    bonus: removed ?? null,
+  };
+}
+
+function moveBonus(fromIndex, toIndex) {
+  const skill = getActiveSkill();
+  if (!skill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  const bonuses = ensureBonusesArray(skill);
+  if (bonuses.length === 0) {
+    return {
+      success: false,
+      error: "No bonuses available to reorder.",
+    };
+  }
+  if (!Number.isInteger(fromIndex) || fromIndex < 0 || fromIndex >= bonuses.length) {
+    return {
+      success: false,
+      error: "Source index is out of range.",
+    };
+  }
+  if (!Number.isInteger(toIndex)) {
+    return {
+      success: false,
+      error: "Target index must be an integer.",
+    };
+  }
+  const clampedTarget = Math.max(0, Math.min(toIndex, bonuses.length - 1));
+  if (fromIndex === clampedTarget) {
+    return {
+      success: true,
+      bonus: bonuses[fromIndex],
+      index: fromIndex,
+    };
+  }
+  const [entry] = bonuses.splice(fromIndex, 1);
+  bonuses.splice(clampedTarget, 0, entry);
+  refreshValidation();
+  notifyWatchers();
+  return {
+    success: true,
+    bonus: entry,
+    index: clampedTarget,
+  };
+}
+
 function addCustomAttribute(entry) {
   const normalized = normalizeAttributeEntry(entry, "custom");
   if (!normalized) {
@@ -608,6 +880,12 @@ export {
   setCurrentSkill,
   updateSkillField,
   updateSkillPartial,
+  addBonus,
+  setBonus,
+  updateBonus,
+  updateBonusByPath,
+  removeBonus,
+  moveBonus,
   addCustomAttribute,
   addCustomEnchantment,
   addCustomStat,
