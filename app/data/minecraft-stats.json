@@ -1,0 +1,133 @@
+{
+  "categories": [
+    {
+      "id": "minecraft:mined",
+      "name": "Blocks Mined",
+      "description": "Counts how many of each block type a player has mined.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:crafted",
+      "name": "Items Crafted",
+      "description": "Tracks items created using crafting grids.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:used",
+      "name": "Items Used",
+      "description": "Tracks item use actions such as eating, placing or firing.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:broken",
+      "name": "Items Broken",
+      "description": "Counts durability-based item breakage events.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:picked_up",
+      "name": "Items Picked Up",
+      "description": "Tracks items collected into the inventory.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:dropped",
+      "name": "Items Dropped",
+      "description": "Tracks items manually dropped by the player.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:killed",
+      "name": "Mobs Killed",
+      "description": "Counts the number of each mob slain by the player.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:killed_by",
+      "name": "Times Killed By",
+      "description": "Tracks how often specific mobs kill the player.",
+      "entries": []
+    },
+    {
+      "id": "minecraft:custom",
+      "name": "Custom Statistics",
+      "description": "Built-in custom objectives provided by vanilla Minecraft.",
+      "entries": [
+        { "id": "minecraft:animals_bred", "name": "Animals Bred" },
+        { "id": "minecraft:aviate_one_cm", "name": "Distance Flown with Elytra" },
+        { "id": "minecraft:bell_ring", "name": "Bell Rings" },
+        { "id": "minecraft:boat_one_cm", "name": "Distance by Boat" },
+        { "id": "minecraft:clean_armor", "name": "Armor Pieces Cleaned" },
+        { "id": "minecraft:clean_banner", "name": "Banners Cleaned" },
+        { "id": "minecraft:clean_shulker_box", "name": "Shulker Boxes Cleaned" },
+        { "id": "minecraft:climb_one_cm", "name": "Distance Climbed" },
+        { "id": "minecraft:damage_absorbed", "name": "Damage Absorbed" },
+        { "id": "minecraft:damage_blocked_by_shield", "name": "Damage Blocked by Shield" },
+        { "id": "minecraft:damage_dealt", "name": "Damage Dealt" },
+        { "id": "minecraft:damage_dealt_absorbed", "name": "Damage Dealt (Absorbed)" },
+        { "id": "minecraft:damage_dealt_resisted", "name": "Damage Dealt (Resisted)" },
+        { "id": "minecraft:damage_resisted", "name": "Damage Resisted" },
+        { "id": "minecraft:damage_taken", "name": "Damage Taken" },
+        { "id": "minecraft:deaths", "name": "Deaths" },
+        { "id": "minecraft:drop", "name": "Items Dropped" },
+        { "id": "minecraft:eat_cake_slice", "name": "Cake Slices Eaten" },
+        { "id": "minecraft:enchant_item", "name": "Items Enchanted" },
+        { "id": "minecraft:fall_one_cm", "name": "Distance Fallen" },
+        { "id": "minecraft:fill_cauldron", "name": "Cauldrons Filled" },
+        { "id": "minecraft:fish_caught", "name": "Fish Caught" },
+        { "id": "minecraft:fishing_rod_cast", "name": "Fishing Rod Casts" },
+        { "id": "minecraft:fly_one_cm", "name": "Distance Flown" },
+        { "id": "minecraft:horse_one_cm", "name": "Distance by Horse" },
+        { "id": "minecraft:inspect_dispenser", "name": "Dispensers Inspected" },
+        { "id": "minecraft:inspect_dropper", "name": "Droppers Inspected" },
+        { "id": "minecraft:inspect_hopper", "name": "Hoppers Inspected" },
+        { "id": "minecraft:interact_with_anvil", "name": "Anvil Interactions" },
+        { "id": "minecraft:interact_with_beacon", "name": "Beacon Interactions" },
+        { "id": "minecraft:interact_with_blast_furnace", "name": "Blast Furnace Interactions" },
+        { "id": "minecraft:interact_with_brewingstand", "name": "Brewing Stand Interactions" },
+        { "id": "minecraft:interact_with_campfire", "name": "Campfire Interactions" },
+        { "id": "minecraft:interact_with_cartography_table", "name": "Cartography Table Interactions" },
+        { "id": "minecraft:interact_with_crafting_table", "name": "Crafting Table Interactions" },
+        { "id": "minecraft:interact_with_furnace", "name": "Furnace Interactions" },
+        { "id": "minecraft:interact_with_grindstone", "name": "Grindstone Interactions" },
+        { "id": "minecraft:interact_with_lectern", "name": "Lectern Interactions" },
+        { "id": "minecraft:interact_with_loom", "name": "Loom Interactions" },
+        { "id": "minecraft:interact_with_smithing_table", "name": "Smithing Table Interactions" },
+        { "id": "minecraft:interact_with_smoker", "name": "Smoker Interactions" },
+        { "id": "minecraft:jump", "name": "Jumps" },
+        { "id": "minecraft:leave_game", "name": "Times Left Game" },
+        { "id": "minecraft:mob_kills", "name": "Mob Kills" },
+        { "id": "minecraft:minecart_one_cm", "name": "Distance by Minecart" },
+        { "id": "minecraft:open_barrel", "name": "Barrels Opened" },
+        { "id": "minecraft:open_chest", "name": "Chests Opened" },
+        { "id": "minecraft:open_enderchest", "name": "Ender Chests Opened" },
+        { "id": "minecraft:open_shulker_box", "name": "Shulker Boxes Opened" },
+        { "id": "minecraft:pig_one_cm", "name": "Distance by Pig" },
+        { "id": "minecraft:play_one_minute", "name": "Time Played" },
+        { "id": "minecraft:play_record", "name": "Music Discs Played" },
+        { "id": "minecraft:player_kills", "name": "Player Kills" },
+        { "id": "minecraft:pot_flower", "name": "Plants Potted" },
+        { "id": "minecraft:raid_trigger", "name": "Raids Triggered" },
+        { "id": "minecraft:raid_win", "name": "Raids Won" },
+        { "id": "minecraft:sleep_in_bed", "name": "Times Slept in Bed" },
+        { "id": "minecraft:sneak_time", "name": "Time Spent Sneaking" },
+        { "id": "minecraft:sprint_one_cm", "name": "Distance Sprinted" },
+        { "id": "minecraft:strider_one_cm", "name": "Distance by Strider" },
+        { "id": "minecraft:swim_one_cm", "name": "Distance Swum" },
+        { "id": "minecraft:talked_to_villager", "name": "Villagers Talked To" },
+        { "id": "minecraft:target_hit", "name": "Target Blocks Hit" },
+        { "id": "minecraft:time_since_death", "name": "Time Since Last Death" },
+        { "id": "minecraft:time_since_rest", "name": "Time Since Rest" },
+        { "id": "minecraft:total_world_time", "name": "Total World Time" },
+        { "id": "minecraft:traded_with_villager", "name": "Trades with Villagers" },
+        { "id": "minecraft:tune_noteblock", "name": "Note Blocks Tuned" },
+        { "id": "minecraft:play_noteblock", "name": "Note Blocks Played" },
+        { "id": "minecraft:use_cauldron", "name": "Cauldrons Used" },
+        { "id": "minecraft:walk_one_cm", "name": "Distance Walked" },
+        { "id": "minecraft:walk_on_powder_snow_with_leather_boots_one_cm", "name": "Distance Walked on Powder Snow" },
+        { "id": "minecraft:walk_on_water_one_cm", "name": "Distance Walked on Water" },
+        { "id": "minecraft:walk_under_water_one_cm", "name": "Distance Walked Underwater" }
+      ]
+    }
+  ]
+}
