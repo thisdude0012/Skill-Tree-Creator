@@ -4,6 +4,7 @@ import {
   updateSkillField,
   getStateSnapshot,
 } from "./state.js";
+import { initializeBonusBuilder } from "../js/bonusBuilder.js";
 
 const dom = {
   root: document.documentElement,
@@ -354,6 +355,7 @@ window.addEventListener("hashchange", () => {
 });
 
 const unsubscribe = subscribe(renderState);
+const bonusBuilder = initializeBonusBuilder();
 renderState(getStateSnapshot());
 
 initializeState().catch((error) => {
@@ -368,4 +370,5 @@ window.SkillCreatorShell = {
   setActiveSection,
   toggleNav,
   unsubscribe,
+  bonusBuilder,
 };
