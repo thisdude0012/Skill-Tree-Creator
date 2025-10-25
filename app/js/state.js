@@ -50,9 +50,23 @@ function toLabel(id) {
 
 async function loadJSON(relativePath) {
   const url = new URL(relativePath, import.meta.url);
-  const response = await fetch(url);
+  let response;
+  try {
+    response = await fetch(url);
+  } catch (error) {
+    const isFileProtocol =
+      typeof window !== "undefined" && window.location?.protocol === "file:";
+    if (isFileProtocol) {
+      throw new Error(
+        `Failed to load ${relativePath}. The Skill Creator must be served over HTTP to avoid browser security restrictions.`,
+      );
+    }
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(`Network request failed for ${relativePath}: ${errorMessage}`);
+  }
   if (!response.ok) {
-    throw new Error(`Failed to load ${relativePath}: ${response.status}`);
+    const details = response.statusText ? ` ${response.statusText}` : "";
+    throw new Error(`Failed to load ${relativePath}: ${response.status}${details}`);
   }
   return response.json();
 }

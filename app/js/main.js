@@ -4,7 +4,7 @@ import {
   updateSkillField,
   getStateSnapshot,
 } from "./state.js";
-import { initializeBonusBuilder } from "../js/bonusBuilder.js";
+import { initializeBonusBuilder } from "./bonusBuilder.js";
 
 const dom = {
   root: document.documentElement,
