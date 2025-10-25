@@ -22,3 +22,18 @@ The script generates `app/data/metadata.json` containing:
 
 The extractor performs sanity checks to ensure every registry entry is represented. Re-run it whenever the upstream mod sources are
 updated so the metadata stays in sync.
+
+## Running the application
+
+The Skill Creator relies on browser modules and JSON fetch requests. Browsers block these features when the project is opened directly via
+`file://`, so always run the site through a local HTTP server.
+
+From the repository root, start a server with one of the following options:
+
+- Python 3: `python -m http.server 8000`
+- Node.js: `npx serve`
+- Node.js (http-server): `npx http-server`
+- VS Code: use the Live Server extension
+
+Once the server is running, open `http://localhost:8000/app/` in your browser. Navigating to `app/index.html` through the `file://`
+protocol will result in CORS errors and missing metadata.
