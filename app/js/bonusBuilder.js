@@ -6,7 +6,7 @@ import {
   updateBonusByPath,
   removeBonus,
   moveBonus,
-} from "../scripts/state.js";
+} from "./state.js";
 
 const SELECTORS = {
   root: "[data-bonus-builder]",
