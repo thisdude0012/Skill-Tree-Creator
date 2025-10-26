@@ -28,6 +28,66 @@ const ATTRIBUTE_MODIFIER_FIELDS = [
   { key: "operation", label: "Operation", type: "enum:AttributeModifier.Operation" },
 ];
 
+const EXPERIENCE_SOURCE_OPTIONS = [
+  { value: "mobs", label: "Mobs" },
+  { value: "fishing", label: "Fishing" },
+  { value: "ore", label: "Ore" },
+];
+
+const EQUIPMENT_TYPE_OPTIONS = [
+  { value: "any", label: "Any" },
+  { value: "armor", label: "Armor" },
+  { value: "axe", label: "Axe" },
+  { value: "boots", label: "Boots" },
+  { value: "bow", label: "Bow" },
+  { value: "chestplate", label: "Chestplate" },
+  { value: "crossbow", label: "Crossbow" },
+  { value: "helmet", label: "Helmet" },
+  { value: "hoe", label: "Hoe" },
+  { value: "leggings", label: "Leggings" },
+  { value: "melee_weapon", label: "Melee Weapon" },
+  { value: "pickaxe", label: "Pickaxe" },
+  { value: "ranged_weapon", label: "Ranged Weapon" },
+  { value: "shield", label: "Shield" },
+  { value: "shovel", label: "Shovel" },
+  { value: "sword", label: "Sword" },
+  { value: "tool", label: "Tool" },
+  { value: "trident", label: "Trident" },
+  { value: "weapon", label: "Weapon" },
+];
+
+const EFFECT_TYPE_OPTIONS = [
+  { value: "any", label: "Any" },
+  { value: "beneficial", label: "Beneficial" },
+  { value: "harmful", label: "Harmful" },
+  { value: "neutral", label: "Neutral" },
+];
+
+const TARGET_OPTIONS = [
+  { value: "player", label: "Player" },
+  { value: "enemy", label: "Enemy" },
+];
+
+const LOOT_TYPE_OPTIONS = [
+  { value: "archaeology", label: "Archaeology" },
+  { value: "chests", label: "Chests" },
+  { value: "fishing", label: "Fishing" },
+  { value: "mobs", label: "Mobs" },
+  { value: "gems", label: "Gems" },
+  { value: "ores", label: "Ores" },
+];
+
+const CURIOS_SLOT_PLACEHOLDERS = [
+  { value: "belt", label: "Belt" },
+  { value: "ring", label: "Ring" },
+  { value: "necklace", label: "Necklace" },
+  { value: "hands", label: "Hands" },
+  { value: "charm", label: "Charm" },
+];
+
+const EXTRA_ATTRIBUTE_IDS = ["skilltree:exp_per_minute", "skilltree:regeneration"];
+const COMBOBOX_MAX_RESULTS = 200;
+
 const builderState = {
   root: null,
   list: null,
@@ -251,14 +311,27 @@ function renderBonusCard(bonus, index) {
     message.textContent = "Unknown bonus type. The metadata does not describe its fields.";
     body.appendChild(message);
   } else {
-    renderFieldGroup(body, definition.fields, bonus, index, [], []);
+    const context = {
+      bonusId,
+      bonusDefinition: definition,
+      registryStack: [],
+    };
+    renderFieldGroup(body, definition.fields, bonus, index, [], [], context);
   }
 
   card.appendChild(body);
   return card;
 }
 
-function renderFieldGroup(container, fields, data, bonusIndex, pathPrefix, ancestorTypes = []) {
+function renderFieldGroup(
+  container,
+  fields,
+  data,
+  bonusIndex,
+  pathPrefix,
+  ancestorTypes = [],
+  context = {},
+) {
   fields.forEach((field) => {
     const propertyNames = getPropertyNames(field);
     const valueType = field.type || "string";
@@ -266,26 +339,42 @@ function renderFieldGroup(container, fields, data, bonusIndex, pathPrefix, ances
     if (valueType.startsWith("registry:")) {
       const propertyName = propertyNames[0];
       const fieldValue = data ? data[propertyName] : undefined;
-      const registryField = renderRegistryField(field, fieldValue, bonusIndex, [...pathPrefix, propertyName], ancestorTypes);
+      const registryField = renderRegistryField(
+        field,
+        fieldValue,
+        bonusIndex,
+        [...pathPrefix, propertyName],
+        ancestorTypes,
+        context,
+      );
       container.appendChild(registryField);
       return;
     }
 
     if (valueType === "attribute_modifier") {
-      const group = renderAttributeModifierGroup(field, data, bonusIndex, pathPrefix);
+      const group = renderAttributeModifierGroup(field, data, bonusIndex, pathPrefix, context);
       container.appendChild(group);
       return;
     }
 
     propertyNames.forEach((propertyName) => {
       const fieldValue = data ? data[propertyName] : undefined;
-      const fieldElement = renderSimpleField(field, propertyName, fieldValue, bonusIndex, [...pathPrefix, propertyName]);
-      container.appendChild(fieldElement);
+      const fieldElement = renderSimpleField(
+        field,
+        propertyName,
+        fieldValue,
+        bonusIndex,
+        [...pathPrefix, propertyName],
+        context,
+      );
+      if (fieldElement) {
+        container.appendChild(fieldElement);
+      }
     });
   });
 }
 
-function renderSimpleField(fieldMeta, propertyName, value, bonusIndex, path) {
+function renderSimpleField(fieldMeta, propertyName, value, bonusIndex, path, context = {}) {
   const wrapper = document.createElement("div");
   wrapper.className = "bonus-field";
 
@@ -294,10 +383,29 @@ function renderSimpleField(fieldMeta, propertyName, value, bonusIndex, path) {
   label.textContent = formatLabel(propertyName);
   wrapper.appendChild(label);
 
+  const customControl = renderCustomField({
+    fieldMeta,
+    propertyName,
+    value,
+    bonusIndex,
+    path,
+    context,
+    wrapper,
+  });
+
+  if (customControl === false) {
+    return null;
+  }
+  if (customControl instanceof HTMLElement) {
+    applyTargetDependency(wrapper, propertyName, customControl);
+    return wrapper;
+  }
+
   const valueType = fieldMeta.type || "string";
 
   if (valueType.startsWith("enum:")) {
     const select = renderEnumSelect(fieldMeta, value, bonusIndex, path);
+    applyTargetDependency(wrapper, propertyName, select);
     wrapper.appendChild(select);
     return wrapper;
   }
@@ -311,6 +419,7 @@ function renderSimpleField(fieldMeta, propertyName, value, bonusIndex, path) {
     input.addEventListener("change", (event) => {
       updateBonusByPath(bonusIndex, path, event.currentTarget.checked);
     });
+    applyTargetDependency(wrapper, propertyName, input);
     wrapper.appendChild(input);
     return wrapper;
   }
@@ -341,6 +450,7 @@ function renderSimpleField(fieldMeta, propertyName, value, bonusIndex, path) {
   }
 
   attachReferenceDatalist(input, valueType, propertyName);
+  applyTargetDependency(wrapper, propertyName, input);
   wrapper.appendChild(input);
   return wrapper;
 }
@@ -384,7 +494,632 @@ function renderEnumSelect(fieldMeta, value, bonusIndex, path) {
   return select;
 }
 
-function renderRegistryField(fieldMeta, value, bonusIndex, path, ancestorTypes = []) {
+function renderCustomField({
+  fieldMeta,
+  propertyName,
+  value,
+  bonusIndex,
+  path,
+  context,
+  wrapper,
+}) {
+  const datasetPath = encodeBonusPath(bonusIndex, path);
+  const valueType = fieldMeta.type || "string";
+  const bonusId = context?.bonusId;
+
+  if (valueType === "minecraft:attribute") {
+    const options = getAttributeOptions();
+    const control = createSearchableSelect({
+      value: typeof value === "string" ? value : "",
+      options,
+      datasetPath,
+      placeholder: "Search attributes…",
+      onChange: (next) => {
+        const normalized = typeof next === "string" ? next.trim() : "";
+        updateBonusByPath(bonusIndex, path, normalized);
+      },
+    });
+    wrapper.appendChild(control);
+    return control;
+  }
+
+  if (bonusId === "grant_item" && propertyName === "item_id") {
+    const options = getItemOptions();
+    const control = createSearchableSelect({
+      value: typeof value === "string" ? value : "",
+      options,
+      datasetPath,
+      placeholder: "Search items…",
+      onChange: (next) => {
+        const normalized = typeof next === "string" ? next.trim() : "";
+        updateBonusByPath(bonusIndex, path, normalized);
+      },
+    });
+    wrapper.appendChild(control);
+    return control;
+  }
+
+  if (fieldMeta.type === "minecraft:mob_effect_instance" && propertyName === "effect") {
+    const options = getEffectOptions();
+    const control = createSearchableSelect({
+      value: typeof value === "string" ? value : "",
+      options,
+      datasetPath,
+      placeholder: "Search effects…",
+      onChange: (next) => {
+        const normalized = typeof next === "string" ? next.trim() : "";
+        updateBonusByPath(bonusIndex, path, normalized);
+      },
+    });
+    wrapper.appendChild(control);
+    return control;
+  }
+
+  if (fieldMeta.type === "minecraft:mob_effect_instance" && propertyName === "duration") {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "form-input";
+    input.placeholder = "MM:SS";
+    if (datasetPath) {
+      input.dataset.bonusPath = datasetPath;
+    }
+    const numericValue = typeof value === "number" ? value : Number(value);
+    if (Number.isFinite(numericValue) && numericValue >= 0) {
+      input.value = formatSecondsToTimer(numericValue);
+    } else {
+      input.value = "";
+    }
+    const commitDuration = (event) => {
+      const parsed = parseTimerInput(event.currentTarget.value);
+      if (parsed === null) {
+        return;
+      }
+      updateBonusByPath(bonusIndex, path, parsed);
+      event.currentTarget.value = formatSecondsToTimer(parsed);
+    };
+    input.addEventListener("change", commitDuration);
+    input.addEventListener("blur", commitDuration);
+    wrapper.appendChild(input);
+    return input;
+  }
+
+  if (bonusId === "gained_experience" && propertyName === "experience_source") {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: EXPERIENCE_SOURCE_OPTIONS,
+      datasetPath,
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next);
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  if (bonusId === "effect_duration" && propertyName === "effect_type") {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: EFFECT_TYPE_OPTIONS,
+      datasetPath,
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next);
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  if (bonusId === "effect_duration" && propertyName === "target") {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: TARGET_OPTIONS,
+      datasetPath,
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next);
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  if (propertyName === "target" && isWithinRegistry(context, "event_listeners")) {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: TARGET_OPTIONS,
+      datasetPath,
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next);
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  if (propertyName === "equipment_type" && isItemConditionEquipmentContext(context)) {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "any";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: EQUIPMENT_TYPE_OPTIONS,
+      datasetPath,
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next);
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  if (bonusId === "curio_slots" && propertyName === "slot") {
+    const control = createSearchableSelect({
+      value: typeof value === "string" ? value : "",
+      options: CURIOS_SLOT_PLACEHOLDERS,
+      datasetPath,
+      placeholder: "Select or type slot…",
+      onChange: (next) => {
+        const normalized = typeof next === "string" ? next.trim() : "";
+        updateBonusByPath(bonusIndex, path, normalized);
+      },
+    });
+    wrapper.appendChild(control);
+    return control;
+  }
+
+  if (bonusId === "inflict_damage" && propertyName === "damage_type") {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: getDamageConditionOptions(),
+      datasetPath,
+      placeholder: "Select damage type",
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next || "");
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  if (bonusId === "loot_duplication" && propertyName === "loot_type") {
+    const normalized = typeof value === "string" ? value.toLowerCase() : "";
+    if (value && normalized !== value) {
+      updateBonusByPath(bonusIndex, path, normalized);
+    }
+    const select = createSelectInput({
+      value: normalized,
+      options: LOOT_TYPE_OPTIONS,
+      datasetPath,
+      onChange: (next) => {
+        updateBonusByPath(bonusIndex, path, next);
+      },
+    });
+    wrapper.appendChild(select);
+    return select;
+  }
+
+  return null;
+}
+
+function createSelectInput({ value = "", options = [], datasetPath, placeholder, onChange }) {
+  const select = document.createElement("select");
+  select.className = "form-input";
+  if (datasetPath) {
+    select.dataset.bonusPath = datasetPath;
+  }
+
+  if (placeholder) {
+    const placeholderOption = document.createElement("option");
+    placeholderOption.value = "";
+    placeholderOption.textContent = placeholder;
+    select.appendChild(placeholderOption);
+  }
+
+  options.forEach((option) => {
+    const optionElement = document.createElement("option");
+    optionElement.value = option.value;
+    optionElement.textContent = option.label || formatLabel(option.value);
+    select.appendChild(optionElement);
+  });
+
+  if (value && options.some((option) => option.value === value)) {
+    select.value = value;
+  } else if (!placeholder && options.length > 0) {
+    select.value = options[0].value;
+  } else {
+    select.value = "";
+  }
+
+  if (typeof onChange === "function") {
+    select.addEventListener("change", (event) => {
+      onChange(event.currentTarget.value);
+    });
+  }
+
+  if (options.length === 0) {
+    select.disabled = true;
+  }
+
+  return select;
+}
+
+function createSearchableSelect({
+  value = "",
+  options = [],
+  datasetPath,
+  placeholder = "",
+  allowCustom = true,
+  onChange,
+}) {
+  const container = document.createElement("div");
+  container.className = "searchable-select";
+
+  const input = document.createElement("input");
+  input.type = "search";
+  input.className = "form-input searchable-select__input";
+  input.autocomplete = "off";
+  input.spellcheck = false;
+  input.placeholder = placeholder;
+  input.value = value ?? "";
+  if (datasetPath) {
+    input.dataset.bonusPath = datasetPath;
+  }
+  container.appendChild(input);
+
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "searchable-select__toggle";
+  toggle.setAttribute("aria-label", "Toggle options");
+  toggle.innerHTML = "▾";
+  container.appendChild(toggle);
+
+  const panel = document.createElement("div");
+  panel.className = "searchable-select__panel";
+  panel.hidden = true;
+
+  const list = document.createElement("ul");
+  list.className = "searchable-select__list";
+  panel.appendChild(list);
+  container.appendChild(panel);
+
+  const normalizedOptions = Array.isArray(options)
+    ? options.map((option) => ({
+        value: option.value,
+        label: option.label || formatLabel(option.value),
+        meta: option.meta || option.category || "",
+      }))
+    : [];
+
+  let isOpen = false;
+  let currentValue = typeof value === "string" ? value : "";
+
+  const commit = (nextValue) => {
+    if (typeof nextValue !== "string") {
+      nextValue = "";
+    }
+    if (nextValue === currentValue) {
+      return;
+    }
+    currentValue = nextValue;
+    if (typeof onChange === "function") {
+      onChange(nextValue);
+    }
+  };
+
+  const handleOutside = (event) => {
+    if (!container.contains(event.target)) {
+      closePanel();
+    }
+  };
+
+  const updateOptions = () => {
+    const term = input.value.trim().toLowerCase();
+    let filtered = normalizedOptions;
+    if (term) {
+      filtered = normalizedOptions.filter((option) => {
+        const labelMatch = option.label.toLowerCase().includes(term);
+        const valueMatch = option.value.toLowerCase().includes(term);
+        const metaMatch = option.meta ? String(option.meta).toLowerCase().includes(term) : false;
+        return labelMatch || valueMatch || metaMatch;
+      });
+    }
+    if (filtered.length > COMBOBOX_MAX_RESULTS) {
+      filtered = filtered.slice(0, COMBOBOX_MAX_RESULTS);
+    }
+
+    list.innerHTML = "";
+    if (filtered.length === 0) {
+      const empty = document.createElement("li");
+      empty.className = "searchable-select__empty";
+      empty.textContent = "No matches";
+      list.appendChild(empty);
+      return;
+    }
+
+    filtered.forEach((option) => {
+      const item = document.createElement("li");
+      item.className = "searchable-select__option";
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "searchable-select__option-button";
+      button.textContent = option.label;
+      if (option.meta) {
+        const meta = document.createElement("span");
+        meta.className = "searchable-select__option-meta";
+        meta.textContent = option.meta;
+        button.appendChild(meta);
+      }
+      if (option.value === currentValue) {
+        button.classList.add("is-selected");
+      }
+      button.addEventListener("click", () => {
+        input.value = option.value;
+        commit(option.value);
+        closePanel();
+      });
+
+      item.appendChild(button);
+      list.appendChild(item);
+    });
+  };
+
+  const openPanel = () => {
+    if (isOpen || normalizedOptions.length === 0) {
+      return;
+    }
+    isOpen = true;
+    panel.hidden = false;
+    updateOptions();
+    document.addEventListener("pointerdown", handleOutside);
+  };
+
+  const closePanel = () => {
+    if (!isOpen) {
+      return;
+    }
+    isOpen = false;
+    panel.hidden = true;
+    document.removeEventListener("pointerdown", handleOutside);
+  };
+
+  input.addEventListener("focus", () => {
+    if (normalizedOptions.length > 0) {
+      openPanel();
+    }
+  });
+
+  input.addEventListener("input", () => {
+    if (allowCustom) {
+      commit(input.value);
+    }
+    if (isOpen) {
+      updateOptions();
+    }
+  });
+
+  input.addEventListener("change", () => {
+    if (allowCustom) {
+      commit(input.value);
+    }
+  });
+
+  toggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (isOpen) {
+      closePanel();
+    } else {
+      openPanel();
+      input.focus();
+    }
+  });
+
+  return container;
+}
+
+function applyTargetDependency(wrapper, propertyName, control) {
+  if (!wrapper) {
+    return;
+  }
+  if (typeof propertyName === "string" && propertyName.startsWith("enemy_")) {
+    wrapper.dataset.targetVisibility = "enemy";
+    wrapper.classList.add("bonus-field--conditional");
+  }
+  if (propertyName === "target" && control) {
+    attachTargetVisibility(control, wrapper);
+  }
+}
+
+function attachTargetVisibility(control, wrapper) {
+  if (!control) {
+    return;
+  }
+  const scope = wrapper?.parentElement;
+  if (!scope) {
+    return;
+  }
+  const update = () => {
+    const rawValue = typeof control.value === "string" ? control.value.toLowerCase() : "";
+    const showEnemy = rawValue === "enemy";
+    scope.querySelectorAll("[data-target-visibility=\"enemy\"]").forEach((element) => {
+      element.classList.toggle("bonus-field--hidden", !showEnemy);
+    });
+  };
+  control.addEventListener("change", update);
+  control.addEventListener("input", update);
+  update();
+}
+
+function parseTimerInput(raw) {
+  if (typeof raw !== "string") {
+    return null;
+  }
+  const trimmed = raw.trim();
+  if (trimmed === "") {
+    return null;
+  }
+  if (/^\d+$/.test(trimmed)) {
+    const seconds = Number(trimmed);
+    return Number.isNaN(seconds) ? null : seconds;
+  }
+  const match = trimmed.match(/^(\d{1,4}):(\d{1,2})$/);
+  if (!match) {
+    return null;
+  }
+  const minutes = Number(match[1]);
+  const secondsPart = Number(match[2]);
+  if (Number.isNaN(minutes) || Number.isNaN(secondsPart) || secondsPart >= 60) {
+    return null;
+  }
+  return minutes * 60 + secondsPart;
+}
+
+function formatSecondsToTimer(totalSeconds) {
+  if (!Number.isFinite(totalSeconds)) {
+    return "00:00";
+  }
+  const safeValue = Math.max(0, Math.floor(totalSeconds));
+  const minutes = Math.floor(safeValue / 60);
+  const seconds = safeValue % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function getCurrentRegistryContext(context) {
+  const stack = context?.registryStack;
+  if (!Array.isArray(stack) || stack.length === 0) {
+    return null;
+  }
+  return stack[stack.length - 1];
+}
+
+function matchesRegistryId(actualId, expected) {
+  if (!actualId || !expected) {
+    return false;
+  }
+  if (actualId === expected) {
+    return true;
+  }
+  return actualId.endsWith(expected);
+}
+
+function isWithinRegistry(context, registryId) {
+  const current = getCurrentRegistryContext(context);
+  if (!current) {
+    return false;
+  }
+  return matchesRegistryId(current.registryId, registryId);
+}
+
+function isItemConditionEquipmentContext(context) {
+  const current = getCurrentRegistryContext(context);
+  if (!current) {
+    return false;
+  }
+  return matchesRegistryId(current.registryId, "item_conditions") && current.entryId === "equipment_type";
+}
+
+function getDamageConditionOptions() {
+  const registry = builderState.metadata?.registries?.damageConditions;
+  if (!registry?.entries) {
+    return [];
+  }
+  const options = Object.values(registry.entries).map((entry) => ({
+    value: entry.id,
+    label: entry.label || formatLabel(entry.id),
+  }));
+  options.sort((a, b) => a.label.localeCompare(b.label));
+  const noneIndex = options.findIndex((option) => option.value === "none");
+  if (noneIndex > 0) {
+    const [noneOption] = options.splice(noneIndex, 1);
+    options.unshift(noneOption);
+  }
+  return options;
+}
+
+function getAttributeOptions() {
+  const references = builderState.snapshot?.references?.attributes;
+  const entries = new Map();
+  if (Array.isArray(references)) {
+    references.forEach((entry) => {
+      if (entry?.id) {
+        entries.set(entry.id, {
+          value: entry.id,
+          label: entry.name || formatLabel(stripNamespace(entry.id)),
+          meta: entry.category ? formatLabel(entry.category) : "",
+        });
+      }
+    });
+  }
+  EXTRA_ATTRIBUTE_IDS.forEach((id) => {
+    if (!entries.has(id)) {
+      entries.set(id, {
+        value: id,
+        label: formatLabel(stripNamespace(id)),
+        meta: "Modded",
+      });
+    }
+  });
+  return Array.from(entries.values()).sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function getEffectOptions() {
+  const references = builderState.snapshot?.references?.effects;
+  if (!Array.isArray(references)) {
+    return [];
+  }
+  return references
+    .filter((entry) => entry?.id)
+    .map((entry) => ({
+      value: entry.id,
+      label: entry.name || formatLabel(stripNamespace(entry.id)),
+      meta: entry.category ? formatLabel(entry.category) : "",
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function getItemOptions() {
+  const references = builderState.snapshot?.references?.items;
+  if (!Array.isArray(references)) {
+    return [];
+  }
+  return references
+    .filter((entry) => entry?.id)
+    .map((entry) => ({
+      value: entry.id,
+      label: entry.name || formatLabel(stripNamespace(entry.id)),
+      meta: entry.category ? formatLabel(entry.category) : "",
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function renderRegistryField(
+  fieldMeta,
+  value,
+  bonusIndex,
+  path,
+  ancestorTypes = [],
+  context = {},
+) {
   const wrapper = document.createElement("section");
   wrapper.className = "bonus-nested";
 
@@ -459,6 +1194,17 @@ function renderRegistryField(fieldMeta, value, bonusIndex, path, ancestorTypes =
     const nextAncestors = ancestorSet.has(currentEntry.id)
       ? Array.from(ancestorSet)
       : [...ancestorSet, currentEntry.id];
+    const nextContext = {
+      ...context,
+      registryStack: [
+        ...(context?.registryStack ?? []),
+        {
+          registryId: registry?.id || null,
+          entryId: currentEntry.id,
+          path,
+        },
+      ],
+    };
     renderFieldGroup(
       body,
       currentEntry.fields,
@@ -466,6 +1212,7 @@ function renderRegistryField(fieldMeta, value, bonusIndex, path, ancestorTypes =
       bonusIndex,
       path,
       nextAncestors,
+      nextContext,
     );
   }
 
@@ -473,7 +1220,7 @@ function renderRegistryField(fieldMeta, value, bonusIndex, path, ancestorTypes =
   return wrapper;
 }
 
-function renderAttributeModifierGroup(fieldMeta, data, bonusIndex, pathPrefix) {
+function renderAttributeModifierGroup(fieldMeta, data, bonusIndex, pathPrefix, context) {
   const container = document.createElement("fieldset");
   container.className = "bonus-group";
 
@@ -487,13 +1234,27 @@ function renderAttributeModifierGroup(fieldMeta, data, bonusIndex, pathPrefix) {
     const value = data ? data[subField.key] : undefined;
     if (subField.key === "operation") {
       const fieldDefinition = { ...fieldMeta, type: subField.type };
-      const fieldElement = renderSimpleField(fieldDefinition, subField.key, value, bonusIndex, subPath);
+      const fieldElement = renderSimpleField(
+        fieldDefinition,
+        subField.key,
+        value,
+        bonusIndex,
+        subPath,
+        context,
+      );
       container.appendChild(fieldElement);
       return;
     }
 
     const fauxMeta = { ...fieldMeta, type: subField.type };
-    const fieldElement = renderSimpleField(fauxMeta, subField.key, value, bonusIndex, subPath);
+    const fieldElement = renderSimpleField(
+      fauxMeta,
+      subField.key,
+      value,
+      bonusIndex,
+      subPath,
+      context,
+    );
     const label = fieldElement.querySelector(".bonus-field__label");
     if (label) {
       label.textContent = subField.label;

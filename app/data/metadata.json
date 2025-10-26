@@ -1108,13 +1108,27 @@
               "defaultExpression": "0.05f"
             },
             {
-              "name": "damage_condition",
+              "name": "original_damage",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "originalDamageCondition",
+              "jsonProperties": [
+                "original_damage"
+              ],
+              "default": "melee",
+              "defaultExpression": "new MeleeDamageCondition()",
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "result_damage",
               "type": "registry:damage_conditions",
               "optional": false,
               "classField": "resultDamageCondition",
               "jsonProperties": [
-                "damage_condition"
+                "result_damage"
               ],
+              "default": "magic",
+              "defaultExpression": "new MagicDamageCondition()",
               "helper": "DamageCondition"
             },
             {
@@ -1126,13 +1140,6 @@
                 "enemy_multiplier"
               ],
               "helper": "LivingMultiplier"
-            },
-            {
-              "name": "original_damage_condition",
-              "optional": false,
-              "jsonProperties": [],
-              "default": "melee",
-              "defaultExpression": "new MeleeDamageCondition()"
             },
             {
               "name": "player_condition",
@@ -1153,13 +1160,6 @@
                 "player_multiplier"
               ],
               "helper": "LivingMultiplier"
-            },
-            {
-              "name": "result_damage_condition",
-              "optional": false,
-              "jsonProperties": [],
-              "default": "magic",
-              "defaultExpression": "new MagicDamageCondition()"
             },
             {
               "name": "target_condition",
