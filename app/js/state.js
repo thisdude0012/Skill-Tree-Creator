@@ -323,9 +323,6 @@ function normalizeFieldValue(field, value) {
   if (field === "id" && typeof value === "string") {
     return value.trim().toLowerCase();
   }
-  if (field === "title" && typeof value === "string") {
-    return value.trim();
-  }
   if (
     (field === "backgroundTexture" ||
       field === "iconTexture" ||

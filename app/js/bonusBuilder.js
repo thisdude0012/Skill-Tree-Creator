@@ -251,14 +251,14 @@ function renderBonusCard(bonus, index) {
     message.textContent = "Unknown bonus type. The metadata does not describe its fields.";
     body.appendChild(message);
   } else {
-    renderFieldGroup(body, definition.fields, bonus, index, []);
+    renderFieldGroup(body, definition.fields, bonus, index, [], []);
   }
 
   card.appendChild(body);
   return card;
 }
 
-function renderFieldGroup(container, fields, data, bonusIndex, pathPrefix) {
+function renderFieldGroup(container, fields, data, bonusIndex, pathPrefix, ancestorTypes = []) {
   fields.forEach((field) => {
     const propertyNames = getPropertyNames(field);
     const valueType = field.type || "string";
@@ -266,7 +266,7 @@ function renderFieldGroup(container, fields, data, bonusIndex, pathPrefix) {
     if (valueType.startsWith("registry:")) {
       const propertyName = propertyNames[0];
       const fieldValue = data ? data[propertyName] : undefined;
-      const registryField = renderRegistryField(field, fieldValue, bonusIndex, [...pathPrefix, propertyName]);
+      const registryField = renderRegistryField(field, fieldValue, bonusIndex, [...pathPrefix, propertyName], ancestorTypes);
       container.appendChild(registryField);
       return;
     }
@@ -384,7 +384,7 @@ function renderEnumSelect(fieldMeta, value, bonusIndex, path) {
   return select;
 }
 
-function renderRegistryField(fieldMeta, value, bonusIndex, path) {
+function renderRegistryField(fieldMeta, value, bonusIndex, path, ancestorTypes = []) {
   const wrapper = document.createElement("section");
   wrapper.className = "bonus-nested";
 
@@ -402,6 +402,7 @@ function renderRegistryField(fieldMeta, value, bonusIndex, path) {
   const registry = getRegistryDefinition(fieldMeta.type, builderState.metadata);
   const entries = getSortedRegistryEntries(registry);
   const selectedId = stripNamespace(value?.type);
+  const ancestorSet = new Set(Array.isArray(ancestorTypes) ? ancestorTypes : []);
 
   if (entries.length === 0) {
     registrySelect.disabled = true;
@@ -411,6 +412,10 @@ function renderRegistryField(fieldMeta, value, bonusIndex, path) {
     const option = document.createElement("option");
     option.value = entry.id;
     option.textContent = entry.label || formatLabel(entry.id);
+    if (ancestorSet.has(entry.id) && entry.id !== selectedId) {
+      option.disabled = true;
+      option.title = "Cannot select this option recursively.";
+    }
     registrySelect.appendChild(option);
   });
 
@@ -442,14 +447,25 @@ function renderRegistryField(fieldMeta, value, bonusIndex, path) {
     return wrapper;
   }
 
-  const currentEntry = entries.find((entry) => entry.id === selectedId) || entries[0];
+  let currentEntry = entries.find((entry) => entry.id === registrySelect.value);
+  if (!currentEntry) {
+    currentEntry = entries.find((entry) => entry.id === selectedId) || entries[0];
+    if (currentEntry) {
+      registrySelect.value = currentEntry.id;
+    }
+  }
+
   if (currentEntry) {
+    const nextAncestors = ancestorSet.has(currentEntry.id)
+      ? Array.from(ancestorSet)
+      : [...ancestorSet, currentEntry.id];
     renderFieldGroup(
       body,
       currentEntry.fields,
       value || buildRegistryValue(currentEntry, builderState.metadata),
       bonusIndex,
       path,
+      nextAncestors,
     );
   }
 
@@ -720,8 +736,16 @@ function getRegistryDefinition(type, metadata) {
   if (!registries) {
     return null;
   }
+  const directMatch = Object.values(registries).find((entry) => entry.id === registryId);
+  if (directMatch) {
+    return directMatch;
+  }
+  const camelKey = registryId.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+  if (camelKey && registries[camelKey]) {
+    return registries[camelKey];
+  }
   return (
-    Object.values(registries).find((entry) => entry.id === registryId) ?? null
+    Object.values(registries).find((entry) => entry.id.endsWith(registryId)) ?? null
   );
 }
 
