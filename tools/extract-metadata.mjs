@@ -48,6 +48,13 @@ const registryConfigs = [
     entryKind: "enchantment_condition",
   },
   {
+    key: "eventListeners",
+    label: "Event Listeners",
+    registryId: "event_listeners",
+    file: path.join("daripher", "skilltree", "init", "PSTEventListeners.java"),
+    entryKind: "event_listener",
+  },
+  {
     key: "livingMultipliers",
     label: "Living Multipliers",
     registryId: "skill_bonus_multipliers",
