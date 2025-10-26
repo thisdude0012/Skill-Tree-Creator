@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-10-23T21:40:25.209Z",
+  "generatedAt": "2025-10-26T01:01:44.214Z",
   "registries": {
     "skillBonuses": {
       "id": "skill_bonuses",
@@ -96,7 +96,7 @@
               "jsonProperties": [
                 "event_listener"
               ],
-              "default": "SkillLearnedEventListener",
+              "default": "skill_learned",
               "defaultExpression": "new SkillLearnedEventListener()",
               "helper": "EventListener"
             }
@@ -1931,6 +1931,429 @@
           "className": "daripher.skilltree.skill.bonus.condition.enchantment.WeaponEnchantmentCondition",
           "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/condition/enchantment/WeaponEnchantmentCondition.java",
           "fields": []
+        }
+      }
+    },
+    "eventListeners": {
+      "id": "event_listeners",
+      "label": "Event Listeners",
+      "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/init/PSTEventListeners.java",
+      "entries": {
+        "attack": {
+          "id": "attack",
+          "label": "Attack",
+          "className": "daripher.skilltree.skill.bonus.event.AttackEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/AttackEventListener.java",
+          "fields": [
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "enemyCondition",
+              "jsonProperties": [
+                "enemy_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "enemyMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target",
+              "optional": false,
+              "classField": "target",
+              "jsonProperties": [
+                "target"
+              ]
+            }
+          ]
+        },
+        "block": {
+          "id": "block",
+          "label": "Block",
+          "className": "daripher.skilltree.skill.bonus.event.BlockEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/BlockEventListener.java",
+          "fields": [
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "enemyCondition",
+              "jsonProperties": [
+                "enemy_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "enemyMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target",
+              "optional": false,
+              "classField": "target",
+              "jsonProperties": [
+                "target"
+              ]
+            }
+          ]
+        },
+        "evasion": {
+          "id": "evasion",
+          "label": "Evasion",
+          "className": "daripher.skilltree.skill.bonus.event.EvasionEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/EvasionEventListener.java",
+          "fields": [
+            {
+              "name": "enemy_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "enemyCondition",
+              "jsonProperties": [
+                "enemy_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "enemyMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target",
+              "optional": false,
+              "classField": "target",
+              "jsonProperties": [
+                "target"
+              ]
+            }
+          ]
+        },
+        "item_used": {
+          "id": "item_used",
+          "label": "Item Used",
+          "className": "daripher.skilltree.skill.bonus.event.ItemUsedEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/ItemUsedEventListener.java",
+          "fields": [
+            {
+              "name": "item_condition",
+              "type": "registry:item_conditions",
+              "optional": false,
+              "classField": "itemCondition",
+              "jsonProperties": [
+                "item_condition"
+              ],
+              "default": "potion",
+              "defaultExpression": "new PotionCondition(PotionCondition.Type.ANY)",
+              "helper": "ItemCondition"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "damage_taken": {
+          "id": "damage_taken",
+          "label": "Damage Taken",
+          "className": "daripher.skilltree.skill.bonus.event.DamageTakenEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/DamageTakenEventListener.java",
+          "fields": [
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "enemyCondition",
+              "jsonProperties": [
+                "enemy_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "enemyMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "target",
+              "optional": false,
+              "classField": "target",
+              "jsonProperties": [
+                "target"
+              ]
+            }
+          ]
+        },
+        "on_kill": {
+          "id": "on_kill",
+          "label": "On Kill",
+          "className": "daripher.skilltree.skill.bonus.event.KillEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/KillEventListener.java",
+          "fields": [
+            {
+              "name": "damage_condition",
+              "type": "registry:damage_conditions",
+              "optional": false,
+              "classField": "damageCondition",
+              "jsonProperties": [
+                "damage_condition"
+              ],
+              "helper": "DamageCondition"
+            },
+            {
+              "name": "enemy_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "enemyCondition",
+              "jsonProperties": [
+                "enemy_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "enemy_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "enemyMultiplier",
+              "jsonProperties": [
+                "enemy_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            },
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "skill_learned": {
+          "id": "skill_learned",
+          "label": "Skill Learned",
+          "className": "daripher.skilltree.skill.bonus.event.SkillLearnedEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/SkillLearnedEventListener.java",
+          "fields": [
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "skill_removed": {
+          "id": "skill_removed",
+          "label": "Skill Removed",
+          "className": "daripher.skilltree.skill.bonus.event.SkillRemovedEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/SkillRemovedEventListener.java",
+          "fields": [
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
+        },
+        "ticking": {
+          "id": "ticking",
+          "label": "Ticking",
+          "className": "daripher.skilltree.skill.bonus.event.TickingEventListener",
+          "source": "PST - Extracted data & assets/PST - Converted Class Files/daripher/skilltree/skill/bonus/event/TickingEventListener.java",
+          "fields": [
+            {
+              "name": "player_condition",
+              "type": "registry:living_conditions",
+              "optional": false,
+              "classField": "playerCondition",
+              "jsonProperties": [
+                "player_condition"
+              ],
+              "helper": "LivingCondition"
+            },
+            {
+              "name": "player_multiplier",
+              "type": "registry:living_multipliers",
+              "optional": false,
+              "classField": "playerMultiplier",
+              "jsonProperties": [
+                "player_multiplier"
+              ],
+              "helper": "LivingMultiplier"
+            }
+          ]
         }
       }
     },
