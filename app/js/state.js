@@ -10,6 +10,8 @@ const DATA_SOURCES = {
   enchantments: "../data/minecraft-enchantments.json",
   stats: "../data/minecraft-stats.json",
   custom: "../data/custom-entries.json",
+  items: "../data/minecraft-items.json",
+  effects: "../data/minecraft-effects.json",
 };
 
 const watchers = new Set();
@@ -23,6 +25,8 @@ const state = {
     attributes: [],
     enchantments: [],
     stats: [],
+    items: [],
+    effects: [],
   },
   customEntries: {
     attributes: [],
@@ -221,6 +225,84 @@ function normalizeStatEntry(entry) {
     name: entry.name || toLabel(id),
     description: entry.description || "",
   };
+}
+
+function normalizeItemEntry(entry) {
+  if (typeof entry === "string") {
+    const trimmed = entry.trim().toLowerCase();
+    if (!isNamespacePath(trimmed)) return null;
+    return {
+      id: trimmed,
+      name: toLabel(trimmed),
+      category: "",
+    };
+  }
+  if (!entry || typeof entry !== "object") return null;
+  const id = typeof entry.id === "string" ? entry.id.trim().toLowerCase() : null;
+  if (!id || !isNamespacePath(id)) return null;
+  const displayName =
+    (typeof entry.display === "string" && entry.display.trim()) ||
+    (typeof entry.name === "string" && entry.name.trim()) ||
+    toLabel(id);
+  const category = typeof entry.category === "string" ? entry.category.trim() : "";
+  return {
+    id,
+    name: displayName,
+    category,
+  };
+}
+
+function normalizeEffectEntry(entry) {
+  if (typeof entry === "string") {
+    const trimmed = entry.trim().toLowerCase();
+    if (!isNamespacePath(trimmed)) return null;
+    return {
+      id: trimmed,
+      name: toLabel(trimmed),
+      category: "",
+    };
+  }
+  if (!entry || typeof entry !== "object") return null;
+  const id = typeof entry.id === "string" ? entry.id.trim().toLowerCase() : null;
+  if (!id || !isNamespacePath(id)) return null;
+  const displayName =
+    (typeof entry.display === "string" && entry.display.trim()) ||
+    (typeof entry.name === "string" && entry.name.trim()) ||
+    toLabel(id);
+  const category = typeof entry.category === "string" ? entry.category.trim() : "";
+  return {
+    id,
+    name: displayName,
+    category,
+  };
+}
+
+function buildItemReferences(entries = []) {
+  const map = new Map();
+  entries.forEach((entry) => {
+    const normalized = normalizeItemEntry(entry);
+    if (normalized) {
+      map.set(normalized.id, normalized);
+    }
+  });
+  return Array.from(map.values()).sort((a, b) => normalizedLabelSort(a.name, b.name));
+}
+
+function buildEffectReferences(entries = []) {
+  const map = new Map();
+  entries.forEach((entry) => {
+    const normalized = normalizeEffectEntry(entry);
+    if (normalized) {
+      map.set(normalized.id, normalized);
+    }
+  });
+  return Array.from(map.values()).sort((a, b) => normalizedLabelSort(a.name, b.name));
+}
+
+function normalizedLabelSort(a, b) {
+  const labelA = a || "";
+  const labelB = b || "";
+  return labelA.localeCompare(labelB, undefined, { sensitivity: "base" });
 }
 
 function mergeAttributeReferences(vanilla = [], custom = []) {
@@ -492,6 +574,10 @@ function getReferenceOptions(kind) {
       return state.references.enchantments;
     case "stats":
       return state.references.stats;
+    case "items":
+      return state.references.items;
+    case "effects":
+      return state.references.effects;
     default:
       return [];
   }
@@ -820,12 +906,22 @@ async function initializeState() {
   notifyWatchers();
 
   try {
-    const [metadata, attributes, enchantments, stats, custom] = await Promise.all([
+    const [
+      metadata,
+      attributes,
+      enchantments,
+      stats,
+      custom,
+      itemsData,
+      effectsData,
+    ] = await Promise.all([
       loadJSON(DATA_SOURCES.metadata),
       loadJSON(DATA_SOURCES.attributes),
       loadJSON(DATA_SOURCES.enchantments),
       loadJSON(DATA_SOURCES.stats),
       loadJSON(DATA_SOURCES.custom),
+      loadJSON(DATA_SOURCES.items),
+      loadJSON(DATA_SOURCES.effects),
     ]);
 
     state.metadata = metadata;
@@ -843,6 +939,8 @@ async function initializeState() {
       ? enchantments.enchantments
       : [];
     const vanillaStats = Array.isArray(stats.categories) ? stats.categories : [];
+    const vanillaItems = Array.isArray(itemsData?.items) ? itemsData.items : [];
+    const vanillaEffects = Array.isArray(effectsData?.effects) ? effectsData.effects : [];
 
     state.references.attributes = mergeAttributeReferences(
       vanillaAttributes,
@@ -853,6 +951,8 @@ async function initializeState() {
       state.customEntries.enchantments,
     );
     state.references.stats = mergeStatReferences(vanillaStats, state.customEntries.stats);
+    state.references.items = buildItemReferences(vanillaItems);
+    state.references.effects = buildEffectReferences(vanillaEffects);
 
     const defaultSkill = createDefaultSkill();
     registerSkill(defaultSkill);
