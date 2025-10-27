@@ -1,0 +1,2494 @@
+{
+  "items": [
+    {
+      "id": "minecraft:acacia_boat",
+      "name": "Acacia Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:acacia_button",
+      "name": "Acacia Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:acacia_chest_boat",
+      "name": "Acacia Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:acacia_door",
+      "name": "Acacia Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:acacia_fence",
+      "name": "Acacia Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:acacia_fence_gate",
+      "name": "Acacia Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:acacia_hanging_sign",
+      "name": "Acacia Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:acacia_log",
+      "name": "Acacia Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:acacia_planks",
+      "name": "Acacia Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:acacia_pressure_plate",
+      "name": "Acacia Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:acacia_sign",
+      "name": "Acacia Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:acacia_slab",
+      "name": "Acacia Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:acacia_stairs",
+      "name": "Acacia Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:acacia_trapdoor",
+      "name": "Acacia Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:acacia_wood",
+      "name": "Acacia Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:allay_spawn_egg",
+      "name": "Allay Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:ancient_debris",
+      "name": "Ancient Debris",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:andesite",
+      "name": "Andesite",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:andesite_slab",
+      "name": "Andesite Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:andesite_stairs",
+      "name": "Andesite Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:andesite_wall",
+      "name": "Andesite Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:apple",
+      "name": "Apple",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:axolotl_spawn_egg",
+      "name": "Axolotl Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:baked_potato",
+      "name": "Baked Potato",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:bamboo_block",
+      "name": "Block of Bamboo",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_button",
+      "name": "Bamboo Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:bamboo_chest_raft",
+      "name": "Bamboo Chest Raft",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:bamboo_door",
+      "name": "Bamboo Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:bamboo_fence",
+      "name": "Bamboo Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_fence_gate",
+      "name": "Bamboo Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_hanging_sign",
+      "name": "Bamboo Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:bamboo_mosaic",
+      "name": "Bamboo Mosaic",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_mosaic_slab",
+      "name": "Bamboo Mosaic Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_mosaic_stairs",
+      "name": "Bamboo Mosaic Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_planks",
+      "name": "Bamboo Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_pressure_plate",
+      "name": "Bamboo Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:bamboo_raft",
+      "name": "Bamboo Raft",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:bamboo_sign",
+      "name": "Bamboo Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:bamboo_slab",
+      "name": "Bamboo Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_stairs",
+      "name": "Bamboo Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:bamboo_trapdoor",
+      "name": "Bamboo Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:beef",
+      "name": "Beef",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:beetroot",
+      "name": "Beetroot",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:beetroot_soup",
+      "name": "Beetroot Soup",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:bell",
+      "name": "Bell",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:birch_boat",
+      "name": "Birch Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:birch_button",
+      "name": "Birch Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:birch_chest_boat",
+      "name": "Birch Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:birch_door",
+      "name": "Birch Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:birch_fence",
+      "name": "Birch Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:birch_fence_gate",
+      "name": "Birch Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:birch_hanging_sign",
+      "name": "Birch Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:birch_log",
+      "name": "Birch Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:birch_planks",
+      "name": "Birch Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:birch_pressure_plate",
+      "name": "Birch Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:birch_sign",
+      "name": "Birch Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:birch_slab",
+      "name": "Birch Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:birch_stairs",
+      "name": "Birch Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:birch_trapdoor",
+      "name": "Birch Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:birch_wood",
+      "name": "Birch Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:blackstone",
+      "name": "Blackstone",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:blackstone_slab",
+      "name": "Blackstone Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:blackstone_stairs",
+      "name": "Blackstone Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:blackstone_wall",
+      "name": "Blackstone Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:blaze_rod",
+      "name": "Blaze Rod",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:boat",
+      "name": "Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:book",
+      "name": "Book",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:bow",
+      "name": "Bow",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:bread",
+      "name": "Bread",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:brush",
+      "name": "Brush",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:bucket",
+      "name": "Bucket",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:cake",
+      "name": "Cake",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:calibrated_sculk_sensor",
+      "name": "Calibrated Sculk Sensor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:camel_spawn_egg",
+      "name": "Camel Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:carrot",
+      "name": "Carrot",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:carrot_on_a_stick",
+      "name": "Carrot On A Stick",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:cat_spawn_egg",
+      "name": "Cat Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:chainmail_boots",
+      "name": "Chainmail Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:chainmail_chestplate",
+      "name": "Chainmail Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:chainmail_helmet",
+      "name": "Chainmail Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:chainmail_leggings",
+      "name": "Chainmail Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:cherry_boat",
+      "name": "Cherry Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:cherry_button",
+      "name": "Cherry Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:cherry_chest_boat",
+      "name": "Cherry Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:cherry_door",
+      "name": "Cherry Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:cherry_fence",
+      "name": "Cherry Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cherry_fence_gate",
+      "name": "Cherry Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cherry_hanging_sign",
+      "name": "Cherry Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:cherry_log",
+      "name": "Cherry Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cherry_planks",
+      "name": "Cherry Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cherry_pressure_plate",
+      "name": "Cherry Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:cherry_sign",
+      "name": "Cherry Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:cherry_slab",
+      "name": "Cherry Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cherry_stairs",
+      "name": "Cherry Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cherry_trapdoor",
+      "name": "Cherry Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:cherry_wood",
+      "name": "Cherry Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:chest_minecart",
+      "name": "Chest Minecart",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:chicken",
+      "name": "Chicken",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:chicken_spawn_egg",
+      "name": "Chicken Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:chorus_fruit",
+      "name": "Chorus Fruit",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:clock",
+      "name": "Clock",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:coal_block",
+      "name": "Block of Coal",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:coal_ingot",
+      "name": "Coal Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:coal_ore",
+      "name": "Coal Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:coast_armor_trim_smithing_template",
+      "name": "Coast Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:cobblestone",
+      "name": "Cobblestone",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cobblestone_slab",
+      "name": "Cobblestone Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cobblestone_stairs",
+      "name": "Cobblestone Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cobblestone_wall",
+      "name": "Cobblestone Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:cod",
+      "name": "Cod",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:command_block_minecart",
+      "name": "Command Block Minecart",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:comparator",
+      "name": "Comparator",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:compass",
+      "name": "Compass",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:cooked_beef",
+      "name": "Cooked Beef",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_chicken",
+      "name": "Cooked Chicken",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_cod",
+      "name": "Cooked Cod",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_hoglin",
+      "name": "Cooked Hoglin",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_mutton",
+      "name": "Cooked Mutton",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_porkchop",
+      "name": "Cooked Porkchop",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_rabbit",
+      "name": "Cooked Rabbit",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cooked_salmon",
+      "name": "Cooked Salmon",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:cookie",
+      "name": "Cookie",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:copper_block",
+      "name": "Block of Copper",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:copper_ingot",
+      "name": "Copper Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:copper_ore",
+      "name": "Copper Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:cow_spawn_egg",
+      "name": "Cow Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:creeper_spawn_egg",
+      "name": "Creeper Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:crossbow",
+      "name": "Crossbow",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:dark_oak_boat",
+      "name": "Dark Oak Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:dark_oak_button",
+      "name": "Dark Oak Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:dark_oak_chest_boat",
+      "name": "Dark Oak Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:dark_oak_door",
+      "name": "Dark Oak Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:dark_oak_fence",
+      "name": "Dark Oak Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dark_oak_fence_gate",
+      "name": "Dark Oak Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dark_oak_hanging_sign",
+      "name": "Dark Oak Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:dark_oak_log",
+      "name": "Dark Oak Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dark_oak_planks",
+      "name": "Dark Oak Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dark_oak_pressure_plate",
+      "name": "Dark Oak Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:dark_oak_sign",
+      "name": "Dark Oak Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:dark_oak_slab",
+      "name": "Dark Oak Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dark_oak_stairs",
+      "name": "Dark Oak Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dark_oak_trapdoor",
+      "name": "Dark Oak Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:dark_oak_wood",
+      "name": "Dark Oak Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:daylight_detector",
+      "name": "Daylight Detector",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:deepslate",
+      "name": "Deepslate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:deepslate_coal_ore",
+      "name": "Deepslate Coal Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_copper_ore",
+      "name": "Deepslate Copper Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_diamond_ore",
+      "name": "Deepslate Diamond Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_emerald_ore",
+      "name": "Deepslate Emerald Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_gold_ore",
+      "name": "Deepslate Gold Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_iron_ore",
+      "name": "Deepslate Iron Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_lapis_lazuli_ore",
+      "name": "Deepslate Lapis Lazuli Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_netherite_ore",
+      "name": "Deepslate Netherite Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_redstone_ore",
+      "name": "Deepslate Redstone Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:deepslate_slab",
+      "name": "Deepslate Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:deepslate_stairs",
+      "name": "Deepslate Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:deepslate_wall",
+      "name": "Deepslate Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:diamond_axe",
+      "name": "Diamond Axe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:diamond_block",
+      "name": "Block of Diamond",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:diamond_boots",
+      "name": "Diamond Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:diamond_chestplate",
+      "name": "Diamond Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:diamond_helmet",
+      "name": "Diamond Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:diamond_hoe",
+      "name": "Diamond Hoe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:diamond_ingot",
+      "name": "Diamond Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:diamond_leggings",
+      "name": "Diamond Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:diamond_ore",
+      "name": "Diamond Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:diamond_pickaxe",
+      "name": "Diamond Pickaxe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:diamond_shovel",
+      "name": "Diamond Shovel",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:diamond_sword",
+      "name": "Diamond Sword",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:diorite",
+      "name": "Diorite",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:diorite_slab",
+      "name": "Diorite Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:diorite_stairs",
+      "name": "Diorite Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:diorite_wall",
+      "name": "Diorite Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:dispenser",
+      "name": "Dispenser",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:dolphin_spawn_egg",
+      "name": "Dolphin Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:donkey_spawn_egg",
+      "name": "Donkey Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:dried_kelp",
+      "name": "Dried Kelp",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:dropper",
+      "name": "Dropper",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:drowned_spawn_egg",
+      "name": "Drowned Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:dune_armor_trim_smithing_template",
+      "name": "Dune Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:echo_shard",
+      "name": "Echo Shard",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:elder_guardian_spawn_egg",
+      "name": "Elder Guardian Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:elytra",
+      "name": "Elytra",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:emerald_block",
+      "name": "Block of Emerald",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:emerald_ingot",
+      "name": "Emerald Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:emerald_ore",
+      "name": "Emerald Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:enchanted_book",
+      "name": "Enchanted Book",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:enchanted_golden_apple",
+      "name": "Enchanted Golden Apple",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:ender_eye",
+      "name": "Ender Eye",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:ender_pearl",
+      "name": "Ender Pearl",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:enderman_spawn_egg",
+      "name": "Enderman Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:endermite_spawn_egg",
+      "name": "Endermite Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:evoker_spawn_egg",
+      "name": "Evoker Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:eye_armor_trim_smithing_template",
+      "name": "Eye Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:feather",
+      "name": "Feather",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:fire_charge",
+      "name": "Fire Charge",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:fishing_rod",
+      "name": "Fishing Rod",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:flint",
+      "name": "Flint",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:flint_and_steel",
+      "name": "Flint And Steel",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:fox_spawn_egg",
+      "name": "Fox Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:frog_spawn_egg",
+      "name": "Frog Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:furnace_minecart",
+      "name": "Furnace Minecart",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:ghast_spawn_egg",
+      "name": "Ghast Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:ghast_tear",
+      "name": "Ghast Tear",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:glow_berries",
+      "name": "Glow Berries",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:goat_spawn_egg",
+      "name": "Goat Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:gold_block",
+      "name": "Block of Gold",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:gold_ingot",
+      "name": "Gold Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:gold_ore",
+      "name": "Gold Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:golden_apple",
+      "name": "Golden Apple",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:golden_axe",
+      "name": "Golden Axe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:golden_boots",
+      "name": "Golden Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:golden_carrot",
+      "name": "Golden Carrot",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:golden_chestplate",
+      "name": "Golden Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:golden_helmet",
+      "name": "Golden Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:golden_hoe",
+      "name": "Golden Hoe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:golden_leggings",
+      "name": "Golden Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:golden_pickaxe",
+      "name": "Golden Pickaxe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:golden_shovel",
+      "name": "Golden Shovel",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:golden_sword",
+      "name": "Golden Sword",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:granite",
+      "name": "Granite",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:granite_slab",
+      "name": "Granite Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:granite_stairs",
+      "name": "Granite Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:granite_wall",
+      "name": "Granite Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:guardian_spawn_egg",
+      "name": "Guardian Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:gunpowder",
+      "name": "Gunpowder",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:heart_of_the_sea",
+      "name": "Heart Of The Sea",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:hoglin_meat",
+      "name": "Hoglin Meat",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:hoglin_spawn_egg",
+      "name": "Hoglin Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:honey_bottle",
+      "name": "Honey Bottle",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:hopper",
+      "name": "Hopper",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:hopper_minecart",
+      "name": "Hopper Minecart",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:horse_spawn_egg",
+      "name": "Horse Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:host_armor_trim_smithing_template",
+      "name": "Host Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:husk_spawn_egg",
+      "name": "Husk Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:iron_axe",
+      "name": "Iron Axe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:iron_block",
+      "name": "Block of Iron",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:iron_boots",
+      "name": "Iron Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:iron_chestplate",
+      "name": "Iron Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:iron_helmet",
+      "name": "Iron Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:iron_hoe",
+      "name": "Iron Hoe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:iron_ingot",
+      "name": "Iron Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:iron_leggings",
+      "name": "Iron Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:iron_ore",
+      "name": "Iron Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:iron_pickaxe",
+      "name": "Iron Pickaxe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:iron_shovel",
+      "name": "Iron Shovel",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:iron_sword",
+      "name": "Iron Sword",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:jukebox",
+      "name": "Jukebox",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:jungle_boat",
+      "name": "Jungle Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:jungle_button",
+      "name": "Jungle Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:jungle_chest_boat",
+      "name": "Jungle Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:jungle_door",
+      "name": "Jungle Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:jungle_fence",
+      "name": "Jungle Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:jungle_fence_gate",
+      "name": "Jungle Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:jungle_hanging_sign",
+      "name": "Jungle Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:jungle_log",
+      "name": "Jungle Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:jungle_planks",
+      "name": "Jungle Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:jungle_pressure_plate",
+      "name": "Jungle Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:jungle_sign",
+      "name": "Jungle Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:jungle_slab",
+      "name": "Jungle Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:jungle_stairs",
+      "name": "Jungle Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:jungle_trapdoor",
+      "name": "Jungle Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:jungle_wood",
+      "name": "Jungle Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:kelp",
+      "name": "Kelp",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:lapis_lazuli",
+      "name": "Lapis Lazuli",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:lapis_lazuli_block",
+      "name": "Block of Lapis Lazuli",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:lapis_lazuli_ore",
+      "name": "Lapis Lazuli Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:lava_bucket",
+      "name": "Lava Bucket",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:lead",
+      "name": "Lead",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:leather",
+      "name": "Leather",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:leather_boots",
+      "name": "Leather Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:leather_chestplate",
+      "name": "Leather Tunic",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:leather_helmet",
+      "name": "Leather Cap",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:leather_leggings",
+      "name": "Leather Pants",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:lever",
+      "name": "Lever",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:lightning_rod",
+      "name": "Lightning Rod",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:llama_spawn_egg",
+      "name": "Llama Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:magma_cube_spawn_egg",
+      "name": "Magma Cube Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:mangrove_boat",
+      "name": "Mangrove Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:mangrove_button",
+      "name": "Mangrove Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:mangrove_chest_boat",
+      "name": "Mangrove Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:mangrove_door",
+      "name": "Mangrove Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:mangrove_fence",
+      "name": "Mangrove Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mangrove_fence_gate",
+      "name": "Mangrove Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mangrove_hanging_sign",
+      "name": "Mangrove Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:mangrove_log",
+      "name": "Mangrove Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mangrove_planks",
+      "name": "Mangrove Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mangrove_pressure_plate",
+      "name": "Mangrove Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:mangrove_sign",
+      "name": "Mangrove Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:mangrove_slab",
+      "name": "Mangrove Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mangrove_stairs",
+      "name": "Mangrove Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mangrove_trapdoor",
+      "name": "Mangrove Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:mangrove_wood",
+      "name": "Mangrove Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:map",
+      "name": "Map",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:melon_slice",
+      "name": "Melon Slice",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:milk_bucket",
+      "name": "Milk Bucket",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:minecart",
+      "name": "Minecart",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:mooshroom_spawn_egg",
+      "name": "Mooshroom Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:mossy_cobblestone",
+      "name": "Mossy Cobblestone",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mossy_cobblestone_slab",
+      "name": "Mossy Cobblestone Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mossy_cobblestone_stairs",
+      "name": "Mossy Cobblestone Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mossy_cobblestone_wall",
+      "name": "Mossy Cobblestone Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:mule_spawn_egg",
+      "name": "Mule Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:mushroom_stew",
+      "name": "Mushroom Stew",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:mutton",
+      "name": "Mutton",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:name_tag",
+      "name": "Name Tag",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:nautilus_shell",
+      "name": "Nautilus Shell",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:nether_star",
+      "name": "Nether Star",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:netherite_axe",
+      "name": "Netherite Axe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:netherite_block",
+      "name": "Block of Netherite",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:netherite_boots",
+      "name": "Netherite Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:netherite_chestplate",
+      "name": "Netherite Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:netherite_helmet",
+      "name": "Netherite Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:netherite_hoe",
+      "name": "Netherite Hoe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:netherite_ingot",
+      "name": "Netherite Ingot",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:netherite_leggings",
+      "name": "Netherite Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:netherite_ore",
+      "name": "Netherite Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:netherite_pickaxe",
+      "name": "Netherite Pickaxe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:netherite_scrap",
+      "name": "Netherite Scrap",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:netherite_shovel",
+      "name": "Netherite Shovel",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:netherite_sword",
+      "name": "Netherite Sword",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:netherite_upgrade_smithing_template",
+      "name": "Netherite Upgrade Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:note_block",
+      "name": "Note Block",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:oak_boat",
+      "name": "Oak Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:oak_button",
+      "name": "Oak Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:oak_chest_boat",
+      "name": "Oak Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:oak_door",
+      "name": "Oak Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:oak_fence",
+      "name": "Oak Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:oak_fence_gate",
+      "name": "Oak Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:oak_hanging_sign",
+      "name": "Oak Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:oak_log",
+      "name": "Oak Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:oak_planks",
+      "name": "Oak Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:oak_pressure_plate",
+      "name": "Oak Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:oak_sign",
+      "name": "Oak Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:oak_slab",
+      "name": "Oak Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:oak_stairs",
+      "name": "Oak Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:oak_trapdoor",
+      "name": "Oak Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:oak_wood",
+      "name": "Oak Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:observer",
+      "name": "Observer",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:ocelot_spawn_egg",
+      "name": "Ocelot Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:panda_spawn_egg",
+      "name": "Panda Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:paper",
+      "name": "Paper",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:parrot_spawn_egg",
+      "name": "Parrot Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:phantom_membrane",
+      "name": "Phantom Membrane",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:phantom_spawn_egg",
+      "name": "Phantom Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:pig_spawn_egg",
+      "name": "Pig Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:piglin_brute_spawn_egg",
+      "name": "Piglin Brute Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:piglin_spawn_egg",
+      "name": "Piglin Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:pillager_spawn_egg",
+      "name": "Pillager Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:piston",
+      "name": "Piston",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:pitcher_pod",
+      "name": "Pitcher Pod",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:poisonous_potato",
+      "name": "Poisonous Potato",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:polar_bear_spawn_egg",
+      "name": "Polar Bear Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:polished_blackstone",
+      "name": "Polished Blackstone",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_blackstone_slab",
+      "name": "Polished Blackstone Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_blackstone_stairs",
+      "name": "Polished Blackstone Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_blackstone_wall",
+      "name": "Polished Blackstone Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_deepslate",
+      "name": "Polished Deepslate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_deepslate_slab",
+      "name": "Polished Deepslate Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_deepslate_stairs",
+      "name": "Polished Deepslate Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:polished_deepslate_wall",
+      "name": "Polished Deepslate Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:porkchop",
+      "name": "Porkchop",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:potato",
+      "name": "Potato",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:powder_snow_bucket",
+      "name": "Powder Snow Bucket",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:pufferfish_spawn_egg",
+      "name": "Pufferfish Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:pumpkin_pie",
+      "name": "Pumpkin Pie",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:pumpkin_seeds",
+      "name": "Pumpkin Seeds",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:rabbit",
+      "name": "Rabbit",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:rabbit_spawn_egg",
+      "name": "Rabbit Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:rabbit_stew",
+      "name": "Rabbit Stew",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:raiser_armor_trim_smithing_template",
+      "name": "Raiser Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:ravager_spawn_egg",
+      "name": "Ravager Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:raw_copper",
+      "name": "Raw Copper",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:raw_copper_block",
+      "name": "Block of Raw Copper",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:raw_gold",
+      "name": "Raw Gold",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:raw_gold_block",
+      "name": "Block of Raw Gold",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:raw_iron",
+      "name": "Raw Iron",
+      "category": "materials"
+    },
+    {
+      "id": "minecraft:raw_iron_block",
+      "name": "Block of Raw Iron",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:recovery_compass",
+      "name": "Recovery Compass",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:redstone",
+      "name": "Redstone",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:redstone_block",
+      "name": "Block of Redstone",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:redstone_lamp",
+      "name": "Redstone Lamp",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:redstone_ore",
+      "name": "Redstone Ore",
+      "category": "natural"
+    },
+    {
+      "id": "minecraft:redstone_torch",
+      "name": "Redstone Torch",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:repeater",
+      "name": "Repeater",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:rib_armor_trim_smithing_template",
+      "name": "Rib Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:saddle",
+      "name": "Saddle",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:salmon",
+      "name": "Salmon",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:salmon_spawn_egg",
+      "name": "Salmon Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:sculk_sensor",
+      "name": "Sculk Sensor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:sentry_armor_trim_smithing_template",
+      "name": "Sentry Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:shaper_armor_trim_smithing_template",
+      "name": "Shaper Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:shears",
+      "name": "Shears",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:sheep_spawn_egg",
+      "name": "Sheep Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:shield",
+      "name": "Shield",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:shulker_spawn_egg",
+      "name": "Shulker Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:silence_armor_trim_smithing_template",
+      "name": "Silence Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:silverfish_spawn_egg",
+      "name": "Silverfish Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:skeleton_spawn_egg",
+      "name": "Skeleton Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:slime_spawn_egg",
+      "name": "Slime Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:sniffer_spawn_egg",
+      "name": "Sniffer Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:snout_armor_trim_smithing_template",
+      "name": "Snout Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:snowball",
+      "name": "Snowball",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:spider_spawn_egg",
+      "name": "Spider Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:spire_armor_trim_smithing_template",
+      "name": "Spire Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:spruce_boat",
+      "name": "Spruce Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:spruce_button",
+      "name": "Spruce Button",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:spruce_chest_boat",
+      "name": "Spruce Chest Boat",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:spruce_door",
+      "name": "Spruce Door",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:spruce_fence",
+      "name": "Spruce Fence",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spruce_fence_gate",
+      "name": "Spruce Fence Gate",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spruce_hanging_sign",
+      "name": "Spruce Hanging Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:spruce_log",
+      "name": "Spruce Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spruce_planks",
+      "name": "Spruce Planks",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spruce_pressure_plate",
+      "name": "Spruce Pressure Plate",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:spruce_sign",
+      "name": "Spruce Sign",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:spruce_slab",
+      "name": "Spruce Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spruce_stairs",
+      "name": "Spruce Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spruce_trapdoor",
+      "name": "Spruce Trapdoor",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:spruce_wood",
+      "name": "Spruce Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:spyglass",
+      "name": "Spyglass",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:squid_spawn_egg",
+      "name": "Squid Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:stick",
+      "name": "Stick",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:sticky_piston",
+      "name": "Sticky Piston",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:stone",
+      "name": "Stone",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stone_axe",
+      "name": "Stone Axe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:stone_boots",
+      "name": "Stone Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:stone_chestplate",
+      "name": "Stone Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:stone_helmet",
+      "name": "Stone Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:stone_hoe",
+      "name": "Stone Hoe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:stone_leggings",
+      "name": "Stone Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:stone_pickaxe",
+      "name": "Stone Pickaxe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:stone_shovel",
+      "name": "Stone Shovel",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:stone_slab",
+      "name": "Stone Slab",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stone_stairs",
+      "name": "Stone Stairs",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stone_sword",
+      "name": "Stone Sword",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:stone_wall",
+      "name": "Stone Wall",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stray_spawn_egg",
+      "name": "Stray Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:strider_spawn_egg",
+      "name": "Strider Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:string",
+      "name": "String",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:stripped_acacia_log",
+      "name": "Stripped Acacia Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_acacia_wood",
+      "name": "Stripped Acacia Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_bamboo_block",
+      "name": "Block of Stripped Bamboo",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_birch_log",
+      "name": "Stripped Birch Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_birch_wood",
+      "name": "Stripped Birch Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_cherry_log",
+      "name": "Stripped Cherry Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_cherry_wood",
+      "name": "Stripped Cherry Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_dark_oak_log",
+      "name": "Stripped Dark Oak Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_dark_oak_wood",
+      "name": "Stripped Dark Oak Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_jungle_log",
+      "name": "Stripped Jungle Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_jungle_wood",
+      "name": "Stripped Jungle Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_mangrove_log",
+      "name": "Stripped Mangrove Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_mangrove_wood",
+      "name": "Stripped Mangrove Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_oak_log",
+      "name": "Stripped Oak Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_oak_wood",
+      "name": "Stripped Oak Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_spruce_log",
+      "name": "Stripped Spruce Log",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:stripped_spruce_wood",
+      "name": "Stripped Spruce Wood",
+      "category": "building_blocks"
+    },
+    {
+      "id": "minecraft:suspicious_stew",
+      "name": "Suspicious Stew",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:sweet_berries",
+      "name": "Sweet Berries",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:tadpole_spawn_egg",
+      "name": "Tadpole Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:target",
+      "name": "Target",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:tide_armor_trim_smithing_template",
+      "name": "Tide Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:tnt",
+      "name": "Tnt",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:tnt_minecart",
+      "name": "Tnt Minecart",
+      "category": "transportation"
+    },
+    {
+      "id": "minecraft:torchflower_seeds",
+      "name": "Torchflower Seeds",
+      "category": "food"
+    },
+    {
+      "id": "minecraft:trader_llama_spawn_egg",
+      "name": "Trader Llama Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:trident",
+      "name": "Trident",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:tripwire_hook",
+      "name": "Tripwire Hook",
+      "category": "redstone"
+    },
+    {
+      "id": "minecraft:tropical_fish_spawn_egg",
+      "name": "Tropical Fish Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:turtle_helmet",
+      "name": "Turtle Shell",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:turtle_spawn_egg",
+      "name": "Turtle Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:vex_armor_trim_smithing_template",
+      "name": "Vex Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:vex_spawn_egg",
+      "name": "Vex Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:villager_spawn_egg",
+      "name": "Villager Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:vindicator_spawn_egg",
+      "name": "Vindicator Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:wandering_trader_spawn_egg",
+      "name": "Wandering Trader Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:ward_armor_trim_smithing_template",
+      "name": "Ward Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:warden_spawn_egg",
+      "name": "Warden Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:warped_fungus_on_a_stick",
+      "name": "Warped Fungus On A Stick",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:water_bucket",
+      "name": "Water Bucket",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:wayfinder_armor_trim_smithing_template",
+      "name": "Wayfinder Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:wild_armor_trim_smithing_template",
+      "name": "Wild Armor Trim Smithing Template",
+      "category": "utility"
+    },
+    {
+      "id": "minecraft:witch_spawn_egg",
+      "name": "Witch Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:wither_skeleton_spawn_egg",
+      "name": "Wither Skeleton Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:wolf_spawn_egg",
+      "name": "Wolf Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:wooden_axe",
+      "name": "Wooden Axe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:wooden_boots",
+      "name": "Wooden Boots",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:wooden_chestplate",
+      "name": "Wooden Chestplate",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:wooden_helmet",
+      "name": "Wooden Helmet",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:wooden_hoe",
+      "name": "Wooden Hoe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:wooden_leggings",
+      "name": "Wooden Leggings",
+      "category": "combat"
+    },
+    {
+      "id": "minecraft:wooden_pickaxe",
+      "name": "Wooden Pickaxe",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:wooden_shovel",
+      "name": "Wooden Shovel",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:wooden_sword",
+      "name": "Wooden Sword",
+      "category": "tools"
+    },
+    {
+      "id": "minecraft:zoglin_spawn_egg",
+      "name": "Zoglin Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:zombie_spawn_egg",
+      "name": "Zombie Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:zombie_villager_spawn_egg",
+      "name": "Zombie Villager Spawn Egg",
+      "category": "spawn_egg"
+    },
+    {
+      "id": "minecraft:zombified_piglin_spawn_egg",
+      "name": "Zombified Piglin Spawn Egg",
+      "category": "spawn_egg"
+    }
+  ]
+}
