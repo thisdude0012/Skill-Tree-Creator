@@ -381,6 +381,7 @@ function renderSimpleField(fieldMeta, propertyName, value, bonusIndex, path, con
   const label = document.createElement("label");
   label.className = "bonus-field__label";
   label.textContent = formatLabel(propertyName);
+  applyFieldHints(label, propertyName, context);
   wrapper.appendChild(label);
 
   const customControl = renderCustomField({
@@ -556,31 +557,15 @@ function renderCustomField({
   }
 
   if (fieldMeta.type === "minecraft:mob_effect_instance" && propertyName === "duration") {
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "form-input";
-    input.placeholder = "MM:SS";
-    if (datasetPath) {
-      input.dataset.bonusPath = datasetPath;
-    }
-    const numericValue = typeof value === "number" ? value : Number(value);
-    if (Number.isFinite(numericValue) && numericValue >= 0) {
-      input.value = formatSecondsToTimer(numericValue);
-    } else {
-      input.value = "";
-    }
-    const commitDuration = (event) => {
-      const parsed = parseTimerInput(event.currentTarget.value);
-      if (parsed === null) {
-        return;
-      }
-      updateBonusByPath(bonusIndex, path, parsed);
-      event.currentTarget.value = formatSecondsToTimer(parsed);
-    };
-    input.addEventListener("change", commitDuration);
-    input.addEventListener("blur", commitDuration);
-    wrapper.appendChild(input);
-    return input;
+    const control = createDurationInput({
+      value,
+      datasetPath,
+      onCommit: (seconds) => {
+        updateBonusByPath(bonusIndex, path, seconds);
+      },
+    });
+    wrapper.appendChild(control);
+    return control;
   }
 
   if (bonusId === "gained_experience" && propertyName === "experience_source") {
@@ -790,6 +775,8 @@ function createSearchableSelect({
   toggle.type = "button";
   toggle.className = "searchable-select__toggle";
   toggle.setAttribute("aria-label", "Toggle options");
+  toggle.setAttribute("aria-haspopup", "listbox");
+  toggle.setAttribute("aria-expanded", "false");
   toggle.innerHTML = "▾";
   container.appendChild(toggle);
 
@@ -799,15 +786,28 @@ function createSearchableSelect({
 
   const list = document.createElement("ul");
   list.className = "searchable-select__list";
+  list.setAttribute("role", "listbox");
   panel.appendChild(list);
   container.appendChild(panel);
 
   const normalizedOptions = Array.isArray(options)
-    ? options.map((option) => ({
-        value: option.value,
-        label: option.label || formatLabel(option.value),
-        meta: option.meta || option.category || "",
-      }))
+    ? options.map((option) => {
+        const resolvedLabel =
+          typeof option.label === "string" && option.label.trim()
+            ? option.label.trim()
+            : formatLabel(option.value);
+        const metaSource =
+          typeof option.meta === "string" && option.meta.trim()
+            ? option.meta.trim()
+            : typeof option.category === "string" && option.category.trim()
+              ? formatLabel(option.category.trim())
+              : "";
+        return {
+          value: option.value,
+          label: resolvedLabel,
+          meta: metaSource,
+        };
+      })
     : [];
 
   let isOpen = false;
@@ -863,16 +863,21 @@ function createSearchableSelect({
       const button = document.createElement("button");
       button.type = "button";
       button.className = "searchable-select__option-button";
+      button.setAttribute("role", "option");
+      button.dataset.value = option.value;
       button.textContent = option.label;
       if (option.meta) {
         const meta = document.createElement("span");
         meta.className = "searchable-select__option-meta";
+        meta.setAttribute("aria-hidden", "true");
         meta.textContent = option.meta;
         button.appendChild(meta);
       }
-      if (option.value === currentValue) {
+      const isSelected = option.value === currentValue;
+      if (isSelected) {
         button.classList.add("is-selected");
       }
+      button.setAttribute("aria-selected", isSelected ? "true" : "false");
       button.addEventListener("click", () => {
         input.value = option.value;
         commit(option.value);
@@ -890,6 +895,9 @@ function createSearchableSelect({
     }
     isOpen = true;
     panel.hidden = false;
+    list.scrollTop = 0;
+    container.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
     updateOptions();
     document.addEventListener("pointerdown", handleOutside);
   };
@@ -900,6 +908,8 @@ function createSearchableSelect({
     }
     isOpen = false;
     panel.hidden = true;
+    container.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
     document.removeEventListener("pointerdown", handleOutside);
   };
 
@@ -924,6 +934,16 @@ function createSearchableSelect({
     }
   });
 
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen) {
+      event.preventDefault();
+      closePanel();
+    } else if (event.key === "ArrowDown" && !isOpen) {
+      event.preventDefault();
+      openPanel();
+    }
+  });
+
   toggle.addEventListener("click", (event) => {
     event.preventDefault();
     if (isOpen) {
@@ -935,6 +955,124 @@ function createSearchableSelect({
   });
 
   return container;
+}
+
+function createDurationInput({ value, datasetPath, onCommit }) {
+  const container = document.createElement("div");
+  container.className = "timer-input";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "form-input timer-input__display";
+  input.placeholder = "MM:SS";
+  if (datasetPath) {
+    input.dataset.bonusPath = datasetPath;
+  }
+
+  const initialNumeric =
+    typeof value === "number" ? value : typeof value === "string" ? Number(value) : 0;
+  let seconds = Number.isFinite(initialNumeric) && initialNumeric > 0 ? Math.floor(initialNumeric) : 0;
+
+  const render = () => {
+    input.value = formatSecondsToTimer(seconds);
+  };
+
+  const commitSeconds = (nextValue, force = false) => {
+    const numeric = Number(nextValue);
+    const fallback = Number.isFinite(numeric) ? numeric : seconds;
+    const clamped = Math.max(0, Math.floor(fallback));
+    const changed = clamped !== seconds;
+    seconds = clamped;
+    render();
+    if ((changed || force) && typeof onCommit === "function") {
+      onCommit(seconds);
+    }
+  };
+
+  const commitFromInput = () => {
+    const parsed = parseTimerInput(input.value);
+    if (parsed === null) {
+      render();
+      return;
+    }
+    commitSeconds(parsed, true);
+  };
+
+  const focusInput = () => {
+    requestAnimationFrame(() => {
+      input.focus();
+    });
+  };
+
+  input.addEventListener("blur", commitFromInput);
+  input.addEventListener("change", commitFromInput);
+  input.addEventListener("focus", () => {
+    input.select();
+  });
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      commitSeconds(seconds + 1);
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      commitSeconds(seconds - 1);
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      commitFromInput();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      render();
+    }
+  });
+
+  const controls = document.createElement("div");
+  controls.className = "timer-input__controls";
+
+  const increase = document.createElement("button");
+  increase.type = "button";
+  increase.className = "timer-input__button timer-input__button--up";
+  increase.setAttribute("aria-label", "Increase duration");
+  increase.textContent = "▲";
+  increase.addEventListener("click", () => {
+    commitSeconds(seconds + 1);
+    focusInput();
+  });
+
+  const decrease = document.createElement("button");
+  decrease.type = "button";
+  decrease.className = "timer-input__button timer-input__button--down";
+  decrease.setAttribute("aria-label", "Decrease duration");
+  decrease.textContent = "▼";
+  decrease.addEventListener("click", () => {
+    commitSeconds(seconds - 1);
+    focusInput();
+  });
+
+  controls.appendChild(increase);
+  controls.appendChild(decrease);
+  container.appendChild(input);
+  container.appendChild(controls);
+
+  render();
+
+  return container;
+}
+
+function applyFieldHints(label, propertyName, context) {
+  if (!label) {
+    return;
+  }
+  if (context?.bonusId === "inflict_damage") {
+    // Both the damage condition (attack trigger) and damage type (damage source)
+    // are present in existing Inflict Damage skills (see skills/warrior/warrior_9.json),
+    // so we keep both controls and surface guidance via tooltips.
+    if (propertyName === "damage_condition") {
+      label.title = "Choose the combat condition that triggers the damage (e.g., melee or ranged attacks).";
+    }
+    if (propertyName === "damage_type") {
+      label.title = "Select the damage source that will be applied when the bonus triggers.";
+    }
+  }
 }
 
 function applyTargetDependency(wrapper, propertyName, control) {
@@ -1062,10 +1200,20 @@ function getAttributeOptions() {
   if (Array.isArray(references)) {
     references.forEach((entry) => {
       if (entry?.id) {
+        const fallbackLabel = formatLabel(stripNamespace(entry.id));
+        const rawLabel =
+          (typeof entry.name === "string" && entry.name.trim()) || fallbackLabel;
+        const cleanedLabel =
+          sanitizeAttributeLabel(rawLabel) || sanitizeAttributeLabel(fallbackLabel);
+        const category = typeof entry.category === "string" ? entry.category.trim() : "";
+        const meta =
+          category && category.toLowerCase() !== "generic"
+            ? formatLabel(category)
+            : "";
         entries.set(entry.id, {
           value: entry.id,
-          label: entry.name || formatLabel(stripNamespace(entry.id)),
-          meta: entry.category ? formatLabel(entry.category) : "",
+          label: cleanedLabel,
+          meta,
         });
       }
     });
@@ -1074,12 +1222,19 @@ function getAttributeOptions() {
     if (!entries.has(id)) {
       entries.set(id, {
         value: id,
-        label: formatLabel(stripNamespace(id)),
+        label: sanitizeAttributeLabel(formatLabel(stripNamespace(id))),
         meta: "Modded",
       });
     }
   });
   return Array.from(entries.values()).sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function sanitizeAttributeLabel(label) {
+  if (!label || typeof label !== "string") {
+    return "";
+  }
+  return label.replace(/\s*Generic$/i, "").replace(/\s+/g, " ").trim();
 }
 
 function getEffectOptions() {
