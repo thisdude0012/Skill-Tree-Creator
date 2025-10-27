@@ -5,6 +5,10 @@ import {
   getStateSnapshot,
 } from "./state.js";
 import { initializeBonusBuilder } from "./bonusBuilder.js";
+import {
+  initializeTextureDropdowns,
+  updateTexturePreview,
+} from "./textureManager.js";
 
 const dom = {
   root: document.documentElement,
@@ -22,6 +26,10 @@ dom.navLinks = dom.nav ? Array.from(dom.nav.querySelectorAll("[data-nav-link]"))
 dom.fieldInputs = new Map();
 dom.fieldWrappers = new Map();
 dom.fieldFeedback = new Map();
+
+let skillCounter = 1;
+let currentSkillTree = "";
+let lastGeneratedID = "";
 
 dom.root.classList.add("theme-dark");
 
@@ -141,6 +149,18 @@ function hydratePlaceholders() {
   });
 }
 
+function generateSkillID() {
+  if (!currentSkillTree || currentSkillTree.trim() === "") {
+    const id = `skilltree:untitled_${skillCounter}`;
+    lastGeneratedID = id;
+    return id;
+  }
+  const sanitized = currentSkillTree.trim().toLowerCase().replace(/[^a-z0-9_]/g, "_");
+  const id = `skilltree:${sanitized}_${skillCounter}`;
+  lastGeneratedID = id;
+  return id;
+}
+
 function setupSkillForm() {
   if (!dom.skillForm) return;
   const inputs = Array.from(dom.skillForm.querySelectorAll("[data-field]"));
@@ -148,7 +168,13 @@ function setupSkillForm() {
   inputs.forEach((input) => {
     const field = input.dataset.field;
     if (!field) return;
-    dom.fieldInputs.set(field, input);
+    
+    if (input.matches(".texture-select")) {
+      dom.fieldInputs.set(field, input);
+    } else if (!input.matches(".texture-manual-input")) {
+      dom.fieldInputs.set(field, input);
+    }
+    
     const wrapper = input.closest("[data-field-wrapper]");
     if (wrapper) {
       dom.fieldWrappers.set(field, wrapper);
@@ -158,15 +184,43 @@ function setupSkillForm() {
       }
     }
 
+    if (field === "skillTreeName") {
+      input.addEventListener("input", (event) => {
+        currentSkillTree = event.target.value;
+        skillCounter = 1;
+        const newID = generateSkillID();
+        updateSkillField("id", newID);
+        
+        const idInput = dom.fieldInputs.get("id");
+        if (idInput && idInput.value !== newID) {
+          idInput.value = newID;
+        }
+      });
+      return;
+    }
+
     const eventName = input.type === "checkbox" ? "change" : "input";
     input.addEventListener(eventName, (event) => {
       const target = event.currentTarget;
       const { field: fieldName } = target.dataset;
       if (!fieldName) return;
       const value = target.type === "checkbox" ? target.checked : target.value;
+      
+      if (fieldName === "id") {
+        if (value === lastGeneratedID) {
+          skillCounter++;
+        }
+      }
+      
       updateSkillField(fieldName, value);
+      
+      if (fieldName === "backgroundTexture" || fieldName === "iconTexture" || fieldName === "borderTexture") {
+        updateTexturePreview(fieldName, value);
+      }
     });
   });
+  
+  initializeTextureDropdowns();
 }
 
 function setFormDisabled(disabled) {
@@ -207,6 +261,9 @@ function renderSkillForm(skill) {
         input.value = "";
       }
     });
+    updateTexturePreview("backgroundTexture", "");
+    updateTexturePreview("iconTexture", "");
+    updateTexturePreview("borderTexture", "");
     return;
   }
 
@@ -232,6 +289,10 @@ function renderSkillForm(skill) {
     const formatted = formatFieldValue(field, value);
     if (input.value !== formatted) {
       input.value = formatted;
+    }
+    
+    if (field === "backgroundTexture" || field === "iconTexture" || field === "borderTexture") {
+      updateTexturePreview(field, formatted);
     }
   });
 }
