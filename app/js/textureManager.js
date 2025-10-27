@@ -1,102 +1,94 @@
 const TEXTURE_PATHS = {
   background: [
     "class.png",
-    "greater.png",
+    "gateway.png",
     "keystone.png",
     "lesser.png",
     "notable.png",
+    "recipe.png",
   ],
   icon: [
     "apple_green.png",
-    "apple_red.png",
     "arrow.png",
+    "arrow_bronze.png",
     "arrow_diamond.png",
-    "axe_diamond.png",
-    "axe_gold.png",
-    "axe_iron.png",
-    "axe_steel.png",
-    "axe_stone.png",
-    "axe_wood.png",
-    "boots_diamond.png",
-    "boots_gold.png",
-    "boots_iron.png",
-    "boots_leather.png",
-    "boots_steel.png",
+    "arrow_emerald.png",
+    "arrow_steel.png",
     "bone.png",
+    "boots_bronze.png",
+    "boots_gold.png",
+    "boots_leather.png",
     "bow_diamond.png",
+    "bow_emerald.png",
     "bow_gold.png",
-    "bow_iron.png",
-    "chestplate_diamond.png",
-    "chestplate_gold.png",
-    "chestplate_iron.png",
+    "chestplate_bronze_fur.png",
+    "chestplate_fur.png",
     "chestplate_leather.png",
-    "chestplate_steel.png",
+    "chicken.png",
+    "chicken_leg.png",
+    "chili_pepper_red.png",
+    "cookie.png",
     "cross_green.png",
     "cross_red.png",
+    "eye_green.png",
     "fishing_rod_diamond.png",
+    "fishing_rod_emerald.png",
     "fishing_rod_gold.png",
-    "fishing_rod_iron.png",
+    "fishing_rod_steel.png",
     "glove_bronze.png",
     "glove_diamond.png",
     "glove_emerald.png",
+    "glove_gold.png",
     "glove_iron.png",
-    "glove_silver.png",
     "glove_steel.png",
+    "heart_black.png",
+    "heart_cyan.png",
     "heart_green.png",
     "heart_red.png",
-    "helmet_diamond.png",
-    "helmet_gold.png",
-    "helmet_iron.png",
+    "heart_violet.png",
+    "heart_yellow.png",
     "helmet_leather.png",
-    "helmet_steel.png",
-    "hoe_diamond.png",
-    "hoe_gold.png",
-    "hoe_iron.png",
-    "pants_diamond.png",
+    "meal.png",
     "pants_gold.png",
-    "pants_iron.png",
-    "pants_leather.png",
-    "pants_steel.png",
-    "pickaxe_diamond.png",
-    "pickaxe_gold.png",
-    "pickaxe_iron.png",
-    "pickaxe_steel.png",
-    "pickaxe_stone.png",
-    "pickaxe_wood.png",
+    "pie.png",
+    "pie_cream.png",
+    "potion_black.png",
     "potion_black_big.png",
+    "potion_black_small.png",
     "potion_blue.png",
-    "potion_blue_big.png",
+    "potion_blue_small.png",
+    "potion_brown.png",
+    "potion_cyan.png",
     "potion_cyan_big.png",
     "potion_double.png",
+    "potion_gray.png",
     "potion_gray_big.png",
+    "potion_gray_small.png",
+    "potion_green.png",
     "potion_green_big.png",
     "potion_green_small.png",
-    "potion_orange_big.png",
+    "potion_indigo.png",
+    "potion_indigo_small.png",
     "potion_pink_big.png",
-    "potion_purple_big.png",
+    "potion_red.png",
     "potion_red_big.png",
+    "potion_white.png",
+    "potion_white_big.png",
+    "potion_white_small.png",
     "potion_yellow_big.png",
-    "shovel_diamond.png",
-    "shovel_gold.png",
-    "shovel_iron.png",
-    "shovel_steel.png",
-    "shovel_stone.png",
-    "shovel_wood.png",
-    "soup_brown.png",
-    "soup_green.png",
+    "skull.png",
     "soup_red.png",
     "soup_yellow.png",
-    "sword_diamond.png",
+    "sword_bronze.png",
     "sword_gold.png",
     "sword_iron.png",
-    "sword_steel.png",
-    "sword_stone.png",
-    "sword_wood.png",
+    "torch.png",
     "treasure_chest.png",
+    "treasure_chest_gold.png",
     "void.png",
   ],
   border: [
-    "greater.png",
+    "gateway.png",
     "keystone.png",
     "lesser.png",
     "notable.png",
@@ -133,6 +125,7 @@ function initializeTextureDropdowns() {
     const field = select.dataset.field;
     
     if (!textureType || !TEXTURE_PATHS[textureType]) {
+      console.warn('Unknown texture type:', textureType, 'for select:', select);
       return;
     }
     
@@ -142,6 +135,11 @@ function initializeTextureDropdowns() {
       const option = document.createElement("option");
       option.value = getTexturePath(textureType, filename);
       option.textContent = filename.replace(".png", "");
+      
+      // Add data attribute for preview path
+      const previewPath = getTextureDisplayPath(textureType, filename);
+      option.dataset.previewPath = previewPath;
+      
       select.appendChild(option);
     });
     
@@ -149,6 +147,31 @@ function initializeTextureDropdowns() {
       updateTexturePreview(field, e.target.value);
     });
   });
+}
+
+function convertTexturePathToDisplay(texturePath) {
+  if (!texturePath) return '';
+  
+  // If it's already a display path, return as-is
+  if (texturePath.startsWith('./assets/')) {
+    return texturePath;
+  }
+  
+  // Convert skilltree: paths to display paths
+  if (texturePath.startsWith("skilltree:")) {
+    // Extract texture type and filename from the skilltree: path
+    const pathMatch = texturePath.match(/skilltree:textures\/([^\/]+)\/(.+)/);
+    if (pathMatch) {
+      const [, subfolder, filename] = pathMatch;
+      return `./assets/skilltree/textures/${subfolder}/${filename}`;
+    } else {
+      // Fallback: just replace the prefix
+      return texturePath.replace("skilltree:", "./assets/skilltree/");
+    }
+  }
+  
+  // Return as-is if no conversion needed
+  return texturePath;
 }
 
 function updateTexturePreview(field, texturePath) {
@@ -162,20 +185,35 @@ function updateTexturePreview(field, texturePath) {
   const parts = texturePath.split("/");
   const filename = parts[parts.length - 1];
   
-  let displayPath = texturePath;
-  if (texturePath.startsWith("skilltree:")) {
-    displayPath = texturePath.replace("skilltree:", "./assets/skilltree");
-  }
+  // Convert to display path
+  const displayPath = convertTexturePathToDisplay(texturePath);
+  
+  // Debug logging
+  console.log('Texture preview update:', {
+    field,
+    originalPath: texturePath,
+    displayPath,
+    filename
+  });
   
   const img = document.createElement("img");
   img.src = displayPath;
   img.alt = filename;
   img.onerror = () => {
+    console.warn('Texture not found:', displayPath);
     preview.innerHTML = "";
     const fallback = document.createElement("span");
     fallback.textContent = "?";
     fallback.style.color = "var(--color-text-muted)";
     fallback.style.fontSize = "1.2rem";
+    fallback.style.fontWeight = "bold";
+    fallback.style.display = "inline-block";
+    fallback.style.width = "20px";
+    fallback.style.height = "20px";
+    fallback.style.lineHeight = "20px";
+    fallback.style.textAlign = "center";
+    fallback.style.border = "1px dashed var(--color-border)";
+    fallback.style.borderRadius = "2px";
     preview.appendChild(fallback);
   };
   
@@ -189,6 +227,9 @@ function getTexturePathFromFilename(textureType, filename) {
 export {
   initializeTextureDropdowns,
   updateTexturePreview,
+  getTexturePath,
+  getTextureDisplayPath,
   getTexturePathFromFilename,
+  convertTexturePathToDisplay,
   TEXTURE_PATHS,
 };
