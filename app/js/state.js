@@ -146,6 +146,7 @@ function subscribe(listener) {
 
 function createDefaultSkill() {
   return {
+    skillTreeName: "",
     id: "skilltree:untitled_skill",
     bonuses: [],
     requirements: [],

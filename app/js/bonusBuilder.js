@@ -192,6 +192,14 @@ function handleAddBonus(event) {
     }
     return;
   }
+  
+  const allCards = builderState.list?.querySelectorAll(".bonus-card");
+  if (allCards) {
+    allCards.forEach((card) => {
+      card.dataset.collapsed = "true";
+    });
+  }
+  
   const template = createBonusTemplate(select.value, builderState.metadata);
   addBonus(template);
 }
@@ -242,6 +250,11 @@ function renderBonusList() {
 
   bonuses.forEach((bonus, index) => {
     const card = renderBonusCard(bonus, index);
+    if (index === bonuses.length - 1) {
+      card.dataset.collapsed = "false";
+    } else {
+      card.dataset.collapsed = "true";
+    }
     list.appendChild(card);
   });
 
@@ -252,6 +265,7 @@ function renderBonusCard(bonus, index) {
   const card = document.createElement("article");
   card.className = "bonus-card";
   card.dataset.index = String(index);
+  card.dataset.collapsed = "false";
 
   const header = document.createElement("header");
   header.className = "bonus-card__header";
@@ -262,6 +276,11 @@ function renderBonusCard(bonus, index) {
   const definition = getBonusDefinition(bonusId, builderState.metadata);
   title.textContent = definition?.label || formatLabel(bonusId || `Bonus ${index + 1}`);
   header.appendChild(title);
+
+  const summary = document.createElement("p");
+  summary.className = "bonus-card__summary";
+  summary.textContent = generateBonusSummary(bonus, definition);
+  header.appendChild(summary);
 
   const typeControls = document.createElement("div");
   typeControls.className = "bonus-card__type";
@@ -287,6 +306,13 @@ function renderBonusCard(bonus, index) {
 
   const actions = document.createElement("div");
   actions.className = "bonus-card__actions";
+
+  const collapseToggle = createActionButton("▼", "Collapse/Expand", () => {
+    const isCollapsed = card.dataset.collapsed === "true";
+    card.dataset.collapsed = isCollapsed ? "false" : "true";
+  });
+  collapseToggle.className = "bonus-card__action bonus-card__collapse-toggle";
+  actions.appendChild(collapseToggle);
 
   const moveUp = createActionButton("↑", "Move up", () => moveBonus(index, index - 1));
   moveUp.disabled = index === 0;
@@ -321,6 +347,39 @@ function renderBonusCard(bonus, index) {
 
   card.appendChild(body);
   return card;
+}
+
+function generateBonusSummary(bonus, definition) {
+  if (!bonus || !definition) {
+    return "No details available";
+  }
+  
+  const parts = [];
+  
+  if (bonus.attribute) {
+    parts.push(`Attribute: ${bonus.attribute}`);
+  }
+  if (bonus.enchantment) {
+    parts.push(`Enchantment: ${bonus.enchantment}`);
+  }
+  if (bonus.effect) {
+    parts.push(`Effect: ${bonus.effect}`);
+  }
+  if (bonus.amount !== undefined) {
+    parts.push(`Amount: ${bonus.amount}`);
+  }
+  if (bonus.value !== undefined) {
+    parts.push(`Value: ${bonus.value}`);
+  }
+  if (bonus.multiplier !== undefined) {
+    parts.push(`Multiplier: ${bonus.multiplier}`);
+  }
+  
+  if (parts.length === 0) {
+    return "Click to expand and configure";
+  }
+  
+  return parts.join(", ");
 }
 
 function renderFieldGroup(
