@@ -1573,3 +1573,230 @@ section,
     background-image: none !important;
     border: 1px solid #444;
 }
+
+/* JSON Preview Styles */
+.preview-validation {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-md);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.preview-validation--valid {
+  background-color: rgba(58, 209, 124, 0.15);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+.preview-validation--invalid {
+  background-color: rgba(255, 111, 111, 0.15);
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+}
+
+.preview-errors {
+  margin-top: var(--spacing-sm);
+  padding-left: var(--spacing-lg);
+}
+
+.preview-warnings {
+  margin-top: var(--spacing-sm);
+  padding-left: var(--spacing-lg);
+}
+
+.preview-error {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  margin-bottom: var(--spacing-xs);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.preview-warning {
+  font-size: 0.8rem;
+  color: var(--color-warning);
+  margin-bottom: var(--spacing-xs);
+}
+
+.preview-error:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.preview-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.preview-button {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.preview-button:hover:not(:disabled) {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.preview-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.preview-json-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: auto;
+  max-height: 500px;
+  position: relative;
+}
+
+.preview-json {
+  margin: 0;
+  padding: var(--spacing-md);
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* JSON Syntax Highlighting */
+.json-key {
+  color: #3ad17c;
+  font-weight: bold;
+}
+
+.json-string {
+  color: #74ffb2;
+}
+
+.json-number {
+  color: #f7c45a;
+}
+
+.json-boolean {
+  color: #ff6f6f;
+  font-weight: bold;
+}
+
+.json-null {
+  color: #9ccfb0;
+  font-style: italic;
+}
+
+.preview-empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--spacing-xl);
+  font-style: italic;
+}
+
+/* Responsive adjustments for preview */
+@media (max-width: 768px) {
+  .preview-controls {
+    justify-content: center;
+  }
+  
+  .preview-button {
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+  
+  .preview-json {
+    font-size: 0.7rem;
+  }
+}
+
+/* Export Section Styles */
+.export-section {
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.export-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.section__subtitle {
+  font-size: 1.1rem;
+  color: var(--color-accent-strong);
+  margin-bottom: var(--spacing-sm);
+}
+
+.section__description {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+  font-size: 0.9rem;
+}
+
+.export-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.session-info {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+}
+
+.session-info p {
+  margin: var(--spacing-xs) 0;
+  font-size: 0.9rem;
+}
+
+.session-info strong {
+  color: var(--color-accent);
+}
+
+.session-info span[data-session-count],
+.session-info span[data-session-tree],
+.session-info span[data-session-saved] {
+  color: var(--color-text);
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.8rem;
+}
+
+/* Highlight error animation */
+.highlight-error {
+  animation: highlight-error 3s ease-in-out;
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 8px rgba(255, 111, 111, 0.4) !important;
+}
+
+@keyframes highlight-error {
+  0% { 
+    background-color: rgba(255, 111, 111, 0.2);
+    transform: scale(1.02);
+  }
+  50% { 
+    background-color: rgba(255, 111, 111, 0.1);
+    transform: scale(1.01);
+  }
+  100% { 
+    background-color: transparent;
+    transform: scale(1);
+  }
+}

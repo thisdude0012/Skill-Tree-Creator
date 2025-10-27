@@ -9,6 +9,7 @@ import {
   initializeTextureDropdowns,
   updateTexturePreview,
 } from "./textureManager.js";
+import { initializeJSONOutput } from "./jsonOutput.js";
 
 const dom = {
   root: document.documentElement,
@@ -417,6 +418,7 @@ window.addEventListener("hashchange", () => {
 
 const unsubscribe = subscribe(renderState);
 const bonusBuilder = initializeBonusBuilder();
+initializeJSONOutput();
 renderState(getStateSnapshot());
 
 initializeState().catch((error) => {
