@@ -392,10 +392,47 @@
             </h2>
             <p class="panel__lede">Generate data packs, JSON configs, and shareable blueprints.</p>
           </header>
-          <div class="panel__content placeholder-actions" data-placeholder="exports">
-            <button class="cta-button" type="button">Export JSON</button>
-            <button class="cta-button" type="button">Copy Share Link</button>
-            <button class="cta-button" type="button">Download Data Pack</button>
+          <div class="panel__content">
+            <div class="export-section">
+              <h3 class="section__subtitle">Current Skill</h3>
+              <p class="section__description">Export the currently active skill configuration.</p>
+              <div class="export-controls">
+                <button class="cta-button" data-download-json>
+                  💾 Download Current Skill
+                </button>
+                <button class="cta-button" data-copy-json>
+                  📋 Copy JSON to Clipboard
+                </button>
+              </div>
+            </div>
+
+            <div class="export-section">
+              <h3 class="section__subtitle">Skill Management</h3>
+              <p class="section__description">Create, manage, and export multiple skills.</p>
+              <div class="export-controls">
+                <button class="cta-button" data-new-skill>
+                  ➕ Create New Skill
+                </button>
+                <button class="cta-button" data-export-all>
+                  📦 Export All Skills
+                </button>
+                <button class="cta-button" data-generate-tree>
+                  🌳 Generate skill_tree.json
+                </button>
+                <button class="cta-button" data-clear-session>
+                  🗑️ Start Fresh
+                </button>
+              </div>
+            </div>
+
+            <div class="export-section">
+              <h3 class="section__subtitle">Session Info</h3>
+              <div class="session-info" data-session-info>
+                <p><strong>Skills created:</strong> <span data-session-count>0</span></p>
+                <p><strong>Current tree:</strong> <span data-session-tree>None</span></p>
+                <p><strong>Last saved:</strong> <span data-session-saved>Never</span></p>
+              </div>
+            </div>
           </div>
         </section>
 
