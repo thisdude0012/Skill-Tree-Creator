@@ -909,12 +909,18 @@ function initializeJSONOutput() {
     }
   });
 
-  // Also handle copy/download buttons in exports section
+  // Also handle copy/download/import buttons in exports section
   document.addEventListener('click', (event) => {
     if (event.target.matches('[data-copy-json]')) {
       copyJSONToClipboard();
     } else if (event.target.matches('[data-download-json]')) {
       downloadJSON();
+    } else if (event.target.matches('[data-import-skill]')) {
+      // Import is now handled by skillHistoryManager
+      const fileInput = document.querySelector('[data-import-file-input]');
+      if (fileInput) {
+        fileInput.click();
+      }
     }
   });
 

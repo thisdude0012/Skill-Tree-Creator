@@ -10,6 +10,7 @@ import {
   updateTexturePreview,
 } from "./textureManager.js";
 import { initializeJSONOutput } from "./jsonOutput.js";
+import { initializeSkillHistory } from "./skillHistoryManager.js";
 
 const dom = {
   root: document.documentElement,
@@ -238,6 +239,16 @@ function formatFieldValue(field, value) {
   if (value === undefined || value === null) {
     return "";
   }
+  if (field === "description") {
+    if (Array.isArray(value)) {
+      // Extract text from description array format
+      return value.map(item => item?.text || "").join("\n");
+    }
+    if (typeof value === "string") {
+      return value;
+    }
+    return "";
+  }
   if (field === "tags") {
     if (Array.isArray(value)) {
       return value.join(", ");
@@ -419,6 +430,7 @@ window.addEventListener("hashchange", () => {
 const unsubscribe = subscribe(renderState);
 const bonusBuilder = initializeBonusBuilder();
 initializeJSONOutput();
+const skillHistoryManager = initializeSkillHistory();
 renderState(getStateSnapshot());
 
 initializeState().catch((error) => {
