@@ -7,6 +7,7 @@ import {
   removeBonus,
   moveBonus,
 } from "./state.js";
+import { generateBonusText, generateBonusSummary } from "./bonusTextGenerator.js";
 
 const SELECTORS = {
   root: "[data-bonus-builder]",
@@ -279,7 +280,7 @@ function renderBonusCard(bonus, index) {
 
   const summary = document.createElement("p");
   summary.className = "bonus-card__summary";
-  summary.textContent = generateBonusSummary(bonus, definition);
+  summary.textContent = generateBonusSummary(bonus);
   header.appendChild(summary);
 
   const typeControls = document.createElement("div");
@@ -331,6 +332,14 @@ function renderBonusCard(bonus, index) {
   const body = document.createElement("div");
   body.className = "bonus-card__body";
 
+  // Add prominent bonus text preview
+  const preview = document.createElement("div");
+  preview.className = "bonus-card__preview";
+  const previewText = document.createElement("strong");
+  previewText.textContent = generateBonusText(bonus);
+  preview.appendChild(previewText);
+  body.appendChild(preview);
+
   if (!definition) {
     const message = document.createElement("p");
     message.className = "bonus-card__empty";
@@ -349,38 +358,7 @@ function renderBonusCard(bonus, index) {
   return card;
 }
 
-function generateBonusSummary(bonus, definition) {
-  if (!bonus || !definition) {
-    return "No details available";
-  }
-  
-  const parts = [];
-  
-  if (bonus.attribute) {
-    parts.push(`Attribute: ${bonus.attribute}`);
-  }
-  if (bonus.enchantment) {
-    parts.push(`Enchantment: ${bonus.enchantment}`);
-  }
-  if (bonus.effect) {
-    parts.push(`Effect: ${bonus.effect}`);
-  }
-  if (bonus.amount !== undefined) {
-    parts.push(`Amount: ${bonus.amount}`);
-  }
-  if (bonus.value !== undefined) {
-    parts.push(`Value: ${bonus.value}`);
-  }
-  if (bonus.multiplier !== undefined) {
-    parts.push(`Multiplier: ${bonus.multiplier}`);
-  }
-  
-  if (parts.length === 0) {
-    return "Click to expand and configure";
-  }
-  
-  return parts.join(", ");
-}
+// generateBonusSummary is now imported from bonusTextGenerator.js
 
 function renderFieldGroup(
   container,

@@ -46,6 +46,37 @@
       <main class="app-main" data-module="main">
         <section id="workspace" class="panel panel--workspace" data-section>
           <div class="workspace-layout">
+            <div class="workspace-layout__left">
+              <div class="skill-history-panel">
+                <header class="skill-history-panel__header">
+                  <h2 class="skill-history-panel__title">
+                    <span
+                      class="panel__icon"
+                      style="--icon:url('./assets/skilltree/textures/icons/heart_green.png')"
+                      aria-hidden="true"
+                    ></span>
+                    Skill History
+                  </h2>
+                  <div class="skill-history-panel__controls">
+                    <input
+                      class="skill-history__search"
+                      type="text"
+                      placeholder="Search skills..."
+                      data-skill-search
+                    />
+                    <button class="skill-history__clear" type="button" data-clear-history>
+                      🗑️ Clear All
+                    </button>
+                  </div>
+                </header>
+                <div class="skill-history-panel__content">
+                  <div class="skill-history__empty" data-skill-history-empty hidden>
+                    <p>No skills created yet. Create your first skill!</p>
+                  </div>
+                  <div class="skill-history__list" data-skill-history-list></div>
+                </div>
+              </div>
+            </div>
             <div class="workspace-layout__center">
               <div class="preview-panel">
                 <header class="preview-panel__header">
@@ -150,6 +181,19 @@
                         />
                         <p class="form-field__description">What players see in-game (e.g., "Master of Combat", "Tier I").</p>
                         <p class="form-field__feedback" data-feedback="title" role="alert"></p>
+                      </div>
+                      <div class="form-field form-field--full" data-field-wrapper="description">
+                        <label class="form-field__label" for="skill-description-input">Description (Flavor Text)</label>
+                        <textarea
+                          class="form-input"
+                          id="skill-description-input"
+                          name="skill-description"
+                          data-field="description"
+                          rows="3"
+                          placeholder="Enter skill description (optional)"
+                        ></textarea>
+                        <p class="form-field__description">The fancy flavor text that appears in-game for this skill.</p>
+                        <p class="form-field__feedback" data-feedback="description" role="alert"></p>
                       </div>
                       <div class="form-field" data-field-wrapper="titleColor">
                         <label class="form-field__label" for="skill-title-color-input">Title Color</label>
@@ -397,13 +441,22 @@
               <h3 class="section__subtitle">Current Skill</h3>
               <p class="section__description">Export the currently active skill configuration.</p>
               <div class="export-controls">
-                <button class="cta-button" data-download-json>
-                  💾 Download Current Skill
-                </button>
-                <button class="cta-button" data-copy-json>
-                  📋 Copy JSON to Clipboard
-                </button>
-              </div>
+                               <button class="cta-button" data-import-skill>
+                                 📁 Import Skill
+                               </button>
+                               <input
+                                 type="file"
+                                 accept=".json"
+                                 data-import-file-input
+                                 style="display: none;"
+                               />
+                               <button class="cta-button" data-download-json>
+                                 💾 Download Current Skill
+                               </button>
+                               <button class="cta-button" data-copy-json>
+                                 📋 Copy JSON to Clipboard
+                               </button>
+                             </div>
             </div>
 
             <div class="export-section">

@@ -451,6 +451,26 @@ function normalizeFieldValue(field, value) {
     }
     return [];
   }
+  if (field === "description") {
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      if (trimmed === "") return [];
+      
+      // Convert plain text to description array format
+      return [{
+        "f_131101_": { "f_131257_": 8092645 },
+        "f_131102_": true,
+        "f_131106_": false,
+        "text": trimmed
+      }];
+    }
+    if (Array.isArray(value)) {
+      return value.filter(item => 
+        item && typeof item === "object" && typeof item.text === "string"
+      );
+    }
+    return [];
+  }
   if (field === "directConnections" || field === "longConnections" || field === "oneWayConnections") {
     if (Array.isArray(value)) {
       return value
