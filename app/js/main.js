@@ -2,6 +2,7 @@ import {
   initializeState,
   subscribe,
   updateSkillField,
+  updateSkillPartial,
   getStateSnapshot,
 } from "./state.js";
 import { initializeBonusBuilder } from "./bonusBuilder.js";
@@ -188,11 +189,16 @@ function setupSkillForm() {
 
     if (field === "skillTreeName") {
       input.addEventListener("input", (event) => {
-        currentSkillTree = event.target.value;
+        const value = event.target.value;
+        currentSkillTree = value;
         skillCounter = 1;
         const newID = generateSkillID();
-        updateSkillField("id", newID);
-        
+
+        updateSkillPartial({
+          skillTreeName: value,
+          id: newID,
+        });
+
         const idInput = dom.fieldInputs.get("id");
         if (idInput && idInput.value !== newID) {
           idInput.value = newID;
