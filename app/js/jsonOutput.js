@@ -845,8 +845,15 @@ function generateSkillTreeJSON() {
     return;
   }
 
-  const treeName = prompt('Enter skill tree name (e.g., "warrior", "mage"):', jsonOutputState.currentTreeName || 'skilltree');
-  if (!treeName) return;
+  // Use skill tree name from current skill instead of prompting
+  const snapshot = getStateSnapshot();
+  const currentSkill = snapshot.currentSkill;
+  const treeName = currentSkill?.skillTreeName || jsonOutputState.currentTreeName || 'skilltree';
+  
+  if (!treeName || treeName === 'untitled') {
+    alert('Please set a skill tree name in the Skill Details section first!');
+    return;
+  }
 
   const skillIds = Array.from(jsonOutputState.sessionSkills.keys());
   const skillTreeJSON = {
@@ -898,9 +905,7 @@ function initializeJSONOutput() {
 
   // Set up global event listeners
   document.addEventListener('click', (event) => {
-    if (event.target.matches(DOM_SELECTORS.newSkillButton)) {
-      createNewSkill();
-    } else if (event.target.matches(DOM_SELECTORS.exportAllButton)) {
+    if (event.target.matches(DOM_SELECTORS.exportAllButton)) {
       exportAllSkills();
     } else if (event.target.matches(DOM_SELECTORS.generateTreeButton)) {
       generateSkillTreeJSON();
@@ -909,18 +914,12 @@ function initializeJSONOutput() {
     }
   });
 
-  // Also handle copy/download/import buttons in exports section
+  // Also handle copy/download buttons in exports section (import handled by skillHistoryManager)
   document.addEventListener('click', (event) => {
     if (event.target.matches('[data-copy-json]')) {
       copyJSONToClipboard();
     } else if (event.target.matches('[data-download-json]')) {
       downloadJSON();
-    } else if (event.target.matches('[data-import-skill]')) {
-      // Import is now handled by skillHistoryManager
-      const fileInput = document.querySelector('[data-import-file-input]');
-      if (fileInput) {
-        fileInput.click();
-      }
     }
   });
 

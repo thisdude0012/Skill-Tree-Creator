@@ -66,6 +66,14 @@ class SkillHistoryManager {
         }
       });
     }
+    
+    // Handle new skill button
+    this.dom.newSkillButton = document.querySelector('[data-new-skill]');
+    if (this.dom.newSkillButton) {
+      this.dom.newSkillButton.addEventListener('click', () => {
+        this.createNewSkill();
+      });
+    }
   }
   
   subscribeToState() {
@@ -266,11 +274,13 @@ class SkillHistoryManager {
       lastModified: Date.now()
     };
     
-    // Add to state
+    // Add to state using proper state functions (this preserves existing skills)
     snapshot.skills[newId] = newSkill;
     snapshot.currentSkillId = newId;
     snapshot.registry.push(newId.toLowerCase());
     
+    // Trigger state update to save to storage and update UI
+    this.syncWithState(snapshot);
     this.showNotification('New skill created', 'success');
   }
   
@@ -293,9 +303,14 @@ class SkillHistoryManager {
       const text = await file.text();
       const skillJSON = JSON.parse(text);
       
-      // Validate structure
-      if (!skillJSON.id || !skillJSON.title) {
-        throw new Error('Invalid skill JSON: missing required fields (id, title)');
+      // Validate structure - only ID is required
+      if (!skillJSON.id) {
+        throw new Error('Invalid skill JSON: missing required field "id"');
+      }
+      
+      // Title is optional - use ID as fallback if missing
+      if (!skillJSON.title) {
+        skillJSON.title = skillJSON.id.split(':').pop() || 'Imported Skill';
       }
       
       const snapshot = getStateSnapshot();
@@ -360,12 +375,17 @@ class SkillHistoryManager {
   loadFromStorage() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (!stored) return;
+      if (!stored) {
+        // No stored data - create a default skill
+        this.createNewSkill();
+        return;
+      }
       
       const historyData = JSON.parse(stored);
       
       if (historyData.version !== HISTORY_VERSION) {
         console.warn('Skill history version mismatch, ignoring stored data');
+        this.createNewSkill();
         return;
       }
       
@@ -388,6 +408,10 @@ class SkillHistoryManager {
         const skillIds = Object.keys(snapshot.skills);
         if (skillIds.length > 0) {
           snapshot.currentSkillId = skillIds[0];
+        } else {
+          // No skills at all - create a default one
+          this.createNewSkill();
+          return;
         }
       }
       
@@ -395,6 +419,8 @@ class SkillHistoryManager {
       
     } catch (error) {
       console.warn('Failed to load skill history from localStorage:', error);
+      // On error, create a default skill
+      this.createNewSkill();
     }
   }
   
