@@ -1002,6 +1002,87 @@ function getSkillRegistry() {
   return Array.from(state.registry.values());
 }
 
+/**
+ * Generate a unique skill ID for a given skill tree name
+ * Ensures lowercase and increments based on existing skills
+ */
+function generateSkillID(skillTreeName) {
+  // Force lowercase and sanitize the tree name
+  const cleanTreeName = skillTreeName
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]/g, "_");
+  
+  // If no tree name, use 'untitled'
+  const treeName = cleanTreeName || 'untitled';
+  
+  // Find all existing skills for this tree
+  const treeSkills = Object.keys(state.skills).filter(skillId => {
+    return skillId.toLowerCase().startsWith(`skilltree:${treeName}_`);
+  });
+  
+  // Extract numbers from existing skill IDs
+  const existingNumbers = treeSkills.map(skillId => {
+    const match = skillId.toLowerCase().match(/_(\d+)$/);
+    return match ? parseInt(match[1], 10) : 0;
+  });
+  
+  // Find the highest number and add 1, or start at 1 if no skills exist
+  const nextNumber = existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
+  
+  return `skilltree:${treeName}_${nextNumber}`;
+}
+
+/**
+ * Update skill tree name and regenerate ID if needed
+ */
+function updateSkillTreeName(newTreeName) {
+  const currentSkill = getCurrentSkill();
+  if (!currentSkill) {
+    return {
+      success: false,
+      error: "No skill selected.",
+    };
+  }
+  
+  // Generate new ID based on the new tree name
+  const newId = generateSkillID(newTreeName);
+  
+  // Update both the tree name and ID
+  return updateSkillPartial({
+    skillTreeName: newTreeName,
+    id: newId,
+  });
+}
+
+/**
+ * Create a new skill with proper ID generation
+ */
+function createNewSkill(skillTreeName = null) {
+  // Use provided tree name or get from current skill, or default to 'untitled'
+  const treeName = skillTreeName || 
+    getCurrentSkill()?.skillTreeName || 
+    'untitled';
+  
+  // Generate unique ID
+  const newId = generateSkillID(treeName);
+  
+  // Create new skill object
+  const newSkill = createDefaultSkill();
+  newSkill.skillTreeName = treeName;
+  newSkill.id = newId;
+  
+  // Register the new skill
+  registerSkill(newSkill);
+  
+  return {
+    success: true,
+    skill: newSkill,
+    id: newId,
+  };
+}
+
 export {
   initializeState,
   subscribe,
@@ -1021,5 +1102,8 @@ export {
   addCustomAttribute,
   addCustomEnchantment,
   addCustomStat,
+  generateSkillID,
+  updateSkillTreeName,
+  createNewSkill,
   state as __state,
 };

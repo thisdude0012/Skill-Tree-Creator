@@ -9,7 +9,8 @@ import {
   getCurrentSkill, 
   setCurrentSkill,
   updateSkillPartial,
-  getSkillRegistry
+  getSkillRegistry,
+  createNewSkill as createNewSkillState
 } from './state.js';
 
 const STORAGE_KEY = 'skilltree_creator_history';
@@ -241,47 +242,16 @@ class SkillHistoryManager {
   
   createNewSkill() {
     const snapshot = getStateSnapshot();
-    const existingSkills = Object.keys(snapshot.skills);
-    const skillTreeName = snapshot.skills[snapshot.currentSkillId]?.skillTreeName || 'untitled';
+    const skillTreeName = snapshot.skills[snapshot.currentSkillId]?.skillTreeName || null;
     
-    // Find next available number
-    let counter = 1;
-    let newId;
-    do {
-      newId = `skilltree:${skillTreeName}_${counter}`;
-      counter++;
-    } while (existingSkills.includes(newId));
+    // Use the centralized createNewSkill function
+    const result = createNewSkillState(skillTreeName);
     
-    const newSkill = {
-      skillTreeName,
-      id: newId,
-      bonuses: [],
-      requirements: [],
-      directConnections: [],
-      longConnections: [],
-      oneWayConnections: [],
-      tags: [],
-      backgroundTexture: "skilltree:textures/icons/background/lesser.png",
-      iconTexture: "skilltree:textures/icons/void.png",
-      borderTexture: "skilltree:textures/tooltip/lesser.png",
-      title: "Untitled Skill",
-      titleColor: "",
-      positionX: 0,
-      positionY: 0,
-      buttonSize: 16,
-      isStartingPoint: false,
-      description: [],
-      lastModified: Date.now()
-    };
-    
-    // Add to state using proper state functions (this preserves existing skills)
-    snapshot.skills[newId] = newSkill;
-    snapshot.currentSkillId = newId;
-    snapshot.registry.push(newId.toLowerCase());
-    
-    // Trigger state update to save to storage and update UI
-    this.syncWithState(snapshot);
-    this.showNotification('New skill created', 'success');
+    if (result.success) {
+      this.showNotification('New skill created', 'success');
+    } else {
+      this.showNotification(`Failed to create skill: ${result.error}`, 'error');
+    }
   }
   
   clearAllSkills() {
@@ -306,6 +276,14 @@ class SkillHistoryManager {
       // Validate structure - only ID is required
       if (!skillJSON.id) {
         throw new Error('Invalid skill JSON: missing required field "id"');
+      }
+      
+      // Normalize ID to lowercase to prevent capitalization issues
+      const originalId = skillJSON.id;
+      skillJSON.id = skillJSON.id.toLowerCase().trim();
+      
+      if (originalId !== skillJSON.id) {
+        console.warn(`Skill ID normalized from "${originalId}" to "${skillJSON.id}" to prevent capitalization issues`);
       }
       
       // Title is optional - use ID as fallback if missing
@@ -393,14 +371,38 @@ class SkillHistoryManager {
       
       // Load skills from storage
       if (historyData.skills && typeof historyData.skills === 'object') {
-        snapshot.skills = historyData.skills;
-        snapshot.currentSkillId = historyData.currentSkillId || null;
-        snapshot.registry = Array.isArray(historyData.registry) ? historyData.registry : [];
+        // Normalize skill IDs and rebuild skills object
+        const normalizedSkills = {};
+        const idMapping = {}; // Track old ID -> new ID mappings
         
-        // Rebuild registry from skill IDs if needed
-        if (snapshot.registry.length === 0) {
-          snapshot.registry = Object.keys(snapshot.skills).map(id => id.toLowerCase());
+        Object.entries(historyData.skills).forEach(([oldId, skill]) => {
+          const normalizedId = oldId.toLowerCase().trim();
+          
+          // Normalize the skill object's ID
+          if (skill.id) {
+            skill.id = skill.id.toLowerCase().trim();
+          }
+          
+          // Use normalized ID as key
+          normalizedSkills[normalizedId] = skill;
+          
+          // Track mapping for updating currentSkillId
+          if (oldId !== normalizedId) {
+            idMapping[oldId] = normalizedId;
+          }
+        });
+        
+        snapshot.skills = normalizedSkills;
+        
+        // Update currentSkillId if it was normalized
+        let currentSkillId = historyData.currentSkillId || null;
+        if (currentSkillId && idMapping[currentSkillId]) {
+          currentSkillId = idMapping[currentSkillId];
         }
+        snapshot.currentSkillId = currentSkillId;
+        
+        // Rebuild registry from normalized skill IDs
+        snapshot.registry = Object.keys(snapshot.skills).map(id => id.toLowerCase());
       }
       
       // If no current skill or it doesn't exist, select first available
