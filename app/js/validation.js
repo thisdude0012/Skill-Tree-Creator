@@ -50,11 +50,28 @@ function validateSkillField(field, value, context = {}) {
         break;
       }
       const trimmed = value.trim();
+      
+      // Check for lowercase requirement
+      if (trimmed !== trimmed.toLowerCase()) {
+        result.valid = false;
+        result.message = "Skill ID must be lowercase only.";
+        break;
+      }
+      
       if (!isNamespacePath(trimmed)) {
         result.valid = false;
         result.message = "ID must follow namespace:path format.";
         break;
       }
+      
+      // Check for proper skilltree:name_number pattern
+      const skillIdPattern = /^skilltree:[a-z0-9_-]+_\d+$/;
+      if (!skillIdPattern.test(trimmed)) {
+        result.valid = false;
+        result.message = "ID must match pattern: skilltree:name_number (e.g., skilltree:warrior_1)";
+        break;
+      }
+      
       const lowercaseId = trimmed.toLowerCase();
       const alreadyExists = registry.has(lowercaseId) && lowercaseId !== currentSkillId;
       if (alreadyExists) {

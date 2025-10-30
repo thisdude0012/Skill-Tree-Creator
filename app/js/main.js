@@ -4,6 +4,7 @@ import {
   updateSkillField,
   updateSkillPartial,
   getStateSnapshot,
+  updateSkillTreeName,
 } from "./state.js";
 import { initializeBonusBuilder } from "./bonusBuilder.js";
 import {
@@ -30,8 +31,6 @@ dom.fieldInputs = new Map();
 dom.fieldWrappers = new Map();
 dom.fieldFeedback = new Map();
 
-let skillCounter = 1;
-let currentSkillTree = "";
 let lastGeneratedID = "";
 
 dom.root.classList.add("theme-dark");
@@ -152,17 +151,7 @@ function hydratePlaceholders() {
   });
 }
 
-function generateSkillID() {
-  if (!currentSkillTree || currentSkillTree.trim() === "") {
-    const id = `skilltree:untitled_${skillCounter}`;
-    lastGeneratedID = id;
-    return id;
-  }
-  const sanitized = currentSkillTree.trim().toLowerCase().replace(/[^a-z0-9_]/g, "_");
-  const id = `skilltree:${sanitized}_${skillCounter}`;
-  lastGeneratedID = id;
-  return id;
-}
+// generateSkillID function moved to state.js
 
 function setupSkillForm() {
   if (!dom.skillForm) return;
@@ -190,18 +179,21 @@ function setupSkillForm() {
     if (field === "skillTreeName") {
       input.addEventListener("input", (event) => {
         const value = event.target.value;
-        currentSkillTree = value;
-        skillCounter = 1;
-        const newID = generateSkillID();
-
-        updateSkillPartial({
-          skillTreeName: value,
-          id: newID,
-        });
-
-        const idInput = dom.fieldInputs.get("id");
-        if (idInput && idInput.value !== newID) {
-          idInput.value = newID;
+        
+        // Use the centralized function to update tree name and regenerate ID
+        const result = updateSkillTreeName(value);
+        
+        if (result.success) {
+          // Get the updated skill to see the new ID
+          const snapshot = getStateSnapshot();
+          const newId = snapshot.currentSkill?.id;
+          if (newId) {
+            const idInput = dom.fieldInputs.get("id");
+            if (idInput && idInput.value !== newId) {
+              idInput.value = newId;
+              lastGeneratedID = newId;
+            }
+          }
         }
       });
       return;
@@ -213,12 +205,6 @@ function setupSkillForm() {
       const { field: fieldName } = target.dataset;
       if (!fieldName) return;
       const value = target.type === "checkbox" ? target.checked : target.value;
-      
-      if (fieldName === "id") {
-        if (value === lastGeneratedID) {
-          skillCounter++;
-        }
-      }
       
       updateSkillField(fieldName, value);
       
